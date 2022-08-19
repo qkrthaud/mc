@@ -13,9 +13,14 @@ public class StoreController {
 	@Autowired StoreService ss;
 	
 	
-	@GetMapping("serch")
-	public String serch() {
-		return "store/serch";
+	@GetMapping("search")
+	public String search() {
+		
+		return "store/search";
+	}
+	@GetMapping("test")
+	public String test() {
+		return "store/test";
 	}
 
 }
