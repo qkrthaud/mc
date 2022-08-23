@@ -1,8 +1,33 @@
 package com.care.mc.dto;
 
 public class StoreDTO {
-	private String name,place,service;
+	private String name,place,service,tel,place2;
 	private int event;
+	private double lat,lng;
+	public double getLat() {
+		return lat;
+	}
+	public String getPlace2() {
+		return place2;
+	}
+	public void setPlace2(String place2) {
+		this.place2 = place2;
+	}
+	public String getTel() {
+		return tel;
+	}
+	public void setTel(String tel) {
+		this.tel = tel;
+	}
+	public void setLat(double lat) {
+		this.lat = lat;
+	}
+	public double getLng() {
+		return lng;
+	}
+	public void setLng(double lng) {
+		this.lng = lng;
+	}
 	public String getName() {
 		return name;
 	}
