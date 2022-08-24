@@ -1,8 +1,8 @@
 package com.care.mc.dto;
 
 public class MenuInfoDTO {
-	private String name, engName, thumbNail, mainImage,
-					explanation, value;
+	private String name, engName, image,
+					explanation, value, menuSize;
 
 	public String getName() {
 		return name;
@@ -20,20 +20,12 @@ public class MenuInfoDTO {
 		this.engName = engName;
 	}
 
-	public String getThumbNail() {
-		return thumbNail;
+	public String getImage() {
+		return image;
 	}
 
-	public void setThumbNail(String thumbNail) {
-		this.thumbNail = thumbNail;
-	}
-
-	public String getMainImage() {
-		return mainImage;
-	}
-
-	public void setMainImage(String mainImage) {
-		this.mainImage = mainImage;
+	public void setImage(String image) {
+		this.image = image;
 	}
 
 	public String getExplanation() {
@@ -51,6 +43,13 @@ public class MenuInfoDTO {
 	public void setValue(String value) {
 		this.value = value;
 	}
-	
 
+	public String getMenuSize() {
+		return menuSize;
+	}
+
+	public void setMenuSize(String menuSize) {
+		this.menuSize = menuSize;
+	}
+	
 }

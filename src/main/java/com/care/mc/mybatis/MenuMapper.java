@@ -6,4 +6,5 @@ import com.care.mc.dto.MenuInfoDTO;
 
 public interface MenuMapper {
 	public List<MenuInfoDTO> list();
+	public MenuInfoDTO detail(String name);
 }

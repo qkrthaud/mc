@@ -6,12 +6,15 @@
 	<resultMap type="com.care.mc.dto.MenuInfoDTO" id="menuInfo">
 		<id property="name" column="name" />
 		<result property="engName" column="engName" />
-		<result property="thumbNail" column="thumbNail" />
 		<result property="mainImage" column="mainImage" />
 		<result property="explanation" column="explanation" />
 		<result property="value" column="value" />
+		<result property="menuSize" column="menuSize" />
 	</resultMap>
 	<select id="list" resultMap="menuInfo">
 		select * from menu_Info
+	</select>
+	<select id="detail" resultMap="menuInfo">
+		select * from menu_Info where name=#{name}
 	</select>
 </mapper>

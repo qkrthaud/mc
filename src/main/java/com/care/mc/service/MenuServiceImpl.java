@@ -16,4 +16,7 @@ public class MenuServiceImpl implements MenuService{
 		List<MenuInfoDTO> list = mm.list();
 		model.addAttribute("list", list);
 	}
+	public void detail(String name, Model model) {
+		model.addAttribute("dto", mm.detail(name));
+	}
 }

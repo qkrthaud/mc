@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="${contextPath}/resources/css/mc.css" rel="stylesheet" type="text/css">
+<link href="${contextPath}/resources/css/mc.css" rel="stylesheet">
 </head>
 <body>
 	
@@ -16,8 +16,9 @@
 	<ul class="menuList">
 		<c:forEach var="dto" items="${ list }">
 			<li>
+				<a href="detail?name=${dto.name }">
 				<div class="thum">
-				<img src="${contextPath}/resources/menuimg/${dto.thumbNail}">
+				<img src="${contextPath}/resources/menuimg/${dto.image}">
 				</div>
 				<br>
 				<div class="name">
@@ -25,6 +26,7 @@
 				<br>
 				${dto.engName }
 				</div>
+				</a>
 			</li>
 		</c:forEach>
 	</ul>
