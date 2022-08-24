@@ -20,31 +20,65 @@ public class StoreController {
 	
 	@GetMapping("search")
 	public String search(String sear,Model model,@RequestParam(value="num", required=false, defaultValue = "1") int num,
-			String mor,String par,String del,String dec,String dri) {
-		System.out.println("mor : "+mor);
-		System.out.println("par : "+par);
+			String morning,String parking,String del,String decafe,String drive) {
+		ArrayList<String> arr = new ArrayList<String>();
+		if(drive!=null) {
+			if(drive.equals("")) {
+				drive=null;
+			}
+		}
+		if(del!=null) {
+			if(del.equals("")) {
+				del=null;
+			}
+		}
+		if(decafe!=null) {
+			if(decafe.equals("")) {
+				decafe=null;
+			}
+		}
+		if(morning!=null) {
+			if(morning.equals("")) {
+				morning=null;
+			}
+		}
+		if(parking!=null) {
+			if(parking.equals("")) {
+				parking=null;
+			}
+		}
+		
+		
+		System.out.println("sear : "+sear);
+		System.out.println("mor : "+morning);
+		System.out.println("par : "+parking);
 		System.out.println("del : "+del);
-		System.out.println("dec : "+dec);
-		System.out.println("dri : "+dri);
-		if(mor!=null) {
-			model.addAttribute("mor",mor);
+		System.out.println("dec : "+decafe);
+		System.out.println("dri : "+drive);
+		if(morning!=null) {
+			model.addAttribute("morning",morning);
+			arr.add(morning);
 		}
 		if(del!=null) {
 			model.addAttribute("del",del);
+			arr.add(del);
 		}
-		if(par!=null) {
-			model.addAttribute("par",par);
+		if(parking!=null) {
+			model.addAttribute("parking",parking);
+			arr.add(parking);
 		}
-		if(dec!=null) {
-			model.addAttribute("dec",dec);
+		if(decafe!=null) {
+			model.addAttribute("decafe",decafe);
+			arr.add(decafe);
 		}
-		if(dri!=null) {
-			model.addAttribute("dri",dri);
+		if(drive!=null) {
+			model.addAttribute("drive",drive);
+			arr.add(drive);
 		}
 		System.out.println("sear : "+sear);
-		if(sear!=null) {
-			ss.search(sear,model,num);
-		}
+		
+		ss.search(sear,model,num,arr);
+		
 		return "store/search";
 	}
 	@GetMapping("test")

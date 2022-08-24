@@ -19,29 +19,37 @@
 
 <form action="search">
 <c:choose>
-<c:when test="${dri==null }"><input type="checkbox" name="dri" id="dri" value="dri"></c:when>
-<c:otherwise><input type="checkbox" name="dri" id="dri" value="dri" checked="checked"></c:otherwise>
+<c:when test="${drive==null }"><input type="checkbox" name="drive" id="drive" value="drive"></c:when>
+<c:otherwise><input type="checkbox" name="drive" id="drive" value="drive" checked="checked"></c:otherwise>
 </c:choose>
 <c:choose>
-<c:when test="${mor==null }"><input type="checkbox" name="mor" id="mor" value="mor"></c:when>
-<c:otherwise><input type="checkbox" name="mor" id="mor" value="mor" checked="checked"></c:otherwise>
+<c:when test="${morning==null }"><input type="checkbox" name="morning" id="morning" value="morning"></c:when>
+<c:otherwise><input type="checkbox" name="morning" id="morning" value="morning" checked="checked"></c:otherwise>
 </c:choose>
 <c:choose>
 <c:when test="${del==null }"><input type="checkbox" name="del" id="del" value="del"></c:when>
 <c:otherwise><input type="checkbox" name="del" id="del" value="del" checked="checked"></c:otherwise>
 </c:choose>
 <c:choose>
-<c:when test="${par==null }"><input type="checkbox" name="par" id="par" value="par"></c:when>
-<c:otherwise><input type="checkbox" name="par" id="par" value="par" checked="checked"></c:otherwise>
+<c:when test="${parking==null }"><input type="checkbox" name="parking" id="parking" value="parking"></c:when>
+<c:otherwise><input type="checkbox" name="parking" id="parking" value="parking" checked="checked"></c:otherwise>
 </c:choose>
 <c:choose>
-<c:when test="${dec==null }"><input type="checkbox" name="dec" id="dec" value="dec"></c:when>
-<c:otherwise><input type="checkbox" name="dec" id="dec" value="dec" checked="checked"></c:otherwise>
+<c:when test="${decafe==null }"><input type="checkbox" name="decafe" id="decafe" value="decafe"></c:when>
+<c:otherwise><input type="checkbox" name="decafe" id="decafe" value="decafe" checked="checked"></c:otherwise>
 </c:choose>
 
 
-
+<c:choose>
+<c:when test="${sear==null }">
 <input type="text" name="sear" placeholder="검색">
+</c:when>
+<c:otherwise>
+<input type="text" name="sear" value="${sear }">
+
+</c:otherwise>
+</c:choose>
+
 <input type="submit" value="검색">
 </form>
 <!-- 체크박스 값 배열로 저장 -->
@@ -131,30 +139,30 @@ map.setCenter(new naver.maps.LatLng(list[0].lat, list[0].lng))
 </c:if>
 <tr>
 <th colspan="4">
-<a href="search?num=1&sear=${sear}">&#60;&#60;</a>
+<a href="search?num=1&sear=${sear}&drive=${drive}&del=${del}&decafe=${decafe }&parking=${parking }&morning=${morning}">&#60;&#60;</a>
 <c:choose>
 <c:when test="${num==1 }">
-<a href="search?num=${num }&sear=${sear}">&#60;</a>
+<a href="search?num=${num }&sear=${sear}&drive=${drive}&del=${del}&decafe=${decafe }&parking=${parking }&morning=${morning}">&#60;</a>
 </c:when>
 <c:otherwise>
-<a href="search?num=${num-1 }&sear=${sear}">&#60;</a>
+<a href="search?num=${num-1 }&sear=${sear}&drive=${drive}&del=${del}&decafe=${decafe }&parking=${parking }&morning=${morning}">&#60;</a>
 </c:otherwise>
 </c:choose>
 
 <c:forEach var="cnt" begin="1" end="${repeat }">
-<a href="search?num=${cnt}&sear=${sear}">${cnt }&nbsp;</a>
+<a href="search?num=${cnt}&sear=${sear}&drive=${drive}&del=${del}&decafe=${decafe }&parking=${parking }&morning=${morning}">${cnt }&nbsp;</a>
 
 </c:forEach>
 
 <c:choose>
 <c:when test="${num == repeat}">
-<a href="search?num=${num }&sear=${sear}">&#62;</a>
+<a href="search?num=${num }&sear=${sear}&drive=${drive}&del=${del}&decafe=${decafe }&parking=${parking }&morning=${morning}">&#62;</a>
 </c:when>
 <c:otherwise>
-<a href="search?num=${num+1 }&sear=${sear}">&#62;</a>
+<a href="search?num=${num+1 }&sear=${sear}&drive=${drive}&del=${del}&decafe=${decafe }&parking=${parking }&morning=${morning}">&#62;</a>
 </c:otherwise>
 </c:choose>
-<a href="search?num=${repeat }&sear=${sear}">&#62;&#62;</a>
+<a href="search?num=${repeat }&sear=${sear}&drive=${drive}&del=${del}&decafe=${decafe }&parking=${parking }&morning=${morning}">&#62;&#62;</a>
 </th>
 </tr>
 
