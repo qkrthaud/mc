@@ -17,14 +17,14 @@ public class MenuController {
 
 	
 	@GetMapping("list")
-	public String list(Model model) {
-		ms.list(model);
+	public String list(String size, Model model) {
+		ms.list(size ,model);
 		return "menu/list";
 	}
 	
 	@GetMapping("detail")
-	public String detail(@RequestParam("name") String name, Model model) {
-		ms.detail(name, model);
+	public String detail(@RequestParam("engName") String engName, Model model) {
+		ms.detail(engName, model);	
 		return "menu/detail";
 	}
 }

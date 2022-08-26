@@ -5,6 +5,6 @@ import java.util.List;
 import com.care.mc.dto.MenuInfoDTO;
 
 public interface MenuMapper {
-	public List<MenuInfoDTO> list();
-	public MenuInfoDTO detail(String name);
+	public List<MenuInfoDTO> list(String size);
+	public MenuInfoDTO menuInfo(String engName);
 }

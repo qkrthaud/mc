@@ -12,9 +12,9 @@
 		<result property="menuSize" column="menuSize" />
 	</resultMap>
 	<select id="list" resultMap="menuInfo">
-		select * from menu_Info
+		select * from menu_Info where menuSize=#{size}
 	</select>
-	<select id="detail" resultMap="menuInfo">
-		select * from menu_Info where name=#{name}
+	<select id="menuInfo" resultMap="menuInfo">
+		select * from menu_Info where engName=#{engName}
 	</select>
 </mapper>
