@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-	<c:set var="contextPath" value="${pageContext.request.contextPath }" />
+	<c:set var="path" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,7 +21,7 @@
 								<em class="en">${menuinfo.engName }</em>
 							</div>
 							<div class="visual">
-								<img src="${contextPath}/resources/menuimg/${menuInfo.image}">
+								<img src="${path}/resources/menuimg/${menuInfo.image}">
 							</div>
 							<div class="explan">${menuInfo.explanation }</div>
 						</div>

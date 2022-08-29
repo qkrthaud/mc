@@ -1,6 +1,7 @@
 package com.care.mc.menucontroller;
 
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,8 +18,8 @@ public class MenuController {
 
 	
 	@GetMapping("list")
-	public String list(String size, Model model) {
-		ms.list(size ,model);
+	public String list(String value, Model model){
+		ms.list(value ,model);
 		return "menu/list";
 	}
 	

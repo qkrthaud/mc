@@ -36,19 +36,19 @@
 					<ul class="depth1" onmouseover="menuover()"
 						onmouseleave="menuleave()">
 						<li>
-							<!-- li 오버시 on 클래스 추가 --> <a href="javascript:gotoMenu(1);"
+							<!-- li 오버시 on 클래스 추가 --> <a href="/list?value=버거"
 							class="dth1 ">Menu</a> <!-- 현재페이지 메뉴에 current 클래스 추가 -->
 							<ul class="depth2">
-								<li><a href="javascript:gotoMenu(1);" class="dth2">버거</a></li>
-								<li><a href="javascript:gotoMenu(14);" role="button">맥런치</a></li>
-								<li><a href="javascript:gotoMenu(3);" class="dth2">맥모닝</a></li>
-								<li><a href="javascript:gotoMenu(15);" role="button">해피
+								<li><a href="${path}/menu/list?value=버거" class="dth2">버거</a></li>
+								<li><a href="${path}/menu/list?value=맥런치" role="button">맥런치</a></li>
+								<li><a href="${path}/menu/list?value=맥모닝" class="dth2">맥모닝</a></li>
+								<li><a href="${path}/menu/list?value=해피스낵" role="button">해피
 										스낵</a></li>
-								<li><a href="javascript:gotoMenu(7);" class="dth2">사이드
+								<li><a href="${path}/menu/list?value=사이드" class="dth2">사이드
 										&amp; 디저트</a></li>
-								<li><a href="javascript:gotoMenu(9);" class="dth2">맥카페
+								<li><a href="${path}/menu/list?value=맥카페" class="dth2">맥카페
 										&amp; 음료</a></li>
-								<li><a href="javascript:gotoMenu(5);" class="dth2">해피밀</a></li>
+								<li><a href="${path}/menu/list?value=해피밀" class="dth2">해피밀</a></li>
 							</ul>
 						</li>
 						<li><a href="https://www.mcdonalds.co.kr/kor/store/main.do"
@@ -125,13 +125,14 @@
 					</div>
 				</form>
 				<form id="gotoMenuForm" method="post">
-					<input type="hidden" name="sub_category_seq"
-						id="gotoform_sub_category_seq">
+					<input type="hidden" name="value"
+						id="gotoList">
 				</form>
 				<script>
 					function gotoMenu(val) {
-						$("#gotoform_sub_category_seq").val(val);
-						$("#gotoMenuForm").attr("action", "/kor/menu/list.do");
+						$("#gotoList").val(val);
+						$("#gotoMenuForm").attr("action", "/root/menu/list");
+						
 						$("#gotoMenuForm").submit();
 					}
 					function gotoCommonSearch() {
