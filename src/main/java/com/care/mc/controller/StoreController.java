@@ -82,11 +82,17 @@ public class StoreController {
 		return "store/search";
 	}
 	@GetMapping("test")
-	public String test(String sear,Model model) {
-		System.out.println("컨트롤");
-		System.out.println("string : "+sear);
-		/* ss.search(sear,model); */
-		return "store/search";
+	public String test() {
+		
+		return "store/test";
+	}
+	@GetMapping("delivery")
+	public String delivery() {
+		return "store/delivery";
+	}
+	@GetMapping("drive")
+	public String drive() {
+		return "store/drive";
 	}
 
 }

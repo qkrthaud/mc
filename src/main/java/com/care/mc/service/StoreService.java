@@ -8,5 +8,6 @@ import com.care.mc.dto.StoreDTO;
 
 public interface StoreService {
 	public void search(String sear,Model model,int num,ArrayList<String> arr);
+	public int searchAddr(String s);
 
 }

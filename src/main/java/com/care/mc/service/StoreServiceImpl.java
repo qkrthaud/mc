@@ -74,5 +74,10 @@ public class StoreServiceImpl implements StoreService{
 		
 		
 	}
+	public int searchAddr(String s) {
+		String s1="%"+s+"%";
+		int count=mapper.addrCount(s1,s1);
+		return count;
+	}
 
 }

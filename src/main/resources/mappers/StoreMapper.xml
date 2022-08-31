@@ -24,7 +24,9 @@ select count(*) from(select rownum rn,A.* from(select * from store where name li
 select * from store where name like #{sear} or place like #{sear2} or place2 like #{sear3}
 </select>
 
-
+<select id="addrCount" resultType="Integer">
+select count(*) from store where place like #{s1} or place2 like #{s2}
+</select>
 
 
 
