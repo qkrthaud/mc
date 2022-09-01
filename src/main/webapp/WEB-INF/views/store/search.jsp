@@ -31,6 +31,10 @@
 </style>
 </head>
 <body>
+<%@ include file="../layout/aside.jsp" %>
+<%@ include file="../layout/footer.jsp" %>
+<%@ include file="../layout/header.jsp" %>
+
 <c:set var="contextPath" value="${pageContext.request.contextPath }" />
 
 <form id="frm" action="search">
@@ -131,6 +135,7 @@ data-on="<%=request.getContextPath()%>/resources/images/store/1580887855311.png"
 </c:choose>
 
 <button onclick="sub()" class="M MC">검색하기</button>
+<button onclick="test()">test</button>
 
 </div>
 </form>
@@ -143,6 +148,7 @@ data-on="<%=request.getContextPath()%>/resources/images/store/1580887855311.png"
 <!--<img src="<%=request.getContextPath()%>/resources/images/store/ico_marker.png"> -->
 
 <script>
+
 function seb(){
 	frm.submit();
 }
@@ -203,6 +209,7 @@ console.log(list[0].name);
 console.log(list[0].lat);
 console.log(list[0].lng); */
 </c:forEach>
+
 
 
 	var mapOptions = {

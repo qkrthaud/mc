@@ -2464,7 +2464,7 @@ p.nutrDesc {
 /* store */
 .visualArea.bgStore01 {
 	color: #fff;
-	background: url(/uploadFolder/images/store/bg_visual_store01.jpg) 50% 0%
+	background: url(../images/store/bg_visual_store01.jpg) 50% 0%
 		no-repeat
 }
 

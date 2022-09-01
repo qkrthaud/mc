@@ -6,15 +6,14 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<style type="text/css">
-.btnL{min-width:200px;padding:0 50px;font-size:18px;line-height:90px;border-radius:90px;  border: 0; outline: 0;}
-.MC{display:inline-block;color:#292929;font-weight:600;background:#FFBC0D;}
-.drive {width:1168px; margin: auto;}
-.driveBtn {margin-top:100px; text-align: center;}
-.titDep2{display:block;color:#292929;margin:0 0 30px;font-size: 30px;line-height:1;}
-.txtInfo{color:#292929}
-</style>
+
 <body>
+
+
+
+<div class="wrapper">
+<%@ include file="../layout/header.jsp" %>
+
 <div id="container">
 			<div class="content">
 				
@@ -41,7 +40,11 @@
 						</div>
 					</div>
 				</div>
+				<%@ include file="../layout/aside.jsp" %>
 </div>
+<%@ include file="../layout/footer.jsp" %>
+</div>
+
 </div>
 </body>
 </html>
