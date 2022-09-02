@@ -123,29 +123,21 @@
 							</fieldset>
 						</div>
 					</div>
-				</form>
 				<form id="gotoMenuForm" method="post">
-					<input type="hidden" name="value"
-						id="gotoList">
-				</form>
-				<script>
-					function gotoMenu(val) {
-						$("#gotoList").val(val);
-						$("#gotoMenuForm").attr("action", "/root/menu/list");
-						
-						$("#gotoMenuForm").submit();
-					}
-					function gotoCommonSearch() {
-						if ($.trim($("#commonSearchWord").val()) == "") {
-							alert("검색어을 입력해 주세요");
-							$("#commonSearchWord").focus();
-						} else {
-							$("#commonSearchForm").attr("action",
-									"/kor/search.do");
-							$("#commonSearchForm").submit();
-						}
-					}
-				</script>
+		<input type="hidden" name="sub_category_value" id="gotoform_sub_category_value">
+		</form>
+	<script>
+			
+			function gotoCommonSearch(){
+				if($.trim($("#commonSearchWord").val())==""){
+					alert("검색어을 입력해 주세요");
+					$("#commonSearchWord").focus();
+				}else{
+					$("#commonSearchForm").attr("action","/kor/search.do");
+					$("#commonSearchForm").submit();
+				}
+			}
+	</script>
 			</nav>
 		</div>
 	</header>

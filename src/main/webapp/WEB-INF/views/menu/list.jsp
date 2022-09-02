@@ -73,79 +73,49 @@ function makeHtml(id,data){
 			<div class="mcMenu">
 				<p class="count" id="count"></p>
 				<ul class="menuList" id="menuList">
-					
-				</ul>
-				<div class="btnMore" id="btnMore">
-				<button type="button" class="more"onclick="moreList()">더보기</button>
+								<c:forEach var="dto" items="${ getList }">
+									<li><a href="detail?engName=${dto.engName }">
+											<div class="thum">
+												<img src="${path}/resources/menuimg/${dto.image}"
+													alt="${dto.name }">
+											</div> <br>
+											<div class="name">
+												<strong class="ko">${dto.name }</strong> <em class="en">${dto.engName }</em>
+											</div>
+									</a></li>
+								</c:forEach>
+							</ul>
+				<div>
+				<button type="button" onclick="moreList()">
+				더보기
+				</button>
 				</div>
 			</div>
 		</div>
 	</div>
-	<form id="searchForm" method="post">
-		<input type="hidden" name="page" id="page" value="1"> <input
-			type="hidden" name="seq" id="seq"> <input type="hidden"
-			name="sub_category_seq" id="sub_category_seq" value="1">
-	</form>
 <script type="text/javascript">
-var totalPage =0;
-		
-$(document).ready(function (){
-	getList(1);
-});
-function getList(page){
+function moreList(){
+	var page = ${pageNum};
+	var val = '${value}';
+	console.log(page)
+	console.log(val)
 	$.ajax({
-		url:"getList",
-		type:'post',
-		dataType :"json",
-		data:{
-			page: "1",
-			value:"버거"
+		type: 'post',
+		url : 'menuList',
+		data : {
+			page: page+1,
+			value: val
 		},
-		success:function(data){
-			console.log('success');
-			console.log(data);
-			totalPage=data.totalPage;
-			totalCount=data.totalCount;
-			$("#count").html(data.totalCount+" Products")
-			for(var i=0; i<getList.length; i++){
-				$("#menuList").append(addList(data.getList[i]));
-			}
-			if(totalPage==page){
-				$("#btnMore").hide();
-			}
-			}
-		
-	});
-	
-			
-}
-function goDetail(seq){
-		$("#seq").val(seq);
-		$("#searchForm").attr("action","/kor/menu/detail.do");
-		$("#searchForm").submit();
-}
-function addList(data){
-	return makeHtml("menu",data);
-}
-function more(){
-	getList(init_page+1);
+		dataType:'json',
+		success: function(data){
+			console.log(data)
+		},
+		error:function(){
+			alert('실패');
+		}
+	})
 }
 </script>
-<script id="menu" type="text/templet">
-<li>
-	<a href="detail?engName=${dto.engName }">
-		<div class="thum">
-		<img src="${path}/resources/menuimg/${dto.image}" alt="${dto.name }">
-		</div> 
-		<br>
-		<div class="name">
-		<strong class="ko">${dto.name }</strong>
-		 <em class="en">${dto.engName }</em>
-		</div>
-	</a>
-</li>
-</script>
-
 </div>
 </div>
 </div>

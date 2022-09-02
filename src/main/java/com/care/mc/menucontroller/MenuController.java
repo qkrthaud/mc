@@ -1,16 +1,16 @@
 package com.care.mc.menucontroller;
 
-
-import java.util.List;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.care.mc.dto.MenuInfoDTO;
 import com.care.mc.service.MenuService;
@@ -21,8 +21,10 @@ public class MenuController {
 	@Autowired MenuService ms;
 	
 	@GetMapping("list")
-	public String list(@RequestParam("value") String value, Model model){
-		ms.list(value, model);
+	public String list(@RequestParam("value") String value,
+						@RequestParam(value="page",required = false, defaultValue="1") int page, 
+						Model model){
+		ms.list(value, page, model);
 		return "menu/list";
 		
 	}
@@ -32,17 +34,14 @@ public class MenuController {
 		ms.detail(engName, model);	
 		return "menu/detail";
 	}
-	@RequestMapping(value="getList",produces="application/json; charset=utf-8",
-					method= { RequestMethod.POST})
-	@ResponseBody
-	public String getList(@RequestParam("page") int page,
-					@RequestParam("value") String value,
-					Model model) {
-		System.out.println(page);
+	@PostMapping(value="menuList", produces = "application/json; charset=utf-8")
+	public String menuList(@RequestParam("value") String value,
+						@RequestParam(value="page",required = false, defaultValue="1") int page) {
 		System.out.println(value);
-		ms.getList(page, value, model);
+		System.out.println(page);
+		ms.menuList(value, page);
 		
-		return "menu/listContent";
+		return "menu/list";
 	}
 }	
 

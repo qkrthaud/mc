@@ -11,12 +11,6 @@
 		<result property="value" column="value" />
 		<result property="menuSize" column="menuSize" />
 	</resultMap>
-	<select id="list" resultType="com.care.mc.dto.MenuInfoDTO" parameterType="HashMap">
-		select * from menu_Info where value like #{value} and menuSize=#{size}
-	</select>
-	<select id="menuInfo" resultMap="menuInfo">
-		select * from menu_Info where engName=#{engName}
-	</select>
 	<select id="selectBoardCount" resultType="Integer" parameterType="HashMap">
 		select count(*) from menu_info where value like #{value} and menuSize=#{size}
 	</select>
@@ -25,4 +19,8 @@
 		(select * from menu_info)A)B
 				where rn between #{s} and #{e}
 	</select>
+	<select id="menuInfo" resultMap="menuInfo">
+		select * from menu_Info where engName=#{engName}
+	</select>
+
 </mapper>
