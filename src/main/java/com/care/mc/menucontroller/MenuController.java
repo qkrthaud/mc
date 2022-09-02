@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.care.mc.dto.MenuInfoDTO;
 import com.care.mc.service.MenuService;
@@ -35,13 +36,15 @@ public class MenuController {
 		return "menu/detail";
 	}
 	@PostMapping(value="menuList", produces = "application/json; charset=utf-8")
-	public String menuList(@RequestParam("value") String value,
+	@ResponseBody
+	public Map<Object, Object> menuList(@RequestParam("value") String value,
 						@RequestParam(value="page",required = false, defaultValue="1") int page) {
 		System.out.println(value);
 		System.out.println(page);
-		ms.menuList(value, page);
 		
-		return "menu/list";
+		Map<Object, Object> resultMap = new HashMap<Object, Object>();
+		resultMap = ms.menuList(value, page);
+		return resultMap;
 	}
 }	
 

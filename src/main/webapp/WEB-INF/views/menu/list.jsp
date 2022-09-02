@@ -86,7 +86,7 @@ function makeHtml(id,data){
 								</c:forEach>
 							</ul>
 				<div>
-				<button type="button" onclick="moreList()">
+				<button type="button" onclick="more()">
 				더보기
 				</button>
 				</div>
@@ -94,8 +94,9 @@ function makeHtml(id,data){
 		</div>
 	</div>
 <script type="text/javascript">
+var page = ${pageNum};
+var totalPage =0;
 function moreList(){
-	var page = ${pageNum};
 	var val = '${value}';
 	console.log(page)
 	console.log(val)
@@ -109,11 +110,29 @@ function moreList(){
 		dataType:'json',
 		success: function(data){
 			console.log(data)
+			page=data.pageNum;
+			totalPage=data.totalPage;
+			for(var i=0; i<data.menuList.length; i++){
+				$("#menuList").append(addList(data.menuList[i]));
+			}
+			
 		},
 		error:function(){
 			alert('실패');
 		}
 	})
+}
+function addList(data){
+	var content =""
+			content +="<li>"+"<div class='name'>"
+			content +="<strong class='ko'>"+data.name+"</strong>"
+			content +="<em class='en'>"+data.engName+"</em>"
+			content +="</li>"
+			console.log(content)
+			return content;
+}
+function more(){
+	moreList(page+1);
 }
 </script>
 </div>

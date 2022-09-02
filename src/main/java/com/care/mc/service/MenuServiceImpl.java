@@ -65,6 +65,7 @@ public class MenuServiceImpl implements MenuService{
 		List<MenuInfoDTO> getList = mm.getList(start, end);
 		Map<Object, Object> menuList = new HashMap<Object, Object>();
 		menuList.put("pageNum", pageNum);
+		menuList.put("totealPage",totalPage);
 		menuList.put("menuList", getList);
 		return menuList;
 	}
