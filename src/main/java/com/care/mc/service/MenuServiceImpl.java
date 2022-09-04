@@ -1,6 +1,6 @@
 package com.care.mc.service;
 
-import java.util.ArrayList;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,7 +20,7 @@ public class MenuServiceImpl implements MenuService{
 	public void list(String value,int page, Model model) {
 		String val="%"+value+"%";
 		String size="nan";
-		HashMap<String, String> map = new HashMap<String, String>();
+		HashMap<Object, Object> map = new HashMap<Object, Object>();
 		map.put("value", val);
 		map.put("size", size);
 		System.out.println("메뉴 : "+val);
@@ -36,7 +36,9 @@ public class MenuServiceImpl implements MenuService{
 		System.out.println(totalCount);
 		int end = pageNum * contentNum;
 		int start = end + 1 - contentNum;
-		List<MenuInfoDTO> getList = mm.getList(start, end, map);
+		map.put("start", start);
+		map.put("end", end);
+		List<MenuInfoDTO> getList = mm.getList(map);
 		model.addAttribute("getList", getList);
 		model.addAttribute("value", value);
 		model.addAttribute("pageNum", pageNum);
@@ -49,7 +51,7 @@ public class MenuServiceImpl implements MenuService{
 		String val="%"+value+"%";
 		String size="nan";
 		
-		HashMap<String, String> map = new HashMap<String, String>();
+		HashMap<Object, Object> map = new HashMap<Object, Object>();
 		map.put("value", val);
 		map.put("size", size);
 		int pageNum = page;
@@ -63,9 +65,12 @@ public class MenuServiceImpl implements MenuService{
 		System.out.println("목록갯수 : "+totalCount);
 		int end = pageNum * contentNum;
 		int start = end + 1 - contentNum;
+		map.put("start", start);
+		map.put("end", end);
 		System.out.println(start);
 		System.out.println(end);
-		List<MenuInfoDTO> getList = mm.getList(start, end, map);
+
+		List<MenuInfoDTO> getList = mm.getList(map);
 		Map<Object, Object> menuList = new HashMap<Object, Object>();
 		menuList.put("value", val);
 		menuList.put("size", size);

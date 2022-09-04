@@ -9,10 +9,9 @@ import org.apache.ibatis.annotations.Param;
 import com.care.mc.dto.MenuInfoDTO;
 
 public interface MenuMapper {
-	public List<MenuInfoDTO> list(HashMap<String, String>map);
+	public List<MenuInfoDTO> list(HashMap<Object, Object>map);
 	public MenuInfoDTO menuInfo(String engName);
-	public int selectBoardCount(HashMap<String, String>map);
+	public int selectBoardCount(HashMap<Object, Object>map);
 	public List<MenuInfoDTO> getList(
-					@Param("s")int start, @Param("e") int end,
-					HashMap<String, String>map);			
+			HashMap<Object, Object>map);			
 }
