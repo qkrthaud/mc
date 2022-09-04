@@ -109,11 +109,14 @@ function moreList(){
 		},
 		dataType:'json',
 		success: function(data){
-			console.log(data)
 			page=data.pageNum;
 			totalPage=data.totalPage;
+			console.log(data)
 			for(var i=0; i<data.menuList.length; i++){
 				$("#menuList").append(addList(data.menuList[i]));
+			}
+			if(totalPage == page){
+				
 			}
 			
 		},

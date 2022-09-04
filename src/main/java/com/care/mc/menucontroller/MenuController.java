@@ -39,8 +39,8 @@ public class MenuController {
 	@ResponseBody
 	public Map<Object, Object> menuList(@RequestParam("value") String value,
 						@RequestParam(value="page",required = false, defaultValue="1") int page) {
-		System.out.println(value);
-		System.out.println(page);
+		System.out.println("서버에서 받은 밸류 :"+value);
+		System.out.println("서버에서 받은 페이지 : "+page);
 		
 		Map<Object, Object> resultMap = new HashMap<Object, Object>();
 		resultMap = ms.menuList(value, page);

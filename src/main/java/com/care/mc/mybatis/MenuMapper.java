@@ -13,5 +13,6 @@ public interface MenuMapper {
 	public MenuInfoDTO menuInfo(String engName);
 	public int selectBoardCount(HashMap<String, String>map);
 	public List<MenuInfoDTO> getList(
-					@Param("s")int start, @Param("e") int end);			
+					@Param("s")int start, @Param("e") int end,
+					HashMap<String, String>map);			
 }
