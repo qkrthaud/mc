@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
+<c:set var="dto" value="${getList}"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,28 +19,28 @@ $(window).on('load',function()
 			// commonJs.menu.TopActive( 2 );
 			// setWebTitle();
 		});
-		function loadTemplate(id) { return document.getElementById(id).innerHTML;}
+		function loadTemplate(id) {
+			console.log(id)
+			return document.getElementById(id).innerHTML;
+			}
 		function replaceTemplate(templateStr, data) {
 			var result = templateStr;
 			for (var key in data) {
+
 				var pattern = new RegExp("{"+key+"}","g");
 				result = result.replace(pattern, data[key]);
+
+
 			}
 			return result;
 		}
-function loadTemplate(id) { return document.getElementById(id).innerHTML;}
-function replaceTemplate(templateStr, data) {
-	var result = templateStr;
-	for (var key in data) {
-		var pattern = new RegExp("{"+key+"}","g");
-		result = result.replace(pattern, data[key]);
-	}
-	return result;
-}
 function makeHtml(id,data){
+
 	return replaceTemplate(loadTemplate(id),data);
 }
+
 </script>
+
 </head>
 <body>
 	<c:import url="../layout/header.jsp" />
@@ -48,7 +49,7 @@ function makeHtml(id,data){
 			<div class="content">
 	<div class="visualArea bgMenu01">
 		<div class="inner">
-			<h1 class="titDep1">버거</h1>
+			<h1 class="titDep1">${value }</h1>
 			<p class="subCopy">
 				빅맥<sub class="reg">®</sub>에서 맥스파이시<sub class="reg">®</sub> 상하이버거까지,
 				<br>주문 즉시 바로 조리해 더욱 맛있는, 맥도날드의 다양한 버거를 소개합니다.
@@ -73,29 +74,22 @@ function makeHtml(id,data){
 			<div class="mcMenu">
 				<p class="count" id="count"></p>
 				<ul class="menuList" id="menuList">
-								<c:forEach var="dto" items="${ getList }">
-									<li><a href="detail?engName=${dto.engName }">
-											<div class="thum">
-												<img src="${path}/resources/menuimg/${dto.image}"
-													alt="${dto.name }">
-											</div> <br>
-											<div class="name">
-												<strong class="ko">${dto.name }</strong> <em class="en">${dto.engName }</em>
-											</div>
-									</a></li>
-								</c:forEach>
+							
 							</ul>
-				<div>
-				<button type="button" onclick="more()">
+				<div class="btnMore" id="btnMore">
+				<button type="button" class="more" onclick="more()">
 				더보기
 				</button>
 				</div>
 			</div>
 		</div>
 	</div>
-<script type="text/javascript">
-var page = ${pageNum};
+	<script>
+var page = 0;
 var totalPage =0;
+$(document).ready(function(){
+	moreList(0);
+});
 function moreList(){
 	var val = '${value}';
 	console.log(page)
@@ -116,7 +110,7 @@ function moreList(){
 				$("#menuList").append(addList(data.menuList[i]));
 			}
 			if(totalPage == page){
-				
+				$("#btnMore").hide();
 			}
 			
 		},
@@ -126,17 +120,24 @@ function moreList(){
 	})
 }
 function addList(data){
-	var content =""
-			content +="<li>"+"<div class='name'>"
-			content +="<strong class='ko'>"+data.name+"</strong>"
-			content +="<em class='en'>"+data.engName+"</em>"
-			content +="</li>"
-			console.log(content)
-			return content;
+	return makeHtml("menu", data);
 }
-function more(){
+function more(){	
 	moreList(page+1);
+	console.log("button")
 }
+</script>
+<script id="menu" type="text/templet">
+<li>
+	<a href="detail?engName={name}">
+		<div class="thum"><img src="${path}/resources/images/menuImg/{image}"
+		 alt="{name}"></div>
+		<div class="name">
+		<strong class="ko">{name}</strong>
+	<em class="en">{engName}</em>
+</div>
+</a>
+</li>
 </script>
 </div>
 </div>

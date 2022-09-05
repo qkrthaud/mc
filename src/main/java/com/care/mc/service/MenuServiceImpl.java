@@ -77,7 +77,7 @@ public class MenuServiceImpl implements MenuService{
 		menuList.put("pageNum", pageNum);
 		menuList.put("totalPage",totalPage);
 		menuList.put("menuList", getList);
-		
+
 		return menuList;
 	}
 
