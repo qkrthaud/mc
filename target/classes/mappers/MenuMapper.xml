@@ -16,8 +16,9 @@
 	</select>
 	
 	<select id="getList" resultMap="menuInfo" parameterType="HashMap">
-		select B.* from(select rownum rn, A.* from
-		(select * from menu_info)A)B where value like #{value} and menuSize=#{size} and rn between #{start} and #{end}
+		select B.* from(select rownum as rn, A.* from
+		(select * from menu_info where value like #{value} and menuSize=#{size})A)B
+        where rn between #{start} and #{end}
 	</select>
 	<select id="menuInfo" resultMap="menuInfo">
 		select * from menu_Info where engName=#{engName}
