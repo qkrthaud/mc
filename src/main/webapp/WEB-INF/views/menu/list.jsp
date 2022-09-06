@@ -9,8 +9,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
-<link href="${path}/resources/css/mc.css" rel="stylesheet">
-<link href="${path}/resources/css/common.css" rel="stylesheet">
 <script>
 $(window).on('load',function()
 		{
@@ -40,11 +38,10 @@ function makeHtml(id,data){
 }
 
 </script>
-
 </head>
 <body>
-	<c:import url="../layout/header.jsp" />
 	<div class="wrapper">
+	<%@ include file="../layout/header.jsp"%>
 	<div id="container">
 			<div class="content">
 	<div class="visualArea bgMenu01">
@@ -130,7 +127,7 @@ function more(){
 </script>
 <script id="menu" type="text/templet">
 <li>
-	<a href="detail?engName={name}">
+	<a href="detail?engName={engName}">
 		<div class="thum"><img src="${path}/resources/images/menuImg/{image}"
 		 alt="{name}"></div>
 		<div class="name">

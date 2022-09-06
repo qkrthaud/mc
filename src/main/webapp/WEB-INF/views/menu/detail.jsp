@@ -11,22 +11,66 @@
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 </head>
 <body>
-<%@include file="../layout/header.jsp" %>
 	<div class="wrapper">
-		<div class="container">
-			<div class="contArea">
-				<div class="inner">
-					<div class="menuView">
-						<div class="viewTop">
-							<div class="name">
-								<h2 class="ko">${menuInfo.name }</h2>
-								<em class="en">${menuinfo.engName }</em>
+	<%@include file="../layout/header.jsp" %>
+	<div id="container">
+			<div class="content">
+				
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			<div class="visualArea bgMenu01">
+					<div class="inner">
+						<h1 class="titDep1">버거</h1>
+						<p class="subCopy">빅맥<sub class="reg">®</sub>에서 맥스파이시<sub class="reg">®</sub> 상하이버거까지, <br>주문 즉시 바로 조리해 더욱 맛있는, 맥도날드의 다양한 버거를 소개합니다.</p>
+						<ul class="navPath">
+							<li><a href="/">Home</a></li>
+							<li><a href="javascript:gotoMenu(1);">Menu</a></li>
+							<li><a href="javascript:gotoMenu(1);">버거</a></li>
+						</ul>
+					</div>
+				</div>
+		
+<div class="contArea">
+					<div class="inner">
+						<div class="menuView">
+							<div class="viewTop">
+								<div class="name">
+									<h2 class="ko">${menuInfo.name}</h2>
+									<em class="en">${menuInfo.engName }</em>
+								</div>
+								<div class="info" data-title="88 서울 비-프 버거 세트(버거)" data-desc="버거 메뉴">
+									<div class="visual"><img src="${path}/resources/images/menuImg/${menuInfo.image}" alt="88 서울 비-프 버거 세트_감자튀김과 콜라 M사이즈 포함"></div>
+									<br>
+									<br>
+									<div class="desc">
+									<h3>${menuInfo.explanation }</h3>
+									</div>
+									
+									
+									<div class="other">
+										
+									
+										<a href="javascript:goDetail(490);" class="arrow next"><span class="arr">다음 메뉴</span><div class="img"><img src="/upload/product/pcthum/1659511930656.png" alt="창녕 갈릭 버거 세트"></div><strong class="tit">창녕 갈릭 버거 세트</strong></a>
+									
+									</div>
+									
+									
+								</div>
 							</div>
-							<div class="visual">
-								<img src="${path}/resources/menuimg/${menuInfo.image}">
-							</div>
-							<div class="explan">${menuInfo.explanation }</div>
-						</div>
 						<div class="viewCon">
 							
 							<div class="toggle">
