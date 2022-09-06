@@ -11,6 +11,7 @@
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 </head>
 <body>
+<%@include file="../layout/header.jsp" %>
 	<div class="wrapper">
 		<div class="container">
 			<div class="contArea">

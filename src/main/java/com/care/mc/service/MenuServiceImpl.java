@@ -48,6 +48,9 @@ public class MenuServiceImpl implements MenuService{
 		model.addAttribute("nutInfo", nm.nutInfo(engName));
 	}
 	public Map<Object, Object> menuList(String value,int page) {
+		if(value.equals("세트")) {
+			value = "Burger세트";
+		}
 		String val="%"+value+"%";
 		String size="nan";
 		
@@ -74,6 +77,7 @@ public class MenuServiceImpl implements MenuService{
 		Map<Object, Object> menuList = new HashMap<Object, Object>();
 		menuList.put("value", val);
 		menuList.put("size", size);
+		menuList.put("totalCount", totalCount);
 		menuList.put("pageNum", pageNum);
 		menuList.put("totalPage",totalPage);
 		menuList.put("menuList", getList);

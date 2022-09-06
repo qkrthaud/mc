@@ -428,7 +428,7 @@ ul.notiTxt:before{display:none}
 
 
 /* menu */
-.visualArea.bgMenu01{background:url(/uploadFolder/images/menu/2020/bg_visual_menu01.jpg) 50% 50% no-repeat}
+.visualArea.bgMenu01{background:url(../images/common/bg_visual_menu01.jpg) 50% 50% no-repeat}
 .visualArea.bgMenu02{background:url(/uploadFolder/images/menu/bg_visual_menu02.jpg) 50% 50% no-repeat}
 .visualArea.bgMenu03{background:url(/uploadFolder/images/menu/bg_visual_menu03.jpg) 50% 50% no-repeat}
 .visualArea.bgMenu04{background:url(/uploadFolder/images/menu/bg_visual_menu04.jpg) 50% 50% no-repeat}

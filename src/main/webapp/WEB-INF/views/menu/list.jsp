@@ -67,9 +67,9 @@ function makeHtml(id,data){
 			<ul class="tabType01">
 
 				<li data-title="버거" data-desc="버거메뉴"><a
-					href="javascript:gotoMenu(1);" role="button" aria-selected='true'>단품메뉴</a></li>
+					href="${path}/menu/list?value=버거" role="button" aria-selected='true'>단품메뉴</a></li>
 				<!-- 선택 된 태그에 aria-selected="true" 추가 -->
-				<li><a href="javascript:gotoMenu(2);" role="button">세트메뉴</a></li>
+				<li><a href="${path}/menu/list?value=세트" role="button">세트메뉴</a></li>
 			</ul>
 			<div class="mcMenu">
 				<p class="count" id="count"></p>
@@ -105,6 +105,7 @@ function moreList(){
 		success: function(data){
 			page=data.pageNum;
 			totalPage=data.totalPage;
+			$("#count").html(data.totalCount+"Products")
 			console.log(data)
 			for(var i=0; i<data.menuList.length; i++){
 				$("#menuList").append(addList(data.menuList[i]));
