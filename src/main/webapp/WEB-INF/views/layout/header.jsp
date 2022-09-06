@@ -101,10 +101,8 @@
 							<li><a href="${path }/whatsnew_promotion" class="dth2">프로모션</a></li>
 							<li><a href="https://www.mcdonalds.co.kr/kor/news/list.do"
 								class="dth2">새로운 소식</a></li>
-							<!--  li><a href="/kor/kitchen.do" class="dth2">주방공개의 날</a></li -->
-							<li><a
-								href="https://www.mcdonalds.co.kr/kor/happymeal/list.do"
-								class="dth2">이달의 해피밀</a></li>
+							<li><a href="${path }/whatsnew_happymeal" class="dth2">이달의
+									해피밀</a></li>
 						</ul></li>
 					<li><a href="https://www.mcdonalds.co.kr/kor/story/main.do"
 						class="dth1">Story</a>

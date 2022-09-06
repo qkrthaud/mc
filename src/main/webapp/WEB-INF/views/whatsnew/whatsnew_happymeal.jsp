@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>프로모션</title>
+<title>이달의 해피밀</title>
 <link rel="shortcut icon" type="image/x-icon"
 	href="${pageContext.request.contextPath}/resources/images/favicon.ico">
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -46,12 +46,12 @@
 			<div class="content">
 				<div class="visualArea bgWhats01">
 					<div class="inner">
-						<h1 class="titDep1" data-title="프로모션" data-desc="프로모션">맥도날드
-							프로모션</h1>
+						<h1 class="titDep1" data-title="프로모션" data-desc="프로모션">이달의
+							해피밀</h1>
 						<ul class="navPath">
 							<li><a href="main">Home</a></li>
 							<li><a href="whatsnew">What's New</a></li>
-							<li><a href="whatsnew_promotion">맥도날드 프로모션</a></li>
+							<li><a href="whatsnew_happymeal">이달의 해피밀</a></li>
 						</ul>
 					</div>
 				</div>
@@ -59,39 +59,39 @@
 				<div class="contArea bgG">
 					<div class="inner">
 						<ul class="tabType01">
-							<li><a href="#" id="all"
-								aria-selected="true" role="button">전체보기</a></li>
+							<li><a href="#" id="all" aria-selected="true" role="button">전체보기</a></li>
 							<!-- 선택 된 태그에 aria-selected="true" 추가 -->
-							<li><a href="#" id="ing"
-								role="button">진행중</a></li>
-							<li><a href="#" id="end"
-								role="button">종료</a></li>
+							<li><a href="#" id="ing" role="button">진행중</a></li>
+							<li><a href="#" id="end" role="button">종료</a></li>
 						</ul>
 						<!-- 행사 있을 경우              종료된 행사일 경우 class값 end 추가-->
-						<ul class="cardBanner" id="promotionList">
-							<c:forEach var="dto" items="${whatsnew_b}">
+						<ul class="cardBanner" id="happyList">
+							<c:forEach var="dto" items="${happymeal_b}">
 								<c:choose>
-								<c:when test="${dto.status eq'진행중' }">
-									<li class="ing on"><a href="${path }/whatsnew/promotion?writeNo=${dto.writeNo }" class = "ing on">
+									<c:when test="${dto.status eq'진행중' }">
+										<li class="ing on"><a href="${path }/whatsnew/happymeal?writeNo=${dto.writeNo }" class="ing on">
+												<div class="tmb">
+													<img
+														src="${path }/resources/images/happymeal/${dto.mainImg }">
+												</div>
+												<div class="con">
+													<strong class="tit">${dto.title }</strong>
+												</div>
+										</a></li>
+									</c:when>
+									<c:otherwise>
+										<li class="end on"><a href="${path }/whatsnew/happymeal?writeNo=${dto.writeNo }"
+											class = "end on">
 											<div class="tmb">
-												<img src="${path }/resources/images/whatsnew/${dto.mainImg }">
+												<img
+													src="${path }/resources/images/happymeal/${dto.mainImg }">
 											</div>
 											<div class="con">
-												<strong class="tit">${dto.title }</strong>
-											</div>
-									</a></li>
-								</c:when>
-								<c:otherwise>
-									<li class="end on"><a href="${path }/whatsnew/promotion?writeNo=${dto.writeNo }" class = "end on">
-											<div class="tmb">
-												<img src="${path }/resources/images/whatsnew/${dto.mainImg }">
-											</div>
-											<div class="con">
-												<strong class="tit">${dto.title }</strong>
-												<span id="statusSpan">종료된 행사입니다.</span>
-											</div>
-									</a></li>
-								</c:otherwise>
+												<strong class="tit">${dto.title }</strong> <span
+													id="statusSpan">종료된 행사입니다.</span>
+											</div> </a>
+										</li>
+									</c:otherwise>
 								</c:choose>
 							</c:forEach>
 						</ul>

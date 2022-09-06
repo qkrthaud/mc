@@ -17,8 +17,8 @@ public class MainController {
 	 * @RequestMapping("/") public String home() { return "main"; }
 	 */
 	@GetMapping("main")
-	public String main() {
-
+	public String main(Model model) {
+		ms.getMain(model);
 		return "main";
 	}
 
@@ -33,11 +33,23 @@ public class MainController {
 		return "whatsnew/whatsnew_promotion";
 	}
 	
+	@GetMapping("whatsnew_happymeal")
+	public String whatsnew_happymeal(Model model) {
+		ms.getHappymeal(model);
+		return "whatsnew/whatsnew_happymeal";
+	}
+	
 	@GetMapping("whatsnew/promotion")
 	public String promotionDetail(int writeNo, Model model) {
 		System.out.println("Å×½ºÆ® : "+writeNo);
 		ms.getDetail(writeNo, model);
 		return "whatsnew/promotion";
+	}
+	
+	@GetMapping("whatsnew/happymeal")
+	public String happyMealDetail(int writeNo, Model model) {
+		ms.getHappymealDetail(writeNo, model);
+		return "whatsnew/happymeal";
 	}
 }
 

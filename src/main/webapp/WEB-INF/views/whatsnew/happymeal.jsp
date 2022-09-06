@@ -20,8 +20,8 @@ ${details.contentStyle }
 							프로모션</h1>
 						<ul class="navPath">
 							<li><a href="${path }/main">Home</a></li>
-							<li><a href="whatsnew">What's New</a></li>
-							<li><a href="whatsnew_promotion">맥도날드 프로모션</a></li>
+							<li><a href="${path }/whatsnew">What's New</a></li>
+							<li><a href="${path }/whatsnew_happymeal">이달의 해피밀</a></li>
 						</ul>
 					</div>
 				</div>
@@ -39,7 +39,7 @@ ${details.contentStyle }
 						<article class="bbsCon">
 							<div class="bannerImg">
 								<img
-									src="${path }/resources/images/whatsnew/${details.contentImg}">
+									src="${path }/resources/images/happymeal/${details.contentImg}">
 								<c:if test="${not empty details.videoName }">
 									${details.videoName }
 								</c:if>

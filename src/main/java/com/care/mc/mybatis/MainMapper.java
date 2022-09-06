@@ -10,4 +10,10 @@ public interface MainMapper {
 
 	public MainDTO getDetail(int writeNo);
 
+	public List<MainDTO> getMainBoard();
+
+	public List<MainDTO> getHappymeal();
+
+	public MainDTO getHappymealDetail(int writeNo);
+
 }
