@@ -25,6 +25,7 @@ public class MenuController {
 						@RequestParam(value="page",required = false, defaultValue="1") int page, 
 						Model model){
 		ms.list(value, page, model);
+		System.out.println(page);
 		return "menu/list";
 		
 	}
