@@ -16,17 +16,25 @@ $(document).ready(function(){
 			$('.toggle').find('>button').each(function(){
 				var t = $(this);
 				var b = t.closest('.toggle');
+				var con	= doc.find(t.attr('aria-controls'));
 				var arr =[];
 				if(t.attr('text')){
 					arr = t.attr('text').split('|');
 					}
-				$(this).on('click',function(){
-						if(t.attr('aria-selected') == 'true'){
+				$(this).on('click',function(evt){
+						
+					var s, n;
+					evt.preventDefault();
+					if(t.attr('aria-selected') == 'true'){
 							t.attr({
 								'aria-selected':false,
 								'aria-expanded':false
 						});
 						b.removeClass('open');
+						con.stop().show();
+						n = con.outerHeight();
+						s = 200 * (n/400 )
+						con.slideUp(s);
 						if( arr.length ){
 							t.text(arr[0]);
 						}
@@ -36,6 +44,10 @@ $(document).ready(function(){
 								'aria-expanded':true
 							});
 							b.addClass('open');
+							n = con.outerHeight();
+							s = 100 * (n/400 )
+							// console.log( s )
+							con.stop().hide().slideDown(s);
 							if( arr.length ){
 								t.text(arr[1]);
 							}
@@ -164,7 +176,7 @@ $(document).ready(function(){
 
 								<div class="toggle">
 									<h4 class="tit">알레르기 정보</h4>
-									<button type="button" id="btn2" "aria-selected="false"
+									<button type="button" aria-selected="false"
 										aria-controls="toggle03" aria-expanded="false">알레르기
 										정보 보기</button>
 									<!-- toggle버튼 선택시 aria-selected값 true로 변경 / aria-expanded 값 true로 변경 -->
