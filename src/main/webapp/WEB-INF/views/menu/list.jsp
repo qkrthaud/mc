@@ -36,6 +36,18 @@ function makeHtml(id,data){
 
 	return replaceTemplate(loadTemplate(id),data);
 }
+function setWebTitle(){
+	
+	var title = $("[data-title]").data("title");
+	var des = $("[data-desc]").data("desc");
+	if(title != undefined && $.trim(title) !="N"){
+		 $(document).attr("title",title +" - " + $(document).attr("title"));
+	}
+	if(des != undefined && $.trim(des) !=""){
+		 $("#description").attr("contents",$("#description").attr("contents")+" "+des);
+	}
+	
+}
 
 </script>
 </head>
@@ -59,29 +71,28 @@ function makeHtml(id,data){
 		</div>
 	</div>
 
-	<div class="contArea">
-		<div class="inner">
-			<ul class="tabType01">
+				<div class="contArea">
+					<div class="inner">
+						<ul class="tabType01">
+							<li data-title="버거" data-desc="버거메뉴">
+							<a href="${path}/menu/list?value=버거" role="button"
+								aria-selected='true'>단품메뉴</a></li>
+							<!-- 선택 된 태그에 aria-selected="true" 추가 -->
+							<li><a href="${path}/menu/list?value=세트" role="button">세트메뉴</a></li>
+						</ul>
+						<div class="mcMenu">
+							<p class="count" id="count"></p>
+							<ul class="menuList" id="menuList">
 
-				<li data-title="버거" data-desc="버거메뉴"><a
-					href="${path}/menu/list?value=버거" role="button" aria-selected='true'>단품메뉴</a></li>
-				<!-- 선택 된 태그에 aria-selected="true" 추가 -->
-				<li><a href="${path}/menu/list?value=세트" role="button">세트메뉴</a></li>
-			</ul>
-			<div class="mcMenu">
-				<p class="count" id="count"></p>
-				<ul class="menuList" id="menuList">
-							
 							</ul>
-				<div class="btnMore" id="btnMore">
-				<button type="button" class="more" onclick="more()">
-				더보기
-				</button>
+							<div class="btnMore" id="btnMore">
+								<button type="button" class="more" onclick="more()">
+									더보기</button>
+							</div>
+						</div>
+					</div>
 				</div>
-			</div>
-		</div>
-	</div>
-	<script>
+				<script>
 var page = 0;
 var totalPage =0;
 $(document).ready(function(){
