@@ -598,23 +598,23 @@ textarea {
 	width: 14px;
 	height: 9px;
 	margin: -4px 0 0 -7px;
-	background: url(../images/common/bg_arrow_paging.png) 0 0 no-repeat
+	background: url(../images/store/bg_arrow_paging.png) 0 0 no-repeat;
 }
 
 .btnPaging .arrow.first:before {
-	background-position: 0 0
+	background-position: 0 0;
 }
 
 .btnPaging .arrow.prev:before {
-	background-position: 0 -9px
+	background-position: 0 -9px;
 }
 
 .btnPaging .arrow.next:before {
-	background-position: 0 -18px
+	background-position: 0 -18px;
 }
 
 .btnPaging .arrow.last:before {
-	background-position: 0 -27px
+	background-position: 0 -27px;
 }
 
 .btnPaging .num a {
@@ -3828,31 +3828,31 @@ p.nutrDesc {
 /* story */
 .visualArea.bgStory {
 	color: #fff;
-	background: url(/uploadFolder/images/story/bg_visual_storymain.jpg) 50%
+	background: url(../images/story/bg_visual_storymain.jpg) 50%
 		50% no-repeat
 }
 
 .visualArea.bgStory01 {
 	color: #fff;
-	background: url(/uploadFolder/images/story/bg_visual_story01.jpg) 50%
+	background: url(../images/story/bg_visual_story01.jpg) 50%
 		50% no-repeat
 }
 
 .visualArea.bgStory02 {
 	color: #fff;
-	background: url(/uploadFolder/images/story/bg_visual_story02.jpg) 50%
+	background: url(../images/story/bg_visual_story02.jpg) 50%
 		50% no-repeat
 }
 
 .visualArea.bgStory03 {
 	color: #fff;
-	background: url(/uploadFolder/images/story/bg_visual_story03.jpg) 50%
+	background: url(../images/story/bg_visual_story03.jpg) 50%
 		50% no-repeat
 }
 
 .visualArea.bgStory04 {
 	color: #fff;
-	background: url(/uploadFolder/images/story/bg_visual_story04.jpg) 50%
+	background: url(../images/story/bg_visual_story04.jpg) 50%
 		50% no-repeat
 }
 

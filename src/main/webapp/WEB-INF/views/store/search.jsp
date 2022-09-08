@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,56 +12,104 @@
 <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=hjn22xjjiy"></script>
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery-2.2.4.min.js"></script>
-<style type="text/css">
-* {margin: auto;}
-.storeFind{position:static;margin-top:-20px; position:relative; height:300px;margin:0;padding:0}
-.storeFind .storeFind_bg {width:100%; height:100%; background:#f8f8f8; position:absolute; top:0; left:0; display:block;}
-.storeFind .srvcFilter .service{margin-left:-20px}
-.storeFind .srvcFilter .service:after{content:'';display:block;clear:both}
-.storeFind .srvcFilter .service>span{display:block;position:relative;float:left;width:200px;height:70px;margin-left:20px; margin-bottom:20px;}
-.storeFind .srvcFilter .service>span input{position:absolute;top:0;left:0;width:100%;height:100%;opacity:0}
-.storeFind .srvcFilter .service>span label{display:block;color:#000;position:relative;height:100%;padding:101px 0 35px;border:1px solid #d1d1d1;border-radius:10px;text-align:center;background:#fff;font-size:15px; z-index:1;}
-.storeFind .srvcFilter .service>span.on label{background-color:#000}
-.storeFind .srvcFilter .service>span input:checked+label{color:#fff;}
-.storeFind .srvcFilter .service>span input:focus+label{outline:1px dotted #292929}
-.storeFind .srvcFilter .service>span label .icon {position:absolute; top:0; left:0; z-index:-1;margin-top:40%;margin-left:50%;transform:translate(-50%, -50%);-webkit-transform:translate(-50%, -50%)}
 
-.M{min-width:172px;padding:0 38px;font-size:15px;line-height:70px;border-radius:70px; border: 0; outline: 0;}
-.MC{display:inline-block;color:#292929;font-weight:600;background:#FFBC0D;}
-.Mtext{width:500px;color:#292929;height:70px;padding:0 28px;line-height:1;border:1px solid #d1d1d1;border-radius:70px;background:#fff;}
-</style>
 </head>
 <body>
-<%@ include file="../layout/aside.jsp" %>
-<%@ include file="../layout/footer.jsp" %>
+
+
+<div class="wrapper">
 <%@ include file="../layout/header.jsp" %>
-
-<c:set var="contextPath" value="${pageContext.request.contextPath }" />
-
+<div id="container">
+<div class="content">
+<div class="visualArea bgStore01" data-title="지역별 매장찾기" data-desc="매장찾기">
+<div class="inner">
+<h1 class="titDep1">매장찾기</h1>
+<ul class="navPath">
+<li><a href="<%=request.getContextPath()%>/main">Home</a></li>
+<li><a href="search">Store</a></li>
+<li><a href="#">매장찾기</a></li>
+</ul>
+</div>
+</div>
+				
+<div class="contArea">
+<div class="inner">
+<ul class="tabType01">
+<li><a href="search" role="button" aria-selected="true">지역별</a></li>
+<li><a href="storeEvent" role="button">이벤트매장</a></li>
+</ul>
 <form id="frm" action="search">
+
+						
 <div class="storeFind">
 <span class="storeFind_bg"></span>
 <div class="srvcFilter">
 <strong class="titDep4">이용가능 서비스</strong>
-<div class="service">							
-<span class="srvc">
+<div class="service">
+
 <c:choose>
-<c:when test="${drive==null }"><input type="checkbox" name="drive" id="drive" value="drive"></c:when>
-<c:otherwise><input type="checkbox" name="drive" id="drive" value="drive" checked="checked"></c:otherwise>
-</c:choose>
-<label for="drive">
-맥드라이브
+<c:when test="${h24==null }">
+<span class="srvc">
+<input type="checkbox" name="h24" id="24" value="24">
+<label for="24">
+24시간
 <span class=icon>
-<img src="<%=request.getContextPath()%>/resources/images/store/1580887501964.png" alt="맥드라이브" data-off="<%=request.getContextPath()%>/resources/images/store/1580887501964.png" data-on="<%=request.getContextPath()%>/resources/images/store/1580887505434.png"/>
+<img src="<%=request.getContextPath()%>/resources/images/store/1580887217994.png" alt="24" data-off="<%=request.getContextPath()%>/resources/images/store/1580887217994.png" data-on="<%=request.getContextPath()%>/resources/images/store/1580887222493.png"/>
 </span>
 </label>
 </span>
-								
-<span class="srvc">
-<c:choose>
-<c:when test="${del==null }"><input type="checkbox" name="del" id="del" value="del"></c:when>
-<c:otherwise><input type="checkbox" name="del" id="del" value="del" checked="checked"></c:otherwise>
+</c:when>
+<c:otherwise>
+
+<span class="srvc on">
+<input type="checkbox" name="h24" id="24" value="24" checked="checked">
+<label for="24">
+24시간
+<span class=icon>
+<img src="<%=request.getContextPath()%>/resources/images/store/1580887222493.png" alt="24" 
+data-off="<%=request.getContextPath()%>/resources/images/store/1580887217994.png" 
+data-on="<%=request.getContextPath()%>/resources/images/store/1580887222493.png"/>
+</span>
+</label>
+</span></c:otherwise>
 </c:choose>
+
+
+								
+<c:choose>
+<c:when test="${drive==null }">
+<span class="srvc">
+<input type="checkbox" name="drive" id="drive" value="drive">
+<label for="drive">
+맥드라이브
+<span class=icon>
+<img src="<%=request.getContextPath()%>/resources/images/store/1580887501964.png" alt="맥드라이브" 
+data-off="<%=request.getContextPath()%>/resources/images/store/1580887501964.png" 
+data-on="<%=request.getContextPath()%>/resources/images/store/1580887505434.png"/>
+</span>
+</label>
+</span>
+</c:when>
+<c:otherwise>
+<span class="srvc on">
+<input type="checkbox" name="drive" id="drive" value="drive" checked="checked">
+<label for="drive">
+맥드라이브
+<span class=icon>
+<img src="<%=request.getContextPath()%>/resources/images/store/1580887505434.png" alt="맥드라이브" 
+data-off="<%=request.getContextPath()%>/resources/images/store/1580887501964.png" 
+data-on="<%=request.getContextPath()%>/resources/images/store/1580887505434.png"/>
+</span>
+</label>
+</span>
+</c:otherwise>
+</c:choose>
+
+								
+<c:choose>
+<c:when test="${del==null }">
+<span class="srvc">
+<input type="checkbox" name="del" id="del" value="del">
 <label for="del">
  맥딜리버리
 <span class=icon>
@@ -70,12 +119,27 @@ data-on="<%=request.getContextPath()%>/resources/images/store/1580887378094.png"
 </span>
 </label>
 </span>
-								
-<span class="srvc">
-<c:choose>
-<c:when test="${morning==null }"><input type="checkbox" name="morning" id="morning" value="morning"></c:when>
-<c:otherwise><input type="checkbox" name="morning" id="morning" value="morning" checked="checked"></c:otherwise>
+</c:when>
+<c:otherwise>
+<span class="srvc on">
+<input type="checkbox" name="del" id="del" value="del" checked="checked">
+<label for="del">
+ 맥딜리버리
+<span class=icon>
+<img src="<%=request.getContextPath()%>/resources/images/store/1580887378094.png" alt="맥딜리버리" 
+data-off="<%=request.getContextPath()%>/resources/images/store/1580887371824.png" 
+data-on="<%=request.getContextPath()%>/resources/images/store/1580887378094.png"/>
+</span>
+</label>
+</span>
+</c:otherwise>
 </c:choose>
+
+								
+<c:choose>
+<c:when test="${morning==null }">
+<span class="srvc">
+<input type="checkbox" name="morning" id="morning" value="morning">
 <label for="morning">
 맥모닝
 <span class=icon>
@@ -85,12 +149,27 @@ data-on="<%=request.getContextPath()%>/resources/images/store/1580887415001.png"
 </span>
 </label>
 </span>
-								
-<span class="srvc">
-<c:choose>
-<c:when test="${parking==null }"><input type="checkbox" name="parking" id="parking" value="parking"></c:when>
-<c:otherwise><input type="checkbox" name="parking" id="parking" value="parking" checked="checked"></c:otherwise>
+</c:when>
+<c:otherwise>
+<span class="srvc on">
+<input type="checkbox" name="morning" id="morning" value="morning" checked="checked">
+<label for="morning">
+맥모닝
+<span class=icon>
+<img src="<%=request.getContextPath()%>/resources/images/store/1580887415001.png" alt="맥모닝" 
+data-off="<%=request.getContextPath()%>/resources/images/store/1580887410227.png" 
+data-on="<%=request.getContextPath()%>/resources/images/store/1580887415001.png"/>
+</span>
+</label>
+</span>
+</c:otherwise>
 </c:choose>
+
+								
+<c:choose>
+<c:when test="${parking==null }">
+<span class="srvc">
+<input type="checkbox" name="parking" id="parking" value="parking">
 <label for="parking">
  주차
 <span class=icon>
@@ -100,12 +179,27 @@ data-on="<%=request.getContextPath()%>/resources/images/store/1580887311487.png"
 </span>
 </label>
 </span>
-								
-<span class="srvc">
-<c:choose>
-<c:when test="${decafe==null }"><input type="checkbox" name="decafe" id="decafe" value="decafe"></c:when>
-<c:otherwise><input type="checkbox" name="decafe" id="decafe" value="decafe" checked="checked"></c:otherwise>
+</c:when>
+<c:otherwise>
+<span class="srvc on">
+<input type="checkbox" name="parking" id="parking" value="parking" checked="checked">
+<label for="parking">
+ 주차
+<span class=icon>
+<img src="<%=request.getContextPath()%>/resources/images/store/1580887311487.png" alt="주차" 
+data-off="<%=request.getContextPath()%>/resources/images/store/1580887307761.png" 
+data-on="<%=request.getContextPath()%>/resources/images/store/1580887311487.png"/>
+</span>
+</label>
+</span>
+</c:otherwise>
 </c:choose>
+
+								
+<c:choose>
+<c:when test="${decafe==null }">
+<span class="srvc">
+<input type="checkbox" name="decafe" id="decafe" value="decafe">
 <label for="decafe">
 디카페인 커피
 <span class=icon>
@@ -115,42 +209,254 @@ data-on="<%=request.getContextPath()%>/resources/images/store/1580887855311.png"
 </span>
 </label>
 </span>
-								
-</div>
-
-
-</div>
-
-						
-</div>
-<div>
-<c:choose>
-<c:when test="${sear==null }">
-<input type="text" class="Mtext" name="sear" placeholder="검색">
 </c:when>
 <c:otherwise>
-<input type="text" class="Mtext" name="sear" value="${sear }">
-
+<span class="srvc on">
+<input type="checkbox" name="decafe" id="decafe" value="decafe" checked="checked">
+<label for="decafe">
+디카페인 커피
+<span class=icon>
+<img src="<%=request.getContextPath()%>/resources/images/store/1580887855311.png" alt="디카페인 커피" 
+data-off="<%=request.getContextPath()%>/resources/images/store/1580887849368.png" 
+data-on="<%=request.getContextPath()%>/resources/images/store/1580887855311.png"/>
+</span>
+</label>
+</span>
 </c:otherwise>
 </c:choose>
 
-<button onclick="sub()" class="M MC">검색하기</button>
-<button onclick="test()">test</button>
+								
+</div>
+</div>
+<fieldset class="srchBox">
+<legend>매장검색</legend>
+<div class="form">
+<c:choose>
+<c:when test="${sear==null }">
+<input type="text" id="searchWord" name="sear" placeholder="매장명, 동명, 도로명을 검색해 주세요.">
+</c:when>
+<c:otherwise>
+<input type="text" id="searchWord" name="sear" value="${sear }">
 
+</c:otherwise>
+</c:choose>
+<input type="hidden" name="num" value="1">
+<button type="button" class="btnMC btnM" onclick="sub()">검색하기</button>
+</div>
+</fieldset>							
 </div>
 </form>
+						
+<div class="storeResult">
+<div id="map" class="map" style="height:600px;weight:600px;"></div>
+<c:choose>
+<c:when test="${sear==null }">
+<div class="mcStore">
+<table class="tableType01">
+<caption>매장목록 - 매장명/주소, 전화번호, 영업시간, 이용가능 서비스 정보표</caption>
+<colgroup><col style="width:16%"><col style="width:16%"><col style="width:34%"></colgroup>
+<thead>
+<tr>
+<th scope="col">매장명 / 주소</th>
+<th scope="col">전화번호</th>
+<th scope="col">영업시간</th>
+<th scope="col">이용가능 서비스</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tdName">
+<dl class="name">
+<dt><strong class="tit"><a href="javascript:moveMap(37.570698,126.983558);" title="지도보기">한국맥도날드(유)</a></strong>
+<dd>서울 종로구 공평동 70</dd>
+<dd class="road">서울특별시 종로구  종로 51(종로타워)</dd>
+</dl>
+</td>
+<td>1600-5252</td>
+<td></td>
+<td class="tdService">
+<div class="service">
+</div>
+</td>
+</tr>
+</table>
+</div>
+<p class="noResult nobg">검색어를 입력해 주세요.</p>
+</c:when>
+<c:otherwise>
+<div class="mcStore">
+<p style="color:#da0000"> *영업시간은 매장 사정에 따라 변경 될 수 있습니다 </p>
+<table class="tableType01">
+<caption>매장목록 - 매장명/주소, 전화번호, 영업시간, 이용가능 서비스 정보표</caption>
+<colgroup><col><col style="width:16%"><col style="width:16%"><col style="width:34%"></colgroup>
+<thead>
+<tr>
+<th scope="col">매장명 / 주소</th>
+<th scope="col">전화번호</th>
+<th scope="col">영업시간</th>
+<th scope="col">이용가능 서비스</th>
+</tr>
+</thead>
+<tbody>
+<c:if test="${list!=null }">
+<% String[] abc={"A","B","C","D","E"};
+int abcnt=0;
+%>
+<c:forEach var="dto" items="${list }">
+<tr>
+<td class="tdName">
+<dl class="name">
+<dt><em class="ico"><%=abc[abcnt] %></em><strong class="tit"><a href="javascript:moveMap(${dto.lat },${dto.lng });" title="지도보기">${dto.name}</a></strong>
+<dd>${dto.place}</dd>
+<dd class="road">${dto.place2 }</dd>
+</dl>
+</td>
+<td>${dto.tel }<br></td>
+<td>${dto.time }</td>
+<td class="tdService">
+<div class="service">
+<c:if test="${fn:contains(dto.service, '24')}">
+<span class="srvc">
+<input type="checkbox" id="24Icon" disabled checked>
+<label for="24icon">
+<span class=icon><img src="<%=request.getContextPath()%>/resources/images/store/1580887217994.png" alt="24시간"/></span>
+24시간
+</label>
+</span>
+</c:if>	
+
+<c:if test="${fn:contains(dto.service, 'drive')}">													
+<span class="srvc">
+<input type="checkbox" id="driveIcon" disabled checked>
+<label for="driveIcon">
+<span class=icon><img src="<%=request.getContextPath()%>/resources/images/store/1580887501964.png" alt="맥드라이브"/></span>
+맥드라이브
+</label>
+</span>
+</c:if>
+<c:if test="${fn:contains(dto.service, 'del')}">													
+<span class="srvc">
+<input type="checkbox" id="delIcon" disabled checked>
+<label for="delIcon">
+<span class=icon><img src="<%=request.getContextPath()%>/resources/images/store/1580887371824.png" alt="맥딜리버리"/></span>
+맥딜리버리
+</label>
+</span>
+</c:if>
+<c:if test="${fn:contains(dto.service, 'morning')}">													
+<span class="srvc">
+<input type="checkbox" id="morningIcon" disabled checked>
+<label for="morningIcon">
+<span class=icon><img src="<%=request.getContextPath()%>/resources/images/store/1580887410227.png" alt="맥모닝"/></span>
+맥모닝
+</label>
+</span>
+</c:if>
+<c:if test="${fn:contains(dto.service, 'parking')}">													
+<span class="srvc">
+<input type="checkbox" id="parkingIcon" disabled checked>
+<label for="parkingIcon">
+<span class=icon><img src="<%=request.getContextPath()%>/resources/images/store/1580887307761.png" alt="주차"/></span>
+주차
+</label>
+</span>
+</c:if>
+<c:if test="${fn:contains(dto.service, 'decafe')}">													
+<span class="srvc">
+<input type="checkbox" id="decafeIcon" disabled checked>
+<label for="decafeIcon">
+<span class=icon><img src="<%=request.getContextPath()%>/resources/images/store/1580887849368.png" alt="디카페인 커피"/></span>
+디카페인 커피
+</label>
+</span>	
+</c:if>				
+</div>
+</td>
+</tr>
+<% abcnt++; %>
+</c:forEach>
+</c:if>
+</table>
+
+<div class='btnPaging'>
+<a href='search?num=1&h24=${h24 }&sear=${sear}&drive=${drive}&del=${del}&decafe=${decafe }&parking=${parking }&morning=${morning}' role='button' class='arrow first'>맨앞으로</a>
+<c:choose>
+<c:when test="${num==1 }">
+<a href='search?num=${num }&h24=${h24 }&sear=${sear}&drive=${drive}&del=${del}&decafe=${decafe }&parking=${parking }&morning=${morning}' role='button' class='arrow prev'>이전</a>
+</c:when>
+<c:otherwise>
+<a href='search?num=${num-1 }&h24=${h24 }&sear=${sear}&drive=${drive}&del=${del}&decafe=${decafe }&parking=${parking }&morning=${morning}' role='button' class='arrow prev'>이전</a>
+</c:otherwise>
+</c:choose>
+<span class='num'>
+<c:choose>
+<c:when test="${cns>=cnn }">
+<c:forEach var="cnt" begin="${cns }" end="${repeat }">
+<c:choose>
+<c:when test="${cnt==num }">
+<a href='search?num=${cnt}&h24=${h24 }&sear=${sear}&drive=${drive}&del=${del}&decafe=${decafe }&parking=${parking }&morning=${morning}' role='button' aria-selected='true'>${cnt }</a>
+
+</c:when>
+<c:otherwise>
+<a href='search?num=${cnt}&h24=${h24 }&sear=${sear}&drive=${drive}&del=${del}&decafe=${decafe }&parking=${parking }&morning=${morning}' role='button'>${cnt }</a>
+
+</c:otherwise>
+</c:choose>
+</c:forEach>
+</c:when>
+<c:otherwise>
+<c:forEach var="cnt" begin="${cns }" end="${cns+9 }">
+<c:choose>
+<c:when test="${cnt==num }">
+<a href='search?num=${cnt}&h24=${h24 }&sear=${sear}&drive=${drive}&del=${del}&decafe=${decafe }&parking=${parking }&morning=${morning}' role='button' aria-selected='true'>${cnt }</a>
+
+</c:when>
+<c:otherwise>
+<a href='search?num=${cnt}&h24=${h24 }&sear=${sear}&drive=${drive}&del=${del}&decafe=${decafe }&parking=${parking }&morning=${morning}' role='button'>${cnt }</a>
+
+</c:otherwise>
+</c:choose>
+</c:forEach>
+</c:otherwise>
+</c:choose>
+
+</span>
+
+<c:choose>
+<c:when test="${num == repeat}">
+<a href='search?num=${num }&h24=${h24 }&sear=${sear}&drive=${drive}&del=${del}&decafe=${decafe }&parking=${parking }&morning=${morning}' role='button' class='arrow next'>다음</a>
+</c:when>
+<c:otherwise>
+<a href='search?num=${num+1 }&h24=${h24 }&sear=${sear}&drive=${drive}&del=${del}&decafe=${decafe }&parking=${parking }&morning=${morning}' role='button' class='arrow next'>다음</a>
+</c:otherwise>
+</c:choose>
+<a href='search?num=${repeat }&h24=${h24 }&sear=${sear}&drive=${drive}&del=${del}&decafe=${decafe }&parking=${parking }&morning=${morning}' role='button' class='arrow last'>맨끝으로</a>
+</div>
+</div>
+</c:otherwise>
+
+</c:choose>
 
 
 
-<div id="map" style="width:1500px;height:500px;margin:auto;"></div>
 
 
-<!--<img src="<%=request.getContextPath()%>/resources/images/store/ico_marker.png"> -->
+</div>
+</div>
+</div>
+<%@ include file="../layout/aside.jsp" %>
+</div>
+<%@ include file="../layout/footer.jsp" %>
+</div>
+</div>
+
+
+
 
 <script>
 
-function seb(){
-	frm.submit();
+function sub(){
+	$("#frm").submit();
 }
 
 $(document).ready(function () {
@@ -230,7 +536,7 @@ for(var i=0;i<list.length;i++){
 	
 	var marker = new naver.maps.Marker({
 	    position: new naver.maps.LatLng(list[i].lat, list[i].lng),
-	    icon: "/root/resources/images/store/ico_marker.png",
+	    icon: "/root/resources/images/store/img_pin0"+(i+1)+".png",
 	    map: map
 	});
 
@@ -241,7 +547,11 @@ for(var i=0;i<list.length;i++){
 	infos.push(infowindow);
 	
 }
-
+function moveMap(xx,yy){
+    var po = new naver.maps.LatLng(xx, yy);
+    map.panTo(po);
+    document.getElementById('map').focus();
+}
 
 function getClickHandler(seq){
 	return function(e){
@@ -260,53 +570,6 @@ for(var i=0; i<markers.length;i++){
 map.setCenter(new naver.maps.LatLng(list[0].lat, list[0].lng))
 
 </script>
-<table border="1">
-<tr>
-<th>매장명/주소</th>
-<th>전화번호</th>
-<th>영업시간</th>
-<th>이용가능 서비스 </th>
-</tr>
-<c:if test="${list!=null }">
-<c:forEach var="dto" items="${list }">
-<tr>
-<th>${dto.name}</th><th rowspan="3">${dto.tel }</th><th rowspan="3">24</th>
-<th rowspan="3">${ dto.service}</th>
 
-</tr>
-<tr><th>${dto.place}</th></tr>
-<tr><th>${dto.place2 }</th></tr>
-</c:forEach>
-</c:if>
-<tr>
-<th colspan="4">
-<a href="search?num=1&sear=${sear}&drive=${drive}&del=${del}&decafe=${decafe }&parking=${parking }&morning=${morning}">&#60;&#60;</a>
-<c:choose>
-<c:when test="${num==1 }">
-<a href="search?num=${num }&sear=${sear}&drive=${drive}&del=${del}&decafe=${decafe }&parking=${parking }&morning=${morning}">&#60;</a>
-</c:when>
-<c:otherwise>
-<a href="search?num=${num-1 }&sear=${sear}&drive=${drive}&del=${del}&decafe=${decafe }&parking=${parking }&morning=${morning}">&#60;</a>
-</c:otherwise>
-</c:choose>
-
-<c:forEach var="cnt" begin="1" end="${repeat }">
-<a href="search?num=${cnt}&sear=${sear}&drive=${drive}&del=${del}&decafe=${decafe }&parking=${parking }&morning=${morning}">${cnt }&nbsp;</a>
-
-</c:forEach>
-
-<c:choose>
-<c:when test="${num == repeat}">
-<a href="search?num=${num }&sear=${sear}&drive=${drive}&del=${del}&decafe=${decafe }&parking=${parking }&morning=${morning}">&#62;</a>
-</c:when>
-<c:otherwise>
-<a href="search?num=${num+1 }&sear=${sear}&drive=${drive}&del=${del}&decafe=${decafe }&parking=${parking }&morning=${morning}">&#62;</a>
-</c:otherwise>
-</c:choose>
-<a href="search?num=${repeat }&sear=${sear}&drive=${drive}&del=${del}&decafe=${decafe }&parking=${parking }&morning=${morning}">&#62;&#62;</a>
-</th>
-</tr>
-
-</table>
 </body>
 </html>

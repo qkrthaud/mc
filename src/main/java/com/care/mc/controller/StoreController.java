@@ -1,16 +1,20 @@
 package com.care.mc.controller;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.care.mc.dto.StoreDTO;
 import com.care.mc.service.StoreService;
 
 @Controller
@@ -21,8 +25,13 @@ public class StoreController {
 	
 	@GetMapping("search")
 	public String search(String sear,Model model,@RequestParam(value="num", required=false, defaultValue = "1") int num,
-			String morning,String parking,String del,String decafe,String drive) {
+			String morning,String parking,String del,String decafe,String drive,String h24) {
 		ArrayList<String> arr = new ArrayList<String>();
+		if(h24!=null) {
+			if(h24.equals("")) {
+				h24=null;
+			}
+		}
 		if(drive!=null) {
 			if(drive.equals("")) {
 				drive=null;
@@ -51,11 +60,16 @@ public class StoreController {
 		
 		
 		System.out.println("sear : "+sear);
+		System.out.println("h24 : "+h24);
 		System.out.println("mor : "+morning);
 		System.out.println("par : "+parking);
 		System.out.println("del : "+del);
 		System.out.println("dec : "+decafe);
 		System.out.println("dri : "+drive);
+		if(h24!=null) {
+			model.addAttribute("h24",h24);
+			arr.add(h24);
+		}
 		if(morning!=null) {
 			model.addAttribute("morning",morning);
 			arr.add(morning);
@@ -82,10 +96,10 @@ public class StoreController {
 		
 		return "store/search";
 	}
-	@GetMapping("test")
-	public String test() {
+	@GetMapping("rental")
+	public String rental() {
 		
-		return "store/test";
+		return "store/rental";
 	}
 	@GetMapping("delivery")
 	public String delivery() {
@@ -95,6 +109,12 @@ public class StoreController {
 	public String drive() {
 		return "store/drive";
 	}
+	@GetMapping("storeEvent")
+	public String storeEvent(Model model) {
+		ss.getEventStore(model);
+		return "store/storeEvent";
+	}
+	
 	
 
 }

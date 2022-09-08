@@ -15,5 +15,6 @@ public interface StoreMapper {
 	public int listCount(@Param("sear") String sear,@Param("sear2") String sear2,@Param("sear3") String sear3);
 	public ArrayList<StoreDTO> chkSearch(@Param("sear") String sear,@Param("sear2") String sear2,@Param("sear3") String sear3);
 	public int addrCount(@Param("s1") String s1,@Param("s2") String s2);
+	public ArrayList<StoreDTO> getEventStore();
 
 }

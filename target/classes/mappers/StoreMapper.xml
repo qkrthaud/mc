@@ -15,7 +15,9 @@
 select b.* from(select rownum rn,A.* from(select * from store where name like #{sear} or place like #{sear2} or place2 like #{sear3})A)B where rn between #{s} and #{e}
 
 </select>
-
+<select id="getEventStore" resultMap="store">
+select * from store where event=1
+</select>
 <select id="listCount" resultType="Integer">
 select count(*) from(select rownum rn,A.* from(select * from store where name like #{sear} or place like #{sear2} or place2 like #{sear3})A)B
 </select>

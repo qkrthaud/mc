@@ -1,8 +1,14 @@
 package com.care.mc.dto;
 
 public class StoreDTO {
-	private String name,place,service,tel,place2;
+	private String name,place,service,tel,place2,time;
 	private int event;
+	public String getTime() {
+		return time;
+	}
+	public void setTime(String time) {
+		this.time = time;
+	}
 	private double lat,lng;
 	public double getLat() {
 		return lat;
