@@ -13,8 +13,8 @@
 		<result property="saturated_Fat" column="saturated_Fat" />
 		<result property="natrium" column="natrium" />
 		<result property="caffeine" column="caffeine" />
-		<result property="allergyInfo" column="allergyInfo" />
-		<result property="originInfo" column="originInfo" />
+		<result property="allergy_Info" column="allergy_Info" />
+		<result property="origin_Info" column="origin_Info" />
 	</resultMap>
 	<select id="nutInfo" resultMap="NutInfo">
 		select * from nut_Info where engName=#{engName}

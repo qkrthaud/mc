@@ -10,54 +10,50 @@
 <title>Insert title here</title>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script>
-$(document).ready(function(){
-	var doc;
-	$('div.toggle').click(function(){
-			$('.toggle').find('>button').each(function(){
-				var t = $(this);
-				var b = t.closest('.toggle');
-				var con	= doc.find(t.attr('aria-controls'));
-				var arr =[];
-				if(t.attr('text')){
-					arr = t.attr('text').split('|');
-					}
-				$(this).on('click',function(evt){
-						
-					var s, n;
-					evt.preventDefault();
-					if(t.attr('aria-selected') == 'true'){
-							t.attr({
-								'aria-selected':false,
-								'aria-expanded':false
-						});
-						b.removeClass('open');
-						con.stop().show();
-						n = con.outerHeight();
-						s = 200 * (n/400 )
-						con.slideUp(s);
-						if( arr.length ){
-							t.text(arr[0]);
-						}
-						}else{
-							t.attr({
-								'aria-selected':true,
-								'aria-expanded':true
-							});
-							b.addClass('open');
-							n = con.outerHeight();
-							s = 100 * (n/400 )
-							// console.log( s )
-							con.stop().hide().slideDown(s);
-							if( arr.length ){
-								t.text(arr[1]);
-							}
-						}
-				});
-						});
-						});
-				
-				});
 
+	$(document).ready(function() {
+		$('.toggle').find('>button').each(function() {
+			var t = $(this);
+			var b = t.closest('.toggle');
+			var content = $(document).find('#' + t.attr('aria-controls'));
+			var arr = [];
+			if (t.attr('text')) {
+				arr = t.attr('text').split('|');
+				console.log(arr)
+			}
+			$(this).on('click', function(evt) {
+				var s, n;
+				evt.preventDefault();
+				if (t.attr('aria-selected') == 'true') {
+					t.attr({
+						'aria-selected' : false,
+						'aria-expanded' : false
+					});
+					b.removeClass('open');
+					content.stop().show();
+					n = content.outerHeight();
+					s = 200 * (n / 400)
+					content.slideUp(s);
+					if (arr.length) {
+						t.text(arr[0]);
+					}
+				} else {
+					t.attr({
+						'aria-selected' : true,
+						'aria-expanded' : true
+					});
+					b.addClass('open');
+					n = content.outerHeight();
+					s = 100 * (n / 400)
+					// console.log( s )
+					content.stop().hide().slideDown(s);
+					if (arr.length) {
+						t.text(arr[1]);
+					}
+				}
+			});
+		});
+	});
 </script>
 </head>
 <body>
@@ -162,7 +158,7 @@ $(document).ready(function(){
 													<td>-</td>
 													<td>-</td>
 													<td>-</td>
-													<td>${suger }%</td>
+													<td>${nutInfo.suger }%</td>
 													<td>38%</td>
 													<td>46%</td>
 													<td>61%</td>
@@ -183,8 +179,7 @@ $(document).ready(function(){
 									<div id="toggle03" class="toggleCon">
 										<div class="allerDesc">
 											<p>
-												<b>알레르기 유발 가능 식재료</b> (난류,대두,밀,돼지고기,토마토) <br>
-												<b>* 일부 튀김류 제품은 새우 패티와 같은 조리기구를 사용하고 있습니다.</b>
+												${nutInfo.allergy_Info }
 											</p>
 										</div>
 									</div>
@@ -192,12 +187,12 @@ $(document).ready(function(){
 
 								<div class="toggle">
 									<h4 class="tit">원산지 정보</h4>
-									<button type="button" id="btn3" aria-selected="false"
+									<button type="button" aria-selected="false"
 										aria-controls="toggle04" aria-expanded="false">원산지 정보
 										보기</button>
 									<div id="toggle04" class="toggleCon">
 										<ul class="origin_info">
-										케네디언베이컨:미국산
+										${nutInfo.origin_Info }
 										</ul>
 									</div>
 								

@@ -1,7 +1,7 @@
 package com.care.mc.dto;
 
 public class NutInfoDTO {
-	private String engName, allergyInfo, originInfo;
+	private String engName, allergy_Info, origin_Info;
 	private int weight_G, weight_Ml, calorie, suger, protein, saturated_Fat,
 				natrium, caffeine;
 	public String getEngName() {
@@ -10,17 +10,17 @@ public class NutInfoDTO {
 	public void setEngName(String engName) {
 		this.engName = engName;
 	}
-	public String getAllergyInfo() {
-		return allergyInfo;
+	public String getAllergy_Info() {
+		return allergy_Info;
 	}
-	public void setAllergyInfo(String allergyInfo) {
-		this.allergyInfo = allergyInfo;
+	public void setAllergy_Info(String allergy_Info) {
+		this.allergy_Info = allergy_Info;
 	}
-	public String getOriginInfo() {
-		return originInfo;
+	public String getOrigin_Info() {
+		return origin_Info;
 	}
-	public void setOriginInfo(String originInfo) {
-		this.originInfo = originInfo;
+	public void setOrigin_Info(String origin_Info) {
+		this.origin_Info = origin_Info;
 	}
 	public int getWeight_G() {
 		return weight_G;
