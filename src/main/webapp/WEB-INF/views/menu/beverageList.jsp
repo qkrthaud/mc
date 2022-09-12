@@ -9,6 +9,19 @@
 <title>Insert title here</title>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script>
+$(function() {
+	$('ul.tabType01 a').click(function() {
+		var activeTab = $(this).attr('id');
+		console.log(activeTab)
+		if(activeTab == "tab01"){
+			$(this).attr("aria-selected", "true");
+			$('#tab02').attr("aria-selected", "false");
+		}else{
+			$(this).attr("aria-selected", "true");
+			$('#tab01').attr("aria-selected", "false");
+		}
+	})
+});	
 	function loadTemplate(id) {
 		return document.getElementById(id).innerHTML;
 	}
@@ -47,27 +60,30 @@
 		<%@ include file="../layout/header.jsp"%>
 		<div id="container">
 			<div class="content">
-				<div class="visualArea bgMenu07">
+				<div class="visualArea bgMenu05">
 					<div class="inner">
-						<h1 class="titDep1">맥런치</h1>
-						<p class="subCopy">
-							오전 10시 30분부터 오후 2시까지 <br>점심만의 특별한 할인으로 맥런치 세트를 즐겨보세요!
-						</p>
+						<h1 class="titDep1">맥카페 &amp; 음료</h1>
+						<p class="subCopy">언제나 즐겁게, 맥카페와 다양한 음료를 부담없이 즐기세요!</p>
 						<ul class="navPath">
 							<li><a href="/">Home</a></li>
 							<li><a href="javascript:gotoMenu('버거');">Menu</a></li>
-							<li><a href="javascript:gotoMenu('맥런치');">맥런치</a></li>
+							<li><a href="javascript:gotoMenu('맥카페');">맥카페 &amp; 음료</a></li>
 						</ul>
 					</div>
 				</div>
 
+
+
 				<div class="contArea">
 					<div class="inner">
 						<ul class="tabType01">
-							<li data-title="맥런치" data-desc="맥런치"><a
-								href="javascript:gotoMenu(14);" role="button"
-								aria-selected='true'>맥런치 세트</a></li>
+							<li data-title="맥카페 &amp; 음료" data-desc="맥카페 &음료 메뉴"><a
+								href="javascript:gotoMenu('맥카페');" id="tab01" role="button"
+								aria-selected='true'>맥카페</a></li>
+							<li><a href="javascript:gotoMenu('음료');" id="tab02" role="button">음료</a>
+							</li>
 						</ul>
+
 						<div class="mcMenu">
 							<p class="count" id="count"></p>
 							<ul class="menuList" id="menuList">
@@ -85,6 +101,7 @@
 					var totalPage = 0;
 					$(document).ready(function() {
 						moreList(0);
+						getValue();
 					});
 					function moreList() {
 						var val = '${value}';
@@ -123,6 +140,16 @@
 					function more() {
 						moreList(page + 1);
 						console.log("button")
+					}
+					function getValue(){
+						var val ='${value}';
+						if(val =="맥카페"){
+							$('#tab01').attr("aria-selected", "true");
+							$('#tab02').attr("aria-selected", "false");
+						}else{
+							$('#tab02').attr("aria-selected", "true");
+							$('#tab01').attr("aria-selected", "false");
+						}
 					}
 				</script>
 				<script id="menu" type="text/templet">

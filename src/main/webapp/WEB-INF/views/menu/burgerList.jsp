@@ -9,6 +9,19 @@
 <title>Insert title here</title>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script>
+	$(function() {
+		$('ul.tabType01 a').click(function() {
+			var activeTab = $(this).attr('id');
+			console.log(activeTab)
+			if (activeTab == "tab01") {
+				$(this).attr("aria-selected", "true");
+				$('#tab02').attr("aria-selected", "false");
+			} else {
+				$(this).attr("aria-selected", "true");
+				$('#tab01').attr("aria-selected", "false");
+			}
+		})
+	});
 	function loadTemplate(id) {
 		return document.getElementById(id).innerHTML;
 	}
@@ -47,16 +60,17 @@
 		<%@ include file="../layout/header.jsp"%>
 		<div id="container">
 			<div class="content">
-				<div class="visualArea bgMenu07">
+				<div class="visualArea bgMenu01">
 					<div class="inner">
-						<h1 class="titDep1">맥런치</h1>
+						<h1 class="titDep1">버거</h1>
 						<p class="subCopy">
-							오전 10시 30분부터 오후 2시까지 <br>점심만의 특별한 할인으로 맥런치 세트를 즐겨보세요!
+							빅맥<sub class="reg">®</sub>에서 맥스파이시<sub class="reg">®</sub>
+							상하이버거까지, <br>주문 즉시 바로 조리해 더욱 맛있는, 맥도날드의 다양한 버거를 소개합니다.
 						</p>
 						<ul class="navPath">
 							<li><a href="/">Home</a></li>
-							<li><a href="javascript:gotoMenu('버거');">Menu</a></li>
-							<li><a href="javascript:gotoMenu('맥런치');">맥런치</a></li>
+							<li><a href="">Menu</a></li>
+							<li><a href="">${value }</a></li>
 						</ul>
 					</div>
 				</div>
@@ -64,9 +78,12 @@
 				<div class="contArea">
 					<div class="inner">
 						<ul class="tabType01">
-							<li data-title="맥런치" data-desc="맥런치"><a
-								href="javascript:gotoMenu(14);" role="button"
-								aria-selected='true'>맥런치 세트</a></li>
+							<li data-title="버거" data-desc="버거메뉴"><a
+								href="javascript:gotoMenu('버거')" id="tab01" role="button"
+								aria-selected='true'>단품메뉴</a></li>
+							<!-- 선택 된 태그에 aria-selected="true" 추가 -->
+							<li><a href="javascript:gotoMenu('Burger세트')" id="tab02"
+								role="button">세트메뉴</a></li>
 						</ul>
 						<div class="mcMenu">
 							<p class="count" id="count"></p>
@@ -85,6 +102,7 @@
 					var totalPage = 0;
 					$(document).ready(function() {
 						moreList(0);
+						getValue();
 					});
 					function moreList() {
 						var val = '${value}';
@@ -123,6 +141,16 @@
 					function more() {
 						moreList(page + 1);
 						console.log("button")
+					}
+					function getValue() {
+						var val = '${value}';
+						if (val == "버거") {
+							$('#tab01').attr("aria-selected", "true");
+							$('#tab02').attr("aria-selected", "false");
+						} else {
+							$('#tab02').attr("aria-selected", "true");
+							$('#tab01').attr("aria-selected", "false");
+						}
 					}
 				</script>
 				<script id="menu" type="text/templet">

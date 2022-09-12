@@ -17,7 +17,7 @@ public class MenuServiceImpl implements MenuService{
 	@Autowired MenuMapper mm;
 	@Autowired NutMapper nm;
 
-	public void list(String value,int page, Model model) {
+	public void list(String value, Model model) {
 		String val="%"+value+"%";
 		String size="nan";
 		HashMap<Object, Object> map = new HashMap<Object, Object>();
@@ -25,6 +25,7 @@ public class MenuServiceImpl implements MenuService{
 		map.put("size", size);
 		System.out.println("메뉴 : "+val);
 		System.out.println("사이즈 :"+size);
+		int page = 1;
 		int pageNum = page;
 		int contentNum =6;
 		int totalCount = mm.selectBoardCount(map);
@@ -43,14 +44,8 @@ public class MenuServiceImpl implements MenuService{
 		model.addAttribute("value", value);
 		model.addAttribute("pageNum", pageNum);
 	}
-	public void detail(String engName, Model model) {
-		model.addAttribute("menuInfo", mm.menuInfo(engName));
-		model.addAttribute("nutInfo", nm.nutInfo(engName));
-	}
+	
 	public Map<Object, Object> menuList(String value,int page) {
-		if(value.equals("세트")) {
-			value = "Burger세트";
-		}
 		String val="%"+value+"%";
 		String size="nan";
 		
@@ -83,6 +78,10 @@ public class MenuServiceImpl implements MenuService{
 		menuList.put("menuList", getList);
 
 		return menuList;
+	}
+	public void detail(String engName, Model model) {
+		model.addAttribute("menuInfo", mm.menuInfo(engName));
+		model.addAttribute("nutInfo", nm.nutInfo(engName));
 	}
 
 }
