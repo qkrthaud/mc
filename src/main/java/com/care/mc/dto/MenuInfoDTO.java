@@ -1,7 +1,7 @@
 package com.care.mc.dto;
 
 public class MenuInfoDTO {
-	private String name, engName, image,
+	private String name, engName, menuSeq, image,
 					explanation, value, menuSize;
 
 	public String getName() {
@@ -18,6 +18,14 @@ public class MenuInfoDTO {
 
 	public void setEngName(String engName) {
 		this.engName = engName;
+	}
+
+	public String getMenuSeq() {
+		return menuSeq;
+	}
+
+	public void setMenuSeq(String menuSeq) {
+		this.menuSeq = menuSeq;
 	}
 
 	public String getImage() {
@@ -51,5 +59,5 @@ public class MenuInfoDTO {
 	public void setMenuSize(String menuSize) {
 		this.menuSize = menuSize;
 	}
-	
+
 }

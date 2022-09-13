@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
-	<c:set var="path" value="${pageContext.request.contextPath}" />
+<c:set var="path" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +9,6 @@
 <title>Insert title here</title>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script>
-
 	$(document).ready(function() {
 		$('.toggle').find('>button').each(function() {
 			var t = $(this);
@@ -58,10 +56,9 @@
 </head>
 <body>
 	<div class="wrapper">
-		<%@include file="../layout/header.jsp"%>
+	<%@ include file="../../layout/header.jsp"%>
 		<div id="container">
 			<div class="content">
-
 				<div class="visualArea bgMenu01">
 					<div class="inner">
 						<h1 class="titDep1">버거</h1>
@@ -85,11 +82,11 @@
 									<h2 class="ko">${menuInfo.name}</h2>
 									<em class="en">${menuInfo.engName }</em>
 								</div>
-								<div class="info" data-title="88 서울 비-프 버거 세트(버거)"
-									data-desc="버거 메뉴">
+								<div class="info" data-title="${menuInfo.name }"
+									data-desc="'${value }' 메뉴">
 									<div class="visual">
 										<img src="${path}/resources/images/menuImg/${menuInfo.image}"
-											alt="88 서울 비-프 버거 세트_감자튀김과 콜라 M사이즈 포함">
+											alt="${menuInfo.name }">
 									</div>
 									<br> <br>
 									<div class="desc">
@@ -98,15 +95,13 @@
 
 
 									<div class="other">
+										<a href="javascript:goDetail('${menuInfo.menuSeq-1 }');" class="arrow prev">
+										<span class="arr">이전 메뉴</span>
+										</a>
 
-
-										<a href="javascript:goDetail(490);" class="arrow next"><span
-											class="arr">다음 메뉴</span>
-											<div class="img">
-												<img src="/upload/product/pcthum/1659511930656.png"
-													alt="창녕 갈릭 버거 세트">
-											</div> <strong class="tit">창녕 갈릭 버거 세트</strong></a>
-
+										<a href="javascript:goDetail('${menuInfo.menuSeq+1 }');" class="arrow next">
+										<span class="arr">다음 메뉴</span>
+										</a>
 									</div>
 
 
@@ -178,9 +173,7 @@
 									<!-- toggle버튼 선택시 aria-selected값 true로 변경 / aria-expanded 값 true로 변경 -->
 									<div id="toggle03" class="toggleCon">
 										<div class="allerDesc">
-											<p>
-												${nutInfo.allergy_Info }
-											</p>
+											<p>${nutInfo.allergy_Info }</p>
 										</div>
 									</div>
 								</div>
@@ -191,16 +184,35 @@
 										aria-controls="toggle04" aria-expanded="false">원산지 정보
 										보기</button>
 									<div id="toggle04" class="toggleCon">
-										<ul class="origin_info">
-										${nutInfo.origin_Info }
+										<ul class="origin_info">${nutInfo.origin_Info }
 										</ul>
 									</div>
-								
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
+		</div>
+	</div>
+	<form id="searchForm" method="post">
+		<input type="hidden" name="page" id="page" value="1"> 
+		<input type="hidden" name="seq" id="seq"> 
+		<input type="hidden" name="sub_category" id="sub_category" value="${value }">
+	</form>
+<script>
+function goDetail(seq){
+	$("#seq").val(seq);
+	$("#page").val(seq);
+	$("#searchForm").attr("action","${path}/menu/detail");
+	$("#searchForm").submit();
+}
+function showSize(seq){
+	$("#seq").val(seq);
+	$("#searchForm").attr("action","${path}/menu/size");
+	$("#searchForm").submit();
+}
+</script>
+<%@ include file="../../layout/footer.jsp"%>
 </body>
 </html>

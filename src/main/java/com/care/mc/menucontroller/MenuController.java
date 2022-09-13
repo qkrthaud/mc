@@ -24,44 +24,51 @@ public class MenuController {
 
 	@PostMapping("/list")
 	public String list(HttpServletRequest request,
-						Model model){
+			Model model){
 		String value = request.getParameter("sub_category");
 		System.out.println("입력된 밸류 : "+value);
 		ms.list(value, model);
 		if(value.equals("버거")) {
-			return "menu/burgerList";
+			return "menu/list/burgerList";
 		}else if(value.equals("Burger세트")) {
-			return "menu/burgerList";
+			return "menu/list/burgerList";
 		}else if(value.equals("맥런치")){
-			return "menu/mcLunchList";
+			return "menu/list/mcLunchList";
 		}else if(value.equals("맥모닝")) {
-			return "menu/mcMorningList";
+			return "menu/list/mcMorningList";
 		}else if(value.equals("모닝세트")){
-			return "menu/mcMorningList";
+			return "menu/list/mcMorningList";
 		}else if(value.equals("해피스낵")){
-			return "menu/happySnackList";
+			return "menu/list/happySnackList";
 		}else if(value.equals("사이드")){
-			return "menu/sideDessert";
+			return "menu/list/sideDessertList";
 		}else if(value.equals("디저트")) {
-			return "menu/sideDessert";
+			return "menu/list/sideDessertList";
 		}else if(value.equals("맥카페")) {
-			return "menu/beverageList";
+			return "menu/list/beverageList";
 		}else if(value.equals("음료")) {
-			return "menu/beverageList";
+			return "menu/list/beverageList";
 		}else if(value.equals("해피밀AM")) {
-			return "menu/happyMealList";
+			return "menu/list/happyMealList";
 		}else if(value.equals("해피밀PM")) {
-			return "menu/happyMealList";
+			return "menu/list/happyMealList";
 		}else {
 			return "";
 		}
 
 	}
 
-	@GetMapping("detail")
-	public String detail(@RequestParam("engName") String engName, Model model) {
-		ms.detail(engName, model);	
-		return "menu/detail";
+	@PostMapping("/detail")
+	public String detail(HttpServletRequest request,
+						Model model) {
+		String value = request.getParameter("sub_category");
+		String page = request.getParameter("page");
+		String seq = request.getParameter("seq");
+		System.out.println("value : "+value);
+		System.out.println("page : "+page);
+		System.out.println("seq : "+seq);
+		ms.detail(seq, value, model);
+		return "menu/detail/detail";
 	}
 	@PostMapping(value="menuList", produces = "application/json; charset=utf-8")
 	@ResponseBody

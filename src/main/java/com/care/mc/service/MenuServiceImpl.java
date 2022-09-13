@@ -1,6 +1,7 @@
 package com.care.mc.service;
 
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -56,6 +57,7 @@ public class MenuServiceImpl implements MenuService{
 		int contentNum =6;
 		int totalCount = mm.selectBoardCount(map);
 		int totalPage = totalCount/contentNum;
+		int seq =0;
 		if( totalCount % contentNum != 0)
 			totalPage += 1;
 		System.out.println("총 페이지 수 : "+totalPage);
@@ -76,11 +78,20 @@ public class MenuServiceImpl implements MenuService{
 		menuList.put("pageNum", pageNum);
 		menuList.put("totalPage",totalPage);
 		menuList.put("menuList", getList);
-
 		return menuList;
 	}
-	public void detail(String engName, Model model) {
-		model.addAttribute("menuInfo", mm.menuInfo(engName));
+	public void detail(String seq,String value, Model model) {
+		String val="%"+value+"%";
+		String size="nan";
+		HashMap<Object, Object> map = new HashMap<Object, Object>();
+		map.put("value", val);
+		map.put("size", size);
+		System.out.println("메뉴 : "+val);
+		System.out.println("사이즈 :"+size);
+		
+		model.addAttribute("menuInfo", mm.menuInfo(seq));
+		MenuInfoDTO dto = mm.menuInfo(seq);
+		String engName = dto.getEngName();
 		model.addAttribute("nutInfo", nm.nutInfo(engName));
 	}
 

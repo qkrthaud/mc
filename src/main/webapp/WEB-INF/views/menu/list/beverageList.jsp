@@ -57,7 +57,7 @@ $(function() {
 </head>
 <body>
 	<div class="wrapper">
-		<%@ include file="../layout/header.jsp"%>
+		<%@ include file="../../layout/header.jsp"%>
 		<div id="container">
 			<div class="content">
 				<div class="visualArea bgMenu05">
@@ -96,6 +96,11 @@ $(function() {
 						</div>
 					</div>
 				</div>
+				<form id="searchForm" method="post">
+		<input type="hidden" name="page" id="page" value="1"> 
+		<input type="hidden" name="seq" id="seq"> 
+		<input type="hidden" name="sub_category" id="sub_category" value="${value }">
+	</form>
 				<script>
 					var page = 0;
 					var totalPage = 0;
@@ -151,10 +156,16 @@ $(function() {
 							$('#tab01').attr("aria-selected", "false");
 						}
 					}
+					function goDetail(seq){
+						$("#seq").val(seq);
+						$("#page").val(seq);
+						$("#searchForm").attr("action","${path}/menu/detail");
+						$("#searchForm").submit();
+					}
 				</script>
 				<script id="menu" type="text/templet">
 <li>
-	<a href="detail?engName={engName}">
+	<a href="javascript:goDetail({menuSeq})" data-seq="{menuSeq}">
 		<div class="thum"><img src="${path}/resources/images/menuImg/{image}"
 		 alt="{name}"></div>
 		<div class="name">
@@ -167,6 +178,6 @@ $(function() {
 			</div>
 		</div>
 	</div>
-	<c:import url="../layout/footer.jsp" />
+	<%@ include file="../../layout/footer.jsp"%>
 </body>
 </html>

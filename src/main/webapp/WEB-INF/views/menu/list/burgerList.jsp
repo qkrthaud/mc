@@ -36,6 +36,7 @@
 		return result;
 	}
 	function makeHtml(id, data) {
+
 		return replaceTemplate(loadTemplate(id), data);
 	}
 	function setWebTitle() {
@@ -56,30 +57,32 @@
 </head>
 <body>
 	<div class="wrapper">
-		<%@ include file="../layout/header.jsp"%>
+		<%@ include file="../../layout/header.jsp"%>
 		<div id="container">
 			<div class="content">
-				<div class="visualArea bgMenu02">
+				<div class="visualArea bgMenu01">
 					<div class="inner">
-						<h1 class="titDep1">맥모닝</h1>
+						<h1 class="titDep1">버거</h1>
 						<p class="subCopy">
-							새벽 4시부터 오전 10시 30분까지<br> 갓 구워내 신선한 맥모닝으로 따뜻한 아침 식사를 챙겨 드세요!
+							빅맥<sub class="reg">®</sub>에서 맥스파이시<sub class="reg">®</sub>
+							상하이버거까지, <br>주문 즉시 바로 조리해 더욱 맛있는, 맥도날드의 다양한 버거를 소개합니다.
 						</p>
 						<ul class="navPath">
 							<li><a href="/">Home</a></li>
-							<li><a href="javascript:gotoMenu('버거');">Menu</a></li>
-							<li><a href="javascript:gotoMenu('맥모닝');">맥모닝</a></li>
+							<li><a href="">Menu</a></li>
+							<li><a href="">${value }</a></li>
 						</ul>
 					</div>
 				</div>
+
 				<div class="contArea">
 					<div class="inner">
 						<ul class="tabType01">
-
-							<li data-title="맥모닝 " data-desc="맥모닝메뉴"><a
-								href="javascript:gotoMenu('맥모닝');" id="tab01" role="button"
+							<li data-title="버거" data-desc="버거메뉴"><a
+								href="javascript:gotoMenu('버거')" id="tab01" role="button"
 								aria-selected='true'>단품메뉴</a></li>
-							<li><a href="javascript:gotoMenu('모닝세트');" id="tab02"
+							<!-- 선택 된 태그에 aria-selected="true" 추가 -->
+							<li><a href="javascript:gotoMenu('Burger세트')" id="tab02"
 								role="button">세트메뉴</a></li>
 						</ul>
 						<div class="mcMenu">
@@ -94,6 +97,11 @@
 						</div>
 					</div>
 				</div>
+				<form id="searchForm" method="post">
+		<input type="hidden" name="page" id="page" value="1"> 
+		<input type="hidden" name="seq" id="seq"> 
+		<input type="hidden" name="sub_category" id="sub_category" value="${value }">
+	</form>
 				<script>
 					var page = 0;
 					var totalPage = 0;
@@ -141,7 +149,7 @@
 					}
 					function getValue() {
 						var val = '${value}';
-						if (val == "맥모닝") {
+						if (val == "버거") {
 							$('#tab01').attr("aria-selected", "true");
 							$('#tab02').attr("aria-selected", "false");
 						} else {
@@ -149,10 +157,16 @@
 							$('#tab01').attr("aria-selected", "false");
 						}
 					}
+					function goDetail(seq){
+						$("#seq").val(seq);
+						$("#page").val(seq);
+						$("#searchForm").attr("action","${path}/menu/detail");
+						$("#searchForm").submit();
+					}
 				</script>
 				<script id="menu" type="text/templet">
 <li>
-	<a href="detail?engName={engName}">
+	<a href="javascript:goDetail({menuSeq})" data-seq="{menuSeq}">
 		<div class="thum"><img src="${path}/resources/images/menuImg/{image}"
 		 alt="{name}"></div>
 		<div class="name">
@@ -165,6 +179,6 @@
 			</div>
 		</div>
 	</div>
-	<c:import url="../layout/footer.jsp" />
+	<%@ include file="../../layout/footer.jsp"%>
 </body>
 </html>

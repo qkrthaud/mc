@@ -9,19 +9,6 @@
 <title>Insert title here</title>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script>
-$(function() {
-	$('ul.tabType01 a').click(function() {
-		var activeTab = $(this).attr('id');
-		console.log(activeTab)
-		if(activeTab == "tab01"){
-			$(this).attr("aria-selected", "true");
-			$('#tab02').attr("aria-selected", "false");
-		}else{
-			$(this).attr("aria-selected", "true");
-			$('#tab01').attr("aria-selected", "false");
-		}
-	})
-});	
 	function loadTemplate(id) {
 		return document.getElementById(id).innerHTML;
 	}
@@ -57,31 +44,29 @@ $(function() {
 </head>
 <body>
 	<div class="wrapper">
-		<%@ include file="../layout/header.jsp"%>
+		<%@ include file="../../layout/header.jsp"%>
 		<div id="container">
 			<div class="content">
-				<div class="visualArea bgMenu03">
+				<div class="visualArea bgMenu08">
 					<div class="inner">
-						<h1 class="titDep1">해피밀</h1>
-						<p class="subCopy">맛과 즐거움 모두 해피밀을 통해 느껴보세요!</p>
+						<h1 class="titDep1">해피 스낵</h1>
+						<p class="subCopy">
+							시즌 별 인기 스낵을 하루종일<br>할인 가격으로 만나보세요!
+						</p>
 						<ul class="navPath">
 							<li><a href="/">Home</a></li>
 							<li><a href="javascript:gotoMenu('버거');">Menu</a></li>
-							<li><a href="javascript:gotoMenu('해피밀');">해피밀</a></li>
+							<li><a href="javascript:gotoMenu('해피스낵');">해피 스낵</a></li>
 						</ul>
 					</div>
 				</div>
 
-
-
 				<div class="contArea">
 					<div class="inner">
 						<ul class="tabType01">
-							<li data-title="해피밀 " data-desc="해피밀메뉴"><a
-								href="javascript:gotoMenu('해피밀AM');" id="tab01" role="button"
-								aria-selected='true'>AM 04:00~AM 10:30</a></li>
-							<li><a href="javascript:gotoMenu('해피밀PM');" id="tab02"
-								role="button">AM 10:30~AM 04:00</a></li>
+							<li data-title="해피 스낵" data-desc="해피 스낵"><a
+								href="javascript:gotoMenu('해피스낵');" role="button"
+								aria-selected='true'>해피 스낵</a></li>
 						</ul>
 
 						<div class="mcMenu">
@@ -96,12 +81,16 @@ $(function() {
 						</div>
 					</div>
 				</div>
+				<form id="searchForm" method="post">
+		<input type="hidden" name="page" id="page" value="1"> 
+		<input type="hidden" name="seq" id="seq"> 
+		<input type="hidden" name="sub_category" id="sub_category" value="${value }">
+	</form>
 				<script>
 					var page = 0;
 					var totalPage = 0;
 					$(document).ready(function() {
 						moreList(0);
-						getValue();
 					});
 					function moreList() {
 						var val = '${value}';
@@ -141,20 +130,16 @@ $(function() {
 						moreList(page + 1);
 						console.log("button")
 					}
-					function getValue(){
-						var val ='${value}';
-						if(val =="해피밀AM"){
-							$('#tab01').attr("aria-selected", "true");
-							$('#tab02').attr("aria-selected", "false");
-						}else{
-							$('#tab02').attr("aria-selected", "true");
-							$('#tab01').attr("aria-selected", "false");
-						}
+					function goDetail(seq){
+						$("#seq").val(seq);
+						$("#page").val(seq);
+						$("#searchForm").attr("action","${path}/menu/detail");
+						$("#searchForm").submit();
 					}
 				</script>
 				<script id="menu" type="text/templet">
 <li>
-	<a href="detail?engName={engName}">
+	<a href="javascript:goDetail({menuSeq})" data-seq="{menuSeq}">
 		<div class="thum"><img src="${path}/resources/images/menuImg/{image}"
 		 alt="{name}"></div>
 		<div class="name">
@@ -167,6 +152,6 @@ $(function() {
 			</div>
 		</div>
 	</div>
-	<c:import url="../layout/footer.jsp" />
+	<%@ include file="../../layout/footer.jsp"%>
 </body>
 </html>

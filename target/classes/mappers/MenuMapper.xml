@@ -6,7 +6,8 @@
 	<resultMap type="com.care.mc.dto.MenuInfoDTO" id="menuInfo">
 		<id property="name" column="name" />
 		<result property="engName" column="engName" />
-		<result property="mainImage" column="mainImage" />
+		<result property="menuSeq" column="menuSeq" />
+		<result property="image" column="image" />
 		<result property="explanation" column="explanation" />
 		<result property="value" column="value" />
 		<result property="menuSize" column="menuSize" />
@@ -21,7 +22,7 @@
         where rn between #{start} and #{end}
 	</select>
 	<select id="menuInfo" resultMap="menuInfo">
-		select * from menu_Info where engName=#{engName}
+		select * from menu_Info where menuSeq=#{seq}
 	</select>
 
 </mapper>
