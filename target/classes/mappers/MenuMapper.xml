@@ -24,5 +24,8 @@
 	<select id="menuInfo" resultMap="menuInfo">
 		select * from menu_Info where menuSeq=#{seq}
 	</select>
+	<select id="detailList" resultMap="menuInfo" parameterType="HashMap">
+		select * from menu_info where value like #{value} and menuSize=#{size}
+	</select>
 
 </mapper>

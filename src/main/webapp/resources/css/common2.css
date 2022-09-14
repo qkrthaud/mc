@@ -1954,44 +1954,44 @@ ul.notiTxt:before {
 
 /* menu */
 .visualArea.bgMenu01 {
-	background: url(/uploadFolder/images/menu/2020/bg_visual_menu01.jpg) 50%
+	background: url(../images/common/bg_visual_menu01.jpg) 50%
 		50% no-repeat
 }
 
 .visualArea.bgMenu02 {
-	background: url(/uploadFolder/images/menu/bg_visual_menu02.jpg) 50% 50%
+	background: url(../images/common/bg_visual_menu02.jpg) 50% 50%
 		no-repeat
 }
 
 .visualArea.bgMenu03 {
-	background: url(/uploadFolder/images/menu/bg_visual_menu03.jpg) 50% 50%
+	background: url(../images/common/bg_visual_menu03.jpg) 50% 50%
 		no-repeat
 }
 
 .visualArea.bgMenu04 {
-	background: url(/uploadFolder/images/menu/bg_visual_menu04.jpg) 50% 50%
+	background: url(../images/common/bg_visual_menu04.jpg) 50% 50%
 		no-repeat
 }
 
 .visualArea.bgMenu05 {
-	background: url(/uploadFolder/images/menu/2021/bg_visual_menu05.jpg) 50%
+	background: url(../images/common/bg_visual_menu05.jpg) 50%
 		50% no-repeat
 }
 
 .visualArea.bgMenu06 {
-	background: url(/uploadFolder/images/menu/2020/bg_visual_menu06.jpg) 50%
+	background: url(../images/common/bg_visual_menu06.jpg) 50%
 		50% no-repeat
 }
 
 .visualArea.bgMenu07 {
 	background:
-		url(/uploadFolder/images/menu/2021/pc_1922x220_mclunch_banner.jpg) 50%
+		url(../images/common/bg_visual_menu07.jpg) 50%
 		50% no-repeat
 }
 
 .visualArea.bgMenu08 {
 	background:
-		url(/uploadFolder/images/menu/2022/pc_1922x220_happy_snack_kr_01.jpg)
+		url(../images/common/bg_visual_menu08.jpg)
 		50% 50% no-repeat
 }
 

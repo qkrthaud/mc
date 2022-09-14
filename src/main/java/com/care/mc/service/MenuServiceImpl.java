@@ -86,8 +86,7 @@ public class MenuServiceImpl implements MenuService{
 		HashMap<Object, Object> map = new HashMap<Object, Object>();
 		map.put("value", val);
 		map.put("size", size);
-		mm.detailList(map);
-		
+		model.addAttribute("value", value);
 		model.addAttribute("menuInfo", mm.menuInfo(seq));
 		MenuInfoDTO dto = mm.menuInfo(seq);
 		String engName = dto.getEngName();

@@ -59,17 +59,16 @@
 	<%@ include file="../../layout/header.jsp"%>
 		<div id="container">
 			<div class="content">
-				<div class="visualArea bgMenu01">
+				<div class="visualArea bgMenu07">
 					<div class="inner">
-						<h1 class="titDep1">버거</h1>
+						<h1 class="titDep1">맥런치</h1>
 						<p class="subCopy">
-							빅맥<sub class="reg">®</sub>에서 맥스파이시<sub class="reg">®</sub>
-							상하이버거까지, <br>주문 즉시 바로 조리해 더욱 맛있는, 맥도날드의 다양한 버거를 소개합니다.
+							오전 10시 30분부터 오후 2시까지 <br>점심만의 특별한 할인으로 맥런치 세트를 즐겨보세요!
 						</p>
 						<ul class="navPath">
 							<li><a href="/">Home</a></li>
-							<li><a href="javascript:gotoMenu(1);">Menu</a></li>
-							<li><a href="javascript:gotoMenu(1);">버거</a></li>
+							<li><a href="javascript:gotoMenu('버거');">Menu</a></li>
+							<li><a href="javascript:gotoMenu('맥런치');">맥런치</a></li>
 						</ul>
 					</div>
 				</div>
@@ -211,6 +210,15 @@ function showSize(seq){
 	$("#seq").val(seq);
 	$("#searchForm").attr("action","${path}/menu/size");
 	$("#searchForm").submit();
+}
+function button(){
+	var now ='${menuInfo.menuSeq}'
+	console.log(now)
+	if(now == 1){
+		$('#prev').hide();
+	}else if(now == 22){
+		$('#next').hide();
+	}
 }
 </script>
 <%@ include file="../../layout/footer.jsp"%>

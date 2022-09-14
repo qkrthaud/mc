@@ -68,7 +68,34 @@ public class MenuController {
 		System.out.println("page : "+page);
 		System.out.println("seq : "+seq);
 		ms.detail(seq, value, model);
-		return "menu/detail/detail";
+		if(value.equals("버거")) {
+			return "menu/detail/burgerDetail";
+		}else if(value.equals("Burger세트")) {
+			return "menu/detail/burgerDetail";
+		}else if(value.equals("맥런치")){
+			return "menu/detail/mcLunchDetail";
+		}else if(value.equals("맥모닝")) {
+			return "menu/detail/mcMorningDetail";
+		}else if(value.equals("모닝세트")){
+			return "menu/detail/mcMorningDetail";
+		}else if(value.equals("해피스낵")){
+			return "menu/detail/happySnackDetail";
+		}else if(value.equals("사이드")){
+			return "menu/detail/sideDessertDetail";
+		}else if(value.equals("디저트")) {
+			return "menu/detail/sideDessertDetail";
+		}else if(value.equals("맥카페")) {
+			return "menu/detail/beverageDetail";
+		}else if(value.equals("음료")) {
+			return "menu/detail/beverageDetail";
+		}else if(value.equals("해피밀AM")) {
+			return "menu/detail/happyMealDetail";
+		}else if(value.equals("해피밀PM")) {
+			return "menu/detail/happyMealDetail";
+		}else {
+			return "";
+		}
+
 	}
 	@PostMapping(value="menuList", produces = "application/json; charset=utf-8")
 	@ResponseBody
