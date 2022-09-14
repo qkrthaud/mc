@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.care.mc.mybatis.MenuMapper">
-	<resultMap type="com.care.mc.dto.MenuInfoDTO" id="menuInfo">
+	<resultMap type="com.care.mc.dto.MenuInfoDTO" id="menuInfoDTO">
 		<id property="name" column="name" />
 		<result property="engName" column="engName" />
 		<result property="menuSeq" column="menuSeq" />
@@ -16,16 +16,18 @@
 		select count(*) from menu_info where value like #{value} and menuSize=#{size}
 	</select>
 	
-	<select id="getList" resultMap="menuInfo" parameterType="HashMap">
+	<select id="getList" resultMap="menuInfoDTO" parameterType="HashMap">
 		select B.* from(select rownum as rn, A.* from
 		(select * from menu_info where value like #{value} and menuSize=#{size})A)B
         where rn between #{start} and #{end}
 	</select>
-	<select id="menuInfo" resultMap="menuInfo">
-		select * from menu_Info where menuSeq=#{seq}
+	<select id="menuInfo" resultMap="menuInfoDTO" parameterType="HashMap">
+		select * from(select * from menu_info where value like #{value} and menuSize =#{size})
+		 where menuSeq=#{seq}
 	</select>
-	<select id="detailList" resultMap="menuInfo" parameterType="HashMap">
-		select * from menu_info where value like #{value} and menuSize=#{size}
+	<select id="page" resultMap="menuInfoDTO" parameterType="HashMap">
+	select B.* from(select rownum as rn, A.* from
+	(select * from menu_info where value like #{value} and menuSize =#{size})A)B
+	where menuSeq=#{seq}
 	</select>
-
 </mapper>

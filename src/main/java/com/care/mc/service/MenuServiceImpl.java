@@ -80,16 +80,17 @@ public class MenuServiceImpl implements MenuService{
 		menuList.put("menuList", getList);
 		return menuList;
 	}
-	public void detail(String seq,String value, Model model) {
+	public void detail(String seq ,String value,String page, Model model) {
 		String val="%"+value+"%";
 		String size="nan";
 		HashMap<Object, Object> map = new HashMap<Object, Object>();
 		map.put("value", val);
 		map.put("size", size);
+		map.put("seq", seq);
+		model.addAttribute("menuInfo", mm.menuInfo(map));
 		model.addAttribute("value", value);
-		model.addAttribute("menuInfo", mm.menuInfo(seq));
-		MenuInfoDTO dto = mm.menuInfo(seq);
-		String engName = dto.getEngName();
+		MenuInfoDTO nut = mm.menuInfo(map);
+		String engName = nut.getEngName();
 		model.addAttribute("nutInfo", nm.nutInfo(engName));
 	}
 

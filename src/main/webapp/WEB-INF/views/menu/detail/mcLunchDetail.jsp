@@ -10,6 +10,7 @@
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script>
 	$(document).ready(function() {
+		button();
 		$('.toggle').find('>button').each(function() {
 			var t = $(this);
 			var b = t.closest('.toggle');
@@ -94,11 +95,11 @@
 
 
 									<div class="other">
-										<a href="javascript:goDetail('${menuInfo.menuSeq-1 }');" class="arrow prev">
+										<a href="javascript:goDetail('${menuInfo.menuSeq-1 }');" id="prev" class="arrow prev">
 										<span class="arr">이전 메뉴</span>
 										</a>
 
-										<a href="javascript:goDetail('${menuInfo.menuSeq+1 }');" class="arrow next">
+										<a href="javascript:goDetail('${menuInfo.menuSeq+1 }');" id="next" class="arrow next">
 										<span class="arr">다음 메뉴</span>
 										</a>
 									</div>
@@ -214,9 +215,9 @@ function showSize(seq){
 function button(){
 	var now ='${menuInfo.menuSeq}'
 	console.log(now)
-	if(now == 1){
+	if(now == 23){
 		$('#prev').hide();
-	}else if(now == 22){
+	}else if(now == 41){
 		$('#next').hide();
 	}
 }

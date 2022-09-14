@@ -10,6 +10,7 @@
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script>
 	$(document).ready(function() {
+		button();
 		$('.toggle').find('>button').each(function() {
 			var t = $(this);
 			var b = t.closest('.toggle');
@@ -89,16 +90,16 @@
 									</div>
 									<br> <br>
 									<div class="desc">
-										<h3>${menuInfo.explanation }</h3>
+										<h3>${happySnack.explanation }</h3>
 									</div>
 
 
 									<div class="other">
-										<a href="javascript:goDetail('${menuInfo.menuSeq-1 }');" class="arrow prev">
+										<a href="javascript:goDetail('${menuInfo.menuSeq-1 }');" id="prev"class="arrow prev">
 										<span class="arr">이전 메뉴</span>
 										</a>
 
-										<a href="javascript:goDetail('${menuInfo.menuSeq+1 }');" class="arrow next">
+										<a href="javascript:goDetail('${menuInfo.menuSeq+1 }');" id="next" class="arrow next">
 										<span class="arr">다음 메뉴</span>
 										</a>
 									</div>
@@ -210,6 +211,15 @@ function showSize(seq){
 	$("#seq").val(seq);
 	$("#searchForm").attr("action","${path}/menu/size");
 	$("#searchForm").submit();
+}
+function button(){
+	var now ='${menuInfo.menuSeq}'
+	console.log(now)
+	if(now == 1){
+		$('#prev').hide();
+	}else if(now == 9){
+		$('#next').hide();
+	}
 }
 </script>
 <%@ include file="../../layout/footer.jsp"%>

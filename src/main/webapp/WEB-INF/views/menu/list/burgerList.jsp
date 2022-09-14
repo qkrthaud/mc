@@ -69,8 +69,8 @@
 						</p>
 						<ul class="navPath">
 							<li><a href="/">Home</a></li>
-							<li><a href="">Menu</a></li>
-							<li><a href="">${value }</a></li>
+							<li><a href="javascript:gotoMenu('버거');">Menu</a></li>
+							<li><a href="javascript:gotoMenu('버거');">버거</a></li>
 						</ul>
 					</div>
 				</div>
@@ -159,7 +159,6 @@
 					}
 					function goDetail(seq){
 						$("#seq").val(seq);
-						$("#page").val(seq);
 						$("#searchForm").attr("action","${path}/menu/detail");
 						$("#searchForm").submit();
 					}

@@ -67,7 +67,7 @@ public class MenuController {
 		System.out.println("value : "+value);
 		System.out.println("page : "+page);
 		System.out.println("seq : "+seq);
-		ms.detail(seq, value, model);
+		ms.detail(seq, value, page, model);
 		if(value.equals("버거")) {
 			return "menu/detail/burgerDetail";
 		}else if(value.equals("Burger세트")) {
