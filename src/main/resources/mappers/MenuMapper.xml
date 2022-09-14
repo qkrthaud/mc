@@ -11,6 +11,7 @@
 		<result property="explanation" column="explanation" />
 		<result property="value" column="value" />
 		<result property="menuSize" column="menuSize" />
+		<result property="rownum" column="rn" />
 	</resultMap>
 	<select id="selectBoardCount" resultType="Integer" parameterType="HashMap">
 		select count(*) from menu_info where value like #{value} and menuSize=#{size}
@@ -22,12 +23,14 @@
         where rn between #{start} and #{end}
 	</select>
 	<select id="menuInfo" resultMap="menuInfoDTO" parameterType="HashMap">
-		select * from(select * from menu_info where value like #{value} and menuSize =#{size})
-		 where menuSeq=#{seq}
+		select B.* from(select rownum as rn, A.* from
+		(select * from menu_info where value like #{value} and menuSize =#{size})A)B
+        where menuSeq=#{seq}
 	</select>
-	<select id="page" resultMap="menuInfoDTO" parameterType="HashMap">
+	<select id="pagingInfo"  resultMap="menuInfoDTO" parameterType="HashMap">
 	select B.* from(select rownum as rn, A.* from
-	(select * from menu_info where value like #{value} and menuSize =#{size})A)B
-	where menuSeq=#{seq}
+		(select * from menu_info where value like #{value} and menuSize =#{size})A)B
+        where rn=#{page}
 	</select>
+
 </mapper>

@@ -3,6 +3,15 @@ package com.care.mc.dto;
 public class MenuInfoDTO {
 	private String name, engName, menuSeq, image,
 					explanation, value, menuSize;
+	private int rownum;
+
+	public int getRownum() {
+		return rownum;
+	}
+
+	public void setRownum(int rownum) {
+		this.rownum = rownum;
+	}
 
 	public String getName() {
 		return name;

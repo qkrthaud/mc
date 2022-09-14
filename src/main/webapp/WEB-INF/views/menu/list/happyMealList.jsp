@@ -40,7 +40,7 @@ $(function() {
 		return replaceTemplate(loadTemplate(id), data);
 	}
 	function setWebTitle() {
-
+		console.log(data)
 		var title = $("[data-title]").data("title");
 		var des = $("[data-desc]").data("desc");
 		if (title != undefined && $.trim(title) != "N") {
@@ -158,7 +158,6 @@ $(function() {
 					}
 					function goDetail(seq){
 						$("#seq").val(seq);
-						$("#page").val(seq);
 						$("#searchForm").attr("action","${path}/menu/detail");
 						$("#searchForm").submit();
 					}

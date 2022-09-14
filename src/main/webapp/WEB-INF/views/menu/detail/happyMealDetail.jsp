@@ -8,8 +8,16 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
+
 <script>
 	$(document).ready(function() {
+		var val = '${value}';
+		var data ='${menuInfo}';
+		var rn ='${menuInfo.rownum}'
+		console.log(val)
+		console.log(data)
+		console.log(rn)
+		button();
 		$('.toggle').find('>button').each(function() {
 			var t = $(this);
 			var b = t.closest('.toggle');
@@ -92,11 +100,11 @@
 
 
 									<div class="other">
-										<a href="javascript:goDetail('${menuInfo.menuSeq-1 }');" class="arrow prev">
+										<a href="javascript:goDetailPaging('${menuInfo.rownum-1 }');" id="prev" class="arrow prev">
 										<span class="arr">이전 메뉴</span>
 										</a>
 
-										<a href="javascript:goDetail('${menuInfo.menuSeq+1 }');" class="arrow next">
+										<a href="javascript:goDetailPaging('${menuInfo.rownum+1 }');" id="next" class="arrow next">
 										<span class="arr">다음 메뉴</span>
 										</a>
 									</div>
@@ -193,21 +201,28 @@
 		</div>
 	</div>
 	<form id="searchForm" method="post">
-		<input type="hidden" name="page" id="page" value="1"> 
-		<input type="hidden" name="seq" id="seq"> 
+		<input type="hidden" name="page" id="page" value="${menuInfo.rownum}"> 
 		<input type="hidden" name="sub_category" id="sub_category" value="${value }">
 	</form>
 <script>
-function goDetail(seq){
-	$("#seq").val(seq);
-	$("#page").val(seq);
-	$("#searchForm").attr("action","${path}/menu/detail");
+function goDetailPaging(rn){
+	$("#page").val(rn);
+	$("#searchForm").attr("action","${path}/menu/detailPaging");
 	$("#searchForm").submit();
 }
 function showSize(seq){
 	$("#seq").val(seq);
 	$("#searchForm").attr("action","${path}/menu/size");
 	$("#searchForm").submit();
+}
+function button(){
+	var now ='${menuInfo.rownum}'
+	console.log(now)
+	if(now == 1){
+		$('#prev').hide();
+	}else if(now == 7){
+		$('#next').hide();
+	}
 }
 </script>
 <%@ include file="../../layout/footer.jsp"%>

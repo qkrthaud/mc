@@ -132,7 +132,6 @@
 					}
 					function goDetail(seq){
 						$("#seq").val(seq);
-						$("#page").val(seq);
 						$("#searchForm").attr("action","${path}/menu/detail");
 						$("#searchForm").submit();
 					}

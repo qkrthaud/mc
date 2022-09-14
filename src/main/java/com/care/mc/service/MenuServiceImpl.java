@@ -86,11 +86,27 @@ public class MenuServiceImpl implements MenuService{
 		HashMap<Object, Object> map = new HashMap<Object, Object>();
 		map.put("value", val);
 		map.put("size", size);
+		map.put("page", page);
 		map.put("seq", seq);
 		model.addAttribute("menuInfo", mm.menuInfo(map));
 		model.addAttribute("value", value);
 		MenuInfoDTO nut = mm.menuInfo(map);
 		String engName = nut.getEngName();
+		System.out.println(engName);
+		model.addAttribute("nutInfo", nm.nutInfo(engName));
+	}
+	public void detailPaging(String value, String page, Model model) {
+		String val="%"+value+"%";
+		String size="nan";
+		HashMap<Object, Object> map = new HashMap<Object, Object>();
+		map.put("value", val);
+		map.put("size", size);
+		map.put("page", page);
+		model.addAttribute("menuInfo", mm.pagingInfo(map));
+		model.addAttribute("value", value);
+		MenuInfoDTO nut = mm.pagingInfo(map);
+		String engName = nut.getEngName();
+		System.out.println(engName);
 		model.addAttribute("nutInfo", nm.nutInfo(engName));
 	}
 

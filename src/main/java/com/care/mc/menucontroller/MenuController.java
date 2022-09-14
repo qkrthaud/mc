@@ -57,6 +57,18 @@ public class MenuController {
 		}
 
 	}
+	
+	@PostMapping(value="menuList", produces = "application/json; charset=utf-8")
+	@ResponseBody
+	public Map<Object, Object> menuList(@RequestParam("value") String value,
+			@RequestParam(value="page",required = false, defaultValue="1") int page) {
+		System.out.println("서버에서 받은 밸류 :"+value);
+		System.out.println("서버에서 받은 페이지 : "+page);
+
+		Map<Object, Object> resultMap = new HashMap<Object, Object>();
+		resultMap = ms.menuList(value, page);
+		return resultMap;
+	}
 
 	@PostMapping("/detail")
 	public String detail(HttpServletRequest request,
@@ -97,16 +109,42 @@ public class MenuController {
 		}
 
 	}
-	@PostMapping(value="menuList", produces = "application/json; charset=utf-8")
-	@ResponseBody
-	public Map<Object, Object> menuList(@RequestParam("value") String value,
-			@RequestParam(value="page",required = false, defaultValue="1") int page) {
-		System.out.println("서버에서 받은 밸류 :"+value);
-		System.out.println("서버에서 받은 페이지 : "+page);
+	@PostMapping("/detailPaging")
+	public String detailPaging(HttpServletRequest request,
+						Model model) {
+		String value = request.getParameter("sub_category");
+		String page = request.getParameter("page");
+		System.out.println("value : "+value);
+		System.out.println("page : "+page);
+		ms.detailPaging(value, page, model);
+		if(value.equals("버거")) {
+			return "menu/detail/burgerDetail";
+		}else if(value.equals("Burger세트")) {
+			return "menu/detail/burgerDetail";
+		}else if(value.equals("맥런치")){
+			return "menu/detail/mcLunchDetail";
+		}else if(value.equals("맥모닝")) {
+			return "menu/detail/mcMorningDetail";
+		}else if(value.equals("모닝세트")){
+			return "menu/detail/mcMorningDetail";
+		}else if(value.equals("해피스낵")){
+			return "menu/detail/happySnackDetail";
+		}else if(value.equals("사이드")){
+			return "menu/detail/sideDessertDetail";
+		}else if(value.equals("디저트")) {
+			return "menu/detail/sideDessertDetail";
+		}else if(value.equals("맥카페")) {
+			return "menu/detail/beverageDetail";
+		}else if(value.equals("음료")) {
+			return "menu/detail/beverageDetail";
+		}else if(value.equals("해피밀AM")) {
+			return "menu/detail/happyMealDetail";
+		}else if(value.equals("해피밀PM")) {
+			return "menu/detail/happyMealDetail";
+		}else {
+			return "";
+		}
 
-		Map<Object, Object> resultMap = new HashMap<Object, Object>();
-		resultMap = ms.menuList(value, page);
-		return resultMap;
 	}
 }	
 
