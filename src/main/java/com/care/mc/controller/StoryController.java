@@ -86,6 +86,18 @@ public class StoryController {
 		fs.faqList(model,choice,search);
 		return "story/competition/faq";
 	}
+	@GetMapping("people/crew")
+	public String crew() {
+		return "story/people/crew";
+	}
+	@GetMapping("people/work")
+	public String work() {
+		return "story/people/work";
+	}
+	@GetMapping("people/recruit")
+	public String recruit() {
+		return "story/people/recruit";
+	}
 	
 
 }
