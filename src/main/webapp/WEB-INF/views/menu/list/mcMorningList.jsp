@@ -175,6 +175,7 @@
 </script>
 			</div>
 		</div>
+		<%@ include file="../../layout/aside.jsp"%>
 	</div>
 	<%@ include file="../../layout/footer.jsp"%>
 </body>

@@ -10,7 +10,13 @@
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script>
 	$(document).ready(function() {
-		button();
+		var val = '${value}';
+		var rn ='${menuInfo.rownum}'
+		var size = '${menuInfo.menuSize}'
+		console.log(val)
+		console.log(rn)
+		console.log(size)
+		pageButton();
 		$('.toggle').find('>button').each(function() {
 			var t = $(this);
 			var b = t.closest('.toggle');
@@ -96,13 +102,13 @@
 
 
 									<div class="other">
-										<a href="javascript:goDetail('${menuInfo.menuSeq-1 }');" id="prev" class="arrow prev">
+										<a href="javascript:goDetailPaging('${menuInfo.rownum-1 }');" id="prev" class="arrow prev">
 										<span class="arr">이전 메뉴</span>
-										</a>
+										<strong>&lt;</strong></a>
 
-										<a href="javascript:goDetail('${menuInfo.menuSeq+1 }');" id="next" class="arrow next">
+										<a href="javascript:goDetailPaging('${menuInfo.rownum+1 }');" id="next" class="arrow next">
 										<span class="arr">다음 메뉴</span>
-										</a>
+										<strong>&gt;</strong></a>
 									</div>
 
 
@@ -155,9 +161,9 @@
 													<td>-</td>
 													<td>-</td>
 													<td>${nutInfo.suger }%</td>
-													<td>38%</td>
-													<td>46%</td>
-													<td>61%</td>
+													<td>${pro_cal }%</td>
+													<td>${fat_cal }%</td>
+													<td>${nat_cal }%</td>
 													<td>-</td>
 												</tr>
 											</tbody>
@@ -194,18 +200,18 @@
 					</div>
 				</div>
 			</div>
+			<%@ include file="../../layout/aside.jsp"%>
 		</div>
+		<%@ include file="../../layout/footer.jsp"%>
 	</div>
 	<form id="searchForm" method="post">
-		<input type="hidden" name="page" id="page" value="1"> 
-		<input type="hidden" name="seq" id="seq"> 
+		<input type="hidden" name="page" id="page" value="${menuInfo.rownum}"> 
 		<input type="hidden" name="sub_category" id="sub_category" value="${value }">
 	</form>
 <script>
-function goDetail(seq){
-	$("#seq").val(seq);
-	$("#page").val(seq);
-	$("#searchForm").attr("action","${path}/menu/detail");
+function goDetailPaging(rn){
+	$("#page").val(rn);
+	$("#searchForm").attr("action","${path}/menu/detailPaging");
 	$("#searchForm").submit();
 }
 function showSize(seq){
@@ -213,16 +219,25 @@ function showSize(seq){
 	$("#searchForm").attr("action","${path}/menu/size");
 	$("#searchForm").submit();
 }
-function button(){
-	var now ='${menuInfo.menuSeq}'
+function pageButton(){
+	var now ='${menuInfo.rownum}'
+	var val ='${value}'
 	console.log(now)
-	if(now == 63){
+	if(val == "사이드"){
+		
+	if(now == 1){
 		$('#prev').hide();
-	}else if(now == 85){
+	}else if(now == 11){
 		$('#next').hide();
+	}
+	}else if(val == "디저트"){
+		if(now == 1){
+			$('#prev').hide();
+		}else if(now == 12){
+			$('#next').hide();
+		}
 	}
 }
 </script>
-<%@ include file="../../layout/footer.jsp"%>
 </body>
 </html>

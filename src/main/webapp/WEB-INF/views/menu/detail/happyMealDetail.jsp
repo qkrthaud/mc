@@ -8,16 +8,18 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
-
+<style type="text/css">
+.arrow{font-size: 30px;}
+</style>
 <script>
 	$(document).ready(function() {
 		var val = '${value}';
-		var data ='${menuInfo}';
 		var rn ='${menuInfo.rownum}'
+		var size = '${menuInfo.menuSize}'
 		console.log(val)
-		console.log(data)
 		console.log(rn)
-		button();
+		console.log(size)
+		pageButton();
 		$('.toggle').find('>button').each(function() {
 			var t = $(this);
 			var b = t.closest('.toggle');
@@ -102,11 +104,11 @@
 									<div class="other">
 										<a href="javascript:goDetailPaging('${menuInfo.rownum-1 }');" id="prev" class="arrow prev">
 										<span class="arr">이전 메뉴</span>
-										</a>
+										<strong class="arrow">&lt;</strong></a>
 
 										<a href="javascript:goDetailPaging('${menuInfo.rownum+1 }');" id="next" class="arrow next">
 										<span class="arr">다음 메뉴</span>
-										</a>
+										<strong class="arrow">&gt;</strong></a>
 									</div>
 
 
@@ -159,9 +161,9 @@
 													<td>-</td>
 													<td>-</td>
 													<td>${nutInfo.suger }%</td>
-													<td>38%</td>
-													<td>46%</td>
-													<td>61%</td>
+													<td>${pro_cal }%</td>
+													<td>${fat_cal }%</td>
+													<td>${nat_cal }%</td>
 													<td>-</td>
 												</tr>
 											</tbody>
@@ -198,7 +200,9 @@
 					</div>
 				</div>
 			</div>
+			<%@ include file="../../layout/aside.jsp"%>
 		</div>
+		<%@ include file="../../layout/footer.jsp"%>
 	</div>
 	<form id="searchForm" method="post">
 		<input type="hidden" name="page" id="page" value="${menuInfo.rownum}"> 
@@ -215,16 +219,27 @@ function showSize(seq){
 	$("#searchForm").attr("action","${path}/menu/size");
 	$("#searchForm").submit();
 }
-function button(){
+function pageButton(){
 	var now ='${menuInfo.rownum}'
+	var val ='${value}'
 	console.log(now)
+	if(val == "해피밀AM"){
+		
 	if(now == 1){
 		$('#prev').hide();
 	}else if(now == 7){
 		$('#next').hide();
 	}
+	}else if(val == "해피밀PM"){
+		if(now == 1){
+			$('#prev').hide();
+		}else if(now == 6){
+			$('#next').hide();
+		}
+	}
 }
 </script>
-<%@ include file="../../layout/footer.jsp"%>
+
+
 </body>
 </html>

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.care.mc.dto.MenuInfoDTO;
+import com.care.mc.dto.NutInfoDTO;
 import com.care.mc.mybatis.MenuMapper;
 import com.care.mc.mybatis.NutMapper;
 @Service
@@ -90,10 +91,22 @@ public class MenuServiceImpl implements MenuService{
 		map.put("seq", seq);
 		model.addAttribute("menuInfo", mm.menuInfo(map));
 		model.addAttribute("value", value);
+		//영문명으로 nut_Info테이블 검색
 		MenuInfoDTO nut = mm.menuInfo(map);
 		String engName = nut.getEngName();
 		System.out.println(engName);
 		model.addAttribute("nutInfo", nm.nutInfo(engName));
+		//영양소 기준치 계산
+		NutInfoDTO nutdto = nm.nutInfo(engName);
+		int protein = nutdto.getProtein();
+		int fat = nutdto.getSaturated_Fat();
+		int natrium = nutdto.getNatrium();
+		double pro_cal = (((double)protein/55) * 100);
+		double fat_cal = (((double)fat/15) * 100);
+		double nat_cal = (((double)natrium/2000) * 100);
+		model.addAttribute("pro_cal",Math.round(pro_cal));
+		model.addAttribute("fat_cal",Math.round(fat_cal));
+		model.addAttribute("nat_cal",Math.round(nat_cal));
 	}
 	public void detailPaging(String value, String page, Model model) {
 		String val="%"+value+"%";
@@ -108,6 +121,17 @@ public class MenuServiceImpl implements MenuService{
 		String engName = nut.getEngName();
 		System.out.println(engName);
 		model.addAttribute("nutInfo", nm.nutInfo(engName));
+		//영양소 기준치 계산
+				NutInfoDTO nutdto = nm.nutInfo(engName);
+				int protein = nutdto.getProtein();
+				int fat = nutdto.getSaturated_Fat();
+				int natrium = nutdto.getNatrium();
+				double pro_cal = (((double)protein / 55) * 100);
+				double fat_cal = (((double)fat / 15) * 100);
+				double nat_cal = (((double)natrium / 2000) * 100);
+				model.addAttribute("pro_cal",Math.round(pro_cal));
+				model.addAttribute("fat_cal",Math.round(fat_cal));
+				model.addAttribute("nat_cal",Math.round(nat_cal));
 	}
 
 }
