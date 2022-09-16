@@ -20,8 +20,8 @@ ${details.contentStyle }
 							프로모션</h1>
 						<ul class="navPath">
 							<li><a href="${path }/main">Home</a></li>
-							<li><a href="whatsnew">What's New</a></li>
-							<li><a href="whatsnew_promotion">맥도날드 프로모션</a></li>
+							<li><a href="${path }/whatsnew">What's New</a></li>
+							<li><a href="${path }/whatsnew_promotion">맥도날드 프로모션</a></li>
 						</ul>
 					</div>
 				</div>

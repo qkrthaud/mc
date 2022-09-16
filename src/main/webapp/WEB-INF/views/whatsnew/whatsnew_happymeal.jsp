@@ -7,10 +7,25 @@
 <title>이달의 해피밀</title>
 <link rel="shortcut icon" type="image/x-icon"
 	href="${pageContext.request.contextPath}/resources/images/favicon.ico">
-<script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
 
 <script>
+function loadTemplate(id) {
+	return document.getElementById(id).innerHTML;
+}
+function replaceTemplate(templateStr, data) {
+	var result = templateStr;
+	for ( var key in data) {
+		var pattern = new RegExp("{" + key + "}", "g");
+		result = result.replace(pattern, data[key]);
+	}
+	return result;
+}
+function makeHtml(id, data) {
+	return replaceTemplate(loadTemplate(id), data);
+}
 	$(function() {
+
 		$('ul.tabType01 a').click(function() {
 			var activeTab = $(this).attr('id');
 			$('ul.tabType01 a').removeClass('on');
@@ -50,8 +65,9 @@
 							해피밀</h1>
 						<ul class="navPath">
 							<li><a href="main">Home</a></li>
-							<li><a href="whatsnew">What's New</a></li>
-							<li><a href="whatsnew_happymeal">이달의 해피밀</a></li>
+							<li><a href="${path }/whatsnew/whatsnew">What's New</a></li>
+							<li><a href="${path }/whatsnew/whatsnew_happymeal">이달의
+									해피밀</a></li>
 						</ul>
 					</div>
 				</div>
@@ -59,47 +75,115 @@
 				<div class="contArea bgG">
 					<div class="inner">
 						<ul class="tabType01">
-							<li><a href="#" id="all" aria-selected="true" role="button">전체보기</a></li>
+							<li><a href="javascript:getList(1,'');" id="all"
+								aria-selected="true" role="button">전체보기</a></li>
 							<!-- 선택 된 태그에 aria-selected="true" 추가 -->
-							<li><a href="#" id="ing" role="button">진행중</a></li>
-							<li><a href="#" id="end" role="button">종료</a></li>
+							<li><a href="javascript:getList(1,'진');" id="ing"
+								role="button">진행중</a></li>
+							<li><a href="javascript:getList(1,'종');" id="end"
+								role="button">종료</a></li>
 						</ul>
 						<!-- 행사 있을 경우              종료된 행사일 경우 class값 end 추가-->
 						<ul class="cardBanner" id="happyList">
-							<c:forEach var="dto" items="${happymeal_b}">
-								<c:choose>
-									<c:when test="${dto.status eq'진행중' }">
-										<li class="ing on"><a href="${path }/whatsnew/happymeal?writeNo=${dto.writeNo }" class="ing on">
-												<div class="tmb">
-													<img
-														src="${path }/resources/images/happymeal/${dto.mainImg }">
-												</div>
-												<div class="con">
-													<strong class="tit">${dto.title }</strong>
-												</div>
-										</a></li>
-									</c:when>
-									<c:otherwise>
-										<li class="end on"><a href="${path }/whatsnew/happymeal?writeNo=${dto.writeNo }"
-											class = "end on">
-											<div class="tmb">
-												<img
-													src="${path }/resources/images/happymeal/${dto.mainImg }">
-											</div>
-											<div class="con">
-												<strong class="tit">${dto.title }</strong> <span
-													id="statusSpan">종료된 행사입니다.</span>
-											</div> </a>
-										</li>
-									</c:otherwise>
-								</c:choose>
-							</c:forEach>
+
 						</ul>
 						<div class="btnMore" id="btnMore">
 							<a href="javascript:more();" class="more">더보기</a>
 						</div>
 					</div>
 				</div>
+				<form   id="searchForm" method="post">
+		<input type="hidden" name="page" id="page" value="1">
+		<input type="hidden" name="seq" id="seq" >
+		<input type="hidden" name="rnum" id="rnum" >
+		<input type="hidden" name="searchStatus" id="searchStatus" >
+
+	</form>
+				<script type="text/javascript">
+					var init_page = 0;
+					var totalPage = 0;
+					var page_status = "";
+
+					var isCertificate = false;
+
+					$(document).ready(function() {
+						getList(1, '');
+					});
+
+					function getList(page_val, status) {
+						$.ajax({
+							type : 'post',
+							url : '${path}/whatsnew/happymeal.do',
+							data : {
+								page : page_val,
+								searchStatus : status
+							},
+							success : function(data) {
+									if (page_status != status) {
+										$("#happyList").empty();
+									}
+									totalPage = data.totalPage;
+									page = data.pageNum;
+									page_status = data.status;
+
+									if (data != null && data != '') {
+										for (var i = 0; i < data.happymeal.length; i++) {
+
+											if (data.happymeal[i].status == "종료된") {
+												data.happymeal[i].end = "end";
+												data.happymeal[i].end_text = "종료된 행사입니다.";
+											} else {
+												data.happymeal[i].end = "";
+												data.happymeal[i].end_text = "";
+											}
+											$("#happyList").append(addList(data.happymeal[i]));
+										}
+									} else {
+										$("#happyList").append(addList());
+									}
+									if (totalPage == page_val) {
+										$("#btnMore").hide();
+									} else {
+										$("#btnMore").show();
+									}
+									if (status == '') {
+										$('#all').attr('aria-selected','true');
+										$('#end').attr('aria-selected','false');
+										$('#ing').attr('aria-selected','false');
+
+									} else if (status == '진') {
+										$('#all').attr('aria-selected','false');
+										$('#end').attr('aria-selected','false');
+										$('#ing').attr('aria-selected','true');
+									} else if (status == '종') {
+										$('#all').attr('aria-selected','false');
+										$('#end').attr('aria-selected','true');
+										$('#ing').attr('aria-selected','false');
+									}
+/* 									if (page_val > 1) {
+										$("[data-seq='"+ data.list[0].seq+"']").focus();
+									} */
+							},
+						})
+					}
+					function addList(data) {
+						return makeHtml("happy", data);
+					}
+					function more() {
+						getList(init_page + 1, page_status);
+					}
+				</script>
+
+				<script id="happy" type="text/template">
+<li>
+	<a href="${path }/whatsnew/happymeal?writeNo={writeNo}" class="{end}" data="">
+		<div class="tmb"><img src="${path}/resources/images/happymeal/{mainImg}"></div>
+		<div class="con">
+			<strong class="tit">{title}</strong><span id="statusSpan">{end_text}</span>
+		</div>
+	</a>
+</li>
+</script>
 				<%@ include file="../layout/aside.jsp"%>
 			</div>
 			<%@ include file="../layout/footer.jsp"%>

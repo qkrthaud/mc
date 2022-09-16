@@ -98,10 +98,10 @@
 						</ul></li>
 					<li><a href="${path }/whatsnew" class="dth1">What’s New</a>
 						<ul class="depth2">
-							<li><a href="${path }/whatsnew_promotion" class="dth2">프로모션</a></li>
-							<li><a href="https://www.mcdonalds.co.kr/kor/news/list.do"
-								class="dth2">새로운 소식</a></li>
-							<li><a href="${path }/whatsnew_happymeal" class="dth2">이달의
+							<li><a href="${path }/whatsnew/promotion.do" class="dth2">프로모션</a></li>
+							<li><a href="${path }/whatsnew/list.do" class="dth2">새로운
+									소식</a></li>
+							<li><a href="${path }/whatsnew/happymeal.do" class="dth2">이달의
 									해피밀</a></li>
 						</ul></li>
 					<li><a href="https://www.mcdonalds.co.kr/kor/story/main.do"
@@ -126,8 +126,7 @@
 				<div class="util">
 					<a href="/kor/store/rental.do" class="renter" title="임차문의로 이동">임차문의</a>
 					<a href="/kor/story/people/recruit.do" class="recruit"
-						title="인재채용으로 이동">RECRUIT</a> <a href="/eng/main.do" class="lang"
-						title="영문사이트로 이동">ENG</a>
+						title="인재채용으로 이동">RECRUIT</a>
 					<div class="topSearch">
 						<!-- 검색 활성화인 경우 open 클래스 추가 -->
 						<button type="button" class="srch" onclick="searchClick()">
@@ -149,22 +148,13 @@
 					</div>
 				</div>
 			</form>
-			<form id="gotoMenuForm" method="post">
-				<input type="hidden" name="sub_category_seq"
-					id="gotoform_sub_category_seq">
-			</form>
 			<script>
-				function gotoMenu(val) {
-					$("#gotoform_sub_category_seq").val(val);
-					$("#gotoMenuForm").attr("action", "/kor/menu/list.do"); //메뉴 게시판 연결
-					$("#gotoMenuForm").submit();
-				}
 				function gotoCommonSearch() {
 					if ($.trim($("#commonSearchWord").val()) == "") {
 						alert("검색어을 입력해 주세요");
 						$("#commonSearchWord").focus();
 					} else {
-						$("#commonSearchForm").attr("action", "/kor/search.do"); //지도 연결
+						$("#commonSearchForm").attr("action", "${path}/whatsnew/search.do"); //지도 연결
 						$("#commonSearchForm").submit();
 					}
 				}

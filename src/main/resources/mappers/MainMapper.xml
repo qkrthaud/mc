@@ -25,7 +25,36 @@
 		<result property="wdate" column="wdate" />
 		<result property="contentStyle" column="content_style" />
 	</resultMap>
-
+	<resultMap type="com.care.mc.dto.WhatsNewDTO" id="wboard">
+		<id property="writeNo" column="write_no" />
+		<result property="view" column="hit" />
+		<result property="title" column="title" />
+		<result property="content" column="content" />
+		<result property="wdate" column="wdate" />
+		<result property="search" column="search" />
+	</resultMap>
+	<resultMap type="com.care.mc.dto.NoticeDTO" id="nboard">
+		<id property="writeNo" column="write_no" />
+		<result property="notice" column="notice" />
+		<result property="view" column="hit" />
+		<result property="title" column="title" />
+		<result property="content" column="content" />
+		<result property="wdate" column="wdate" />
+	</resultMap>
+	<resultMap type="com.care.mc.dto.StoreDTO" id="mapboard">
+		<id property="name" column="name" />
+		<result property="place" column="place" />
+		<result property="service" column="service" />
+		<result property="event" column="event" />
+	</resultMap>
+	<resultMap type="com.care.mc.dto.MenuInfoDTO" id="bugger">
+		<id property="name" column="name" />
+		<result property="engName" column="engName" />
+		<result property="mainImage" column="mainImage" />
+		<result property="explanation" column="explanation" />
+		<result property="value" column="value" />
+		<result property="menuSize" column="menuSize" />
+	</resultMap>
 	<select id="getMainBoard" resultMap="board">
 		select * from whatsnewboard
 		where status = '진행중' order by write_no desc
@@ -50,4 +79,112 @@
 		select * from
 		happymealboard where write_no = #{writeNo}
 	</select>
+
+	<select id="getWhatsNew" resultMap="wboard">
+		select * from newsboard order
+		by write_no desc
+	</select>
+
+	<select id="getWhatsNewSearch" resultMap="wboard">
+		select * from newsboard
+		where title LIKE '%'||#{search}||'%' order by write_no desc
+	</select>
+	<select id="getWhatsNewSearch2" resultMap="wboard">
+		select * from
+		newsboard
+	</select>
+
+	<select id="getNotice2" resultMap="nboard">
+		select * from noticeboard
+	</select>
+	<select id="getNotice" resultMap="nboard">
+		select * from noticeboard order
+		by write_no desc
+	</select>
+
+	<select id="getmapList" resultMap="mapboard">
+		select b.* from(select rownum
+		rn,A.* from(select * from store where name
+		like '%'||#{search}||'%' or
+		place like '%'||#{search}||'%' or place2
+		like '%'||#{search}||'%' )A)B
+		where rn between #{s} and #{e}
+	</select>
+
+	<select id="getbList" resultMap="bugger">
+		select B.* from(select rownum as
+		rn, A.* from
+		(select * from menu_info where name like
+		'%'||#{search}||'%')A)B
+		where rn between #{s} and #{e}
+	</select>
+
+	<select id="wCount" resultType="Integer">
+		select count(*) from newsboard
+		where title LIKE '%'||#{search}||'%'
+	</select>
+
+	<select id="nCount" resultType="Integer">
+		select count(*) from noticeboard
+	</select>
+
+	<select id="mCount" resultType="Integer">
+		select count(*) from store where
+		name
+		like '%'||#{search}||'%' or place like '%'||#{search}||'%' or
+		place2
+		like '%'||#{search}||'%'
+	</select>
+
+	<select id="bCount" resultType="Integer">
+		select count(*) from menu_info
+		where name like
+		'%'||#{search}||'%'
+	</select>
+	<select id = "getHappyMeal" resultMap = "hboard">
+		select B.* from(select rownum as
+		rn, A.* from
+		(select * from happymealboard where status like
+		'%'||#{search}||'%' order by write_no desc)A)B
+		where rn between #{s} and #{e}
+	</select>
+	<select id ="hpCount" resultType = "Integer">
+		select count(*) from happymealboard where status like
+		'%'||#{value}||'%'
+	</select>
+		<select id = "getPromotion" resultMap = "board">
+		select B.* from(select rownum as
+		rn, A.* from
+		(select * from whatsnewboard where status like
+		'%'||#{search}||'%' order by write_no desc)A)B
+		where rn between #{s} and #{e}
+	</select>
+	<select id ="pCount" resultType = "Integer">
+		select count(*) from whatsnewboard where status like
+		'%'||#{value}||'%'
+	</select>
+
+	<update id="noticeUpHit">
+		update noticeboard set hit= hit+1
+		where
+		write_no=#{num}
+	</update>
+
+	<update id="wsUpHit">
+		update newsboard set hit= hit+1
+		where
+		write_no=#{num}
+	</update>
+	
+	<update id="poUpHit">
+		update whatsnewboard set hit= hit+1
+		where
+		write_no=#{writeNo}
+	</update>
+	
+	<update id="hpUpHit">
+		update happymealboard set hit= hit+1
+		where
+		write_no=#{writeNo}
+	</update>
 </mapper>
