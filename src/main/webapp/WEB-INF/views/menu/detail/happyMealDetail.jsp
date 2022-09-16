@@ -8,9 +8,11 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
+
 <style type="text/css">
-.arrow{font-size: 30px;}
+.arrow{font-size: 50px;}
 </style>
+
 <script>
 	$(document).ready(function() {
 		var val = '${value}';
@@ -103,12 +105,14 @@
 
 									<div class="other">
 										<a href="javascript:goDetailPaging('${menuInfo.rownum-1 }');" id="prev" class="arrow prev">
-										<span class="arr">이전 메뉴</span>
-										<strong class="arrow">&lt;</strong></a>
+										<span class="arr">&lt;</span>
+										<strong class="tit">&lt;</strong>
+										</a>
 
 										<a href="javascript:goDetailPaging('${menuInfo.rownum+1 }');" id="next" class="arrow next">
-										<span class="arr">다음 메뉴</span>
-										<strong class="arrow">&gt;</strong></a>
+										<span class="arr">&gt;</span>
+										<strong class="tit">&gt;</strong>
+										</a>
 									</div>
 
 

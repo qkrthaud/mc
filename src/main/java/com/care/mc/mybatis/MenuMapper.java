@@ -13,4 +13,5 @@ public interface MenuMapper {
 	public List<MenuInfoDTO> getList(HashMap<Object, Object>map);
 	public MenuInfoDTO menuInfo(HashMap<Object, Object>map);
 	public MenuInfoDTO pagingInfo(HashMap<Object, Object>map);
+	public MenuInfoDTO showSize(String seq);
 }

@@ -21,7 +21,7 @@ public class MenuServiceImpl implements MenuService{
 
 	public void list(String value, Model model) {
 		String val="%"+value+"%";
-		String size="nan";
+		String size="%default%";
 		HashMap<Object, Object> map = new HashMap<Object, Object>();
 		map.put("value", val);
 		map.put("size", size);
@@ -49,7 +49,7 @@ public class MenuServiceImpl implements MenuService{
 	
 	public Map<Object, Object> menuList(String value,int page) {
 		String val="%"+value+"%";
-		String size="nan";
+		String size="%default%";
 		
 		HashMap<Object, Object> map = new HashMap<Object, Object>();
 		map.put("value", val);
@@ -83,7 +83,7 @@ public class MenuServiceImpl implements MenuService{
 	}
 	public void detail(String seq ,String value,String page, Model model) {
 		String val="%"+value+"%";
-		String size="nan";
+		String size="%default%";
 		HashMap<Object, Object> map = new HashMap<Object, Object>();
 		map.put("value", val);
 		map.put("size", size);
@@ -110,7 +110,7 @@ public class MenuServiceImpl implements MenuService{
 	}
 	public void detailPaging(String value, String page, Model model) {
 		String val="%"+value+"%";
-		String size="nan";
+		String size="%default%";
 		HashMap<Object, Object> map = new HashMap<Object, Object>();
 		map.put("value", val);
 		map.put("size", size);
@@ -132,6 +132,14 @@ public class MenuServiceImpl implements MenuService{
 				model.addAttribute("pro_cal",Math.round(pro_cal));
 				model.addAttribute("fat_cal",Math.round(fat_cal));
 				model.addAttribute("nat_cal",Math.round(nat_cal));
+	}
+	public void showSize(String seq, Model model) {
+		System.out.println("seq : "+seq);
+		model.addAttribute("menuInfo", mm.showSize(seq));
+		MenuInfoDTO nut = mm.showSize(seq);
+		String engName = nut.getEngName();
+		System.out.println(engName);
+		model.addAttribute("nutInfo", nm.nutInfo(engName));
 	}
 
 }

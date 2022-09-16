@@ -14,23 +14,26 @@
 		<result property="rownum" column="rn" />
 	</resultMap>
 	<select id="selectBoardCount" resultType="Integer" parameterType="HashMap">
-		select count(*) from menu_info where value like #{value} and menuSize=#{size}
+		select count(*) from menu_info where value like #{value} and menuSize like #{size}
 	</select>
 	
 	<select id="getList" resultMap="menuInfoDTO" parameterType="HashMap">
 		select B.* from(select rownum as rn, A.* from
-		(select * from menu_info where value like #{value} and menuSize=#{size})A)B
+		(select * from menu_info where value like #{value} and menuSize like #{size})A)B
         where rn between #{start} and #{end}
 	</select>
 	<select id="menuInfo" resultMap="menuInfoDTO" parameterType="HashMap">
 		select B.* from(select rownum as rn, A.* from
-		(select * from menu_info where value like #{value} and menuSize =#{size})A)B
+		(select * from menu_info where value like #{value} and menuSize like #{size})A)B
         where menuSeq=#{seq}
 	</select>
 	<select id="pagingInfo"  resultMap="menuInfoDTO" parameterType="HashMap">
 	select B.* from(select rownum as rn, A.* from
-		(select * from menu_info where value like #{value} and menuSize =#{size})A)B
+		(select * from menu_info where value like #{value} and menuSize like #{size})A)B
         where rn=#{page}
+	</select>
+	<select id="showSize" resultMap="menuInfoDTO">
+		select * from menu_info where menuSeq=#{seq}
 	</select>
 
 </mapper>

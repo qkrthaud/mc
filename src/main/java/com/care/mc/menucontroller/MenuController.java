@@ -144,7 +144,13 @@ public class MenuController {
 		}else {
 			return "";
 		}
-
+	}
+	@PostMapping("/size")
+	public String showSize(HttpServletRequest request, Model model) {
+		String seq = request.getParameter("seq");
+		System.out.println("메뉴시퀀스 번호 :"+seq);
+		ms.showSize(seq, model);
+		return "menu/size";
 	}
 }	
 
