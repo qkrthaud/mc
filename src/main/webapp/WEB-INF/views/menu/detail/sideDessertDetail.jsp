@@ -111,7 +111,7 @@
 										<ul>
 											<li id="sizeS">
 												<a href="javascript:showSize('${menuInfo.menuSeq}');" id="sizeSa">
-													<span class="img"><span class="img"><img src="${path}/resources/images/menuImg/${menuInfo.image}"
+													<span class="img"><img src="${path}/resources/images/menuImg/${menuInfo.name} Small.png"
 											alt="${menuInfo.name }"></span>
 													<span class="menuName">${menuInfo.name }</span>
 													<span class="size"> Small</span>
@@ -120,7 +120,7 @@
 											
 											<li id="sizeM">
 												<a href="" class="javascript:showSize('${menuInfo.menuSeq}');" id="sizeMa">
-													<span class="img"><img src="${path}/resources/images/menuImg/${menuInfo.image}"
+													<span class="img"><img src="${path}/resources/images/menuImg/${menuInfo.name} Medium.png"
 											alt="${menuInfo.name }"></span>
 													<span class="menuName">${menuInfo.name }</span>
 													<span class="size"> Medium</span>
@@ -129,7 +129,7 @@
 											
 											<li id="sizeL">
 												<a href="" class="javascript:showSize('${menuInfo.menuSeq}');"id="sizeLa">
-													<span class="img"><img src="${path}/resources/images/menuImg/${menuInfo.image}"
+													<span class="img"><img src="${path}/resources/images/menuImg/${menuInfo.name} Large.png"
 											alt="${menuInfo.name }"></span>
 													<span class="menuName">${menuInfo.name }</span>
 													<span class="size"> Large</span>
