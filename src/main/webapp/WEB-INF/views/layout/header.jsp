@@ -81,53 +81,52 @@
 							<li><a href="javascript:gotoMenu('해피밀AM')" class="dth2">해피밀</a></li>
 						</ul>
 					</li>
-					<li><a href="https://www.mcdonalds.co.kr/kor/store/main.do"
+					<li><a href="<%=request.getContextPath()%>/store/search"
 						class="dth1">Store</a>
 						<ul class="depth2">
-							<li><a href="https://www.mcdonalds.co.kr/kor/store/main.do"
+							<li><a href="<%=request.getContextPath()%>/store/search"
 								class="dth2">매장찾기</a></li>
 							<li><a
-								href="https://www.mcdonalds.co.kr/kor/store/mcdelivery.do"
+								href="<%=request.getContextPath()%>/store/delivery"
 								class="dth2">맥딜리버리</a></li>
 							<li><a
-								href="https://www.mcdonalds.co.kr/kor/store/mcdrive.do"
+								href="<%=request.getContextPath()%>/store/drive"
 								class="dth2">맥드라이브</a></li>
 							<li><a
-								href="https://www.mcdonalds.co.kr/kor/store/rental.do"
+								href="<%=request.getContextPath()%>/store/rental"
 								class="dth2">임차문의</a></li>
 						</ul></li>
 					<li><a href="${path }/whatsnew" class="dth1">What’s New</a>
 						<ul class="depth2">
-							<li><a href="${path }/whatsnew_promotion" class="dth2">프로모션</a></li>
-							<li><a href="https://www.mcdonalds.co.kr/kor/news/list.do"
-								class="dth2">새로운 소식</a></li>
-							<li><a href="${path }/whatsnew_happymeal" class="dth2">이달의
+							<li><a href="${path }/whatsnew/promotion.do" class="dth2">프로모션</a></li>
+							<li><a href="${path }/whatsnew/list.do" class="dth2">새로운
+									소식</a></li>
+							<li><a href="${path }/whatsnew/happymeal.do" class="dth2">이달의
 									해피밀</a></li>
 						</ul></li>
-					<li><a href="https://www.mcdonalds.co.kr/kor/story/main.do"
+					<li><a href="<%=request.getContextPath()%>/story/main"
 						class="dth1">Story</a>
 						<ul class="depth2">
 							<li><a
-								href="https://www.mcdonalds.co.kr/kor/story/intro/brandintro.do"
+								href="<%=request.getContextPath()%>/story/brand/brandIntro"
 								class="dth2">브랜드 소개</a></li>
 							<li><a
-								href="https://www.mcdonalds.co.kr/kor/story/society/list.do"
+								href="<%=request.getContextPath()%>/story//society/list"
 								class="dth2">사회적 책임과 지원</a></li>
 							<li><a
-								href="https://www.mcdonalds.co.kr/kor/story/competition/farmToRestaurant.do"
+								href="<%=request.getContextPath()%>/story/competition/farmToRestaurant"
 								class="dth2">맥도날드 품질 이야기</a></li>
 							<li><a
-								href="https://www.mcdonalds.co.kr/kor/story/people/crew.do"
+								href="<%=request.getContextPath()%>/story/people/crew"
 								class="dth2">맥도날드 사람들</a></li>
 						</ul></li>
 				</ul>
 			</div>
 			<form id="commonSearchForm" method="post">
 				<div class="util">
-					<a href="/kor/store/rental.do" class="renter" title="임차문의로 이동">임차문의</a>
-					<a href="/kor/story/people/recruit.do" class="recruit"
-						title="인재채용으로 이동">RECRUIT</a> <a href="/eng/main.do" class="lang"
-						title="영문사이트로 이동">ENG</a>
+					<a href="<%=request.getContextPath()%>/store/rental" class="renter" title="임차문의로 이동">임차문의</a>
+					<a href="<%=request.getContextPath()%>/story/people/recruit" class="recruit"
+						title="인재채용으로 이동">RECRUIT</a>
 					<div class="topSearch">
 						<!-- 검색 활성화인 경우 open 클래스 추가 -->
 						<button type="button" class="srch" onclick="searchClick()">
@@ -149,6 +148,7 @@
 					</div>
 				</div>
 			</form>
+
 			<form id="gotoMenuForm" method="post">
 				<input type="hidden" name="sub_category"
 					id="gotoform_sub_category">
@@ -159,12 +159,13 @@
 					$("#gotoMenuForm").attr("action", "${path}/menu/list"); //메뉴 게시판 연결
 					$("#gotoMenuForm").submit();
 				}
+				
 				function gotoCommonSearch() {
 					if ($.trim($("#commonSearchWord").val()) == "") {
 						alert("검색어을 입력해 주세요");
 						$("#commonSearchWord").focus();
 					} else {
-						$("#commonSearchForm").attr("action", "/kor/search.do"); //지도 연결
+						$("#commonSearchForm").attr("action", "${path}/whatsnew/search.do"); //지도 연결
 						$("#commonSearchForm").submit();
 					}
 				}
