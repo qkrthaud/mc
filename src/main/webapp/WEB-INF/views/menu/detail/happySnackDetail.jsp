@@ -10,11 +10,6 @@
 <link rel="shortcut icon" type="image/x-icon"
 	href="${pageContext.request.contextPath}/resources/images/favicon.ico">
 <script src="http://code.jquery.com/jquery-latest.js"></script>
-
-<style type="text/css">
-.arrow{font-size: 50px;}
-</style>
-
 <script>
 	$(document).ready(function() {
 		var val = '${value}';
@@ -24,6 +19,7 @@
 		console.log(rn)
 		console.log(size)
 		pageButton();
+		removeTab();
 		$('.toggle').find('>button').each(function() {
 			var t = $(this);
 			var b = t.closest('.toggle');
@@ -103,7 +99,7 @@
 									</div>
 									<br> <br>
 									<div class="desc">
-										<h3>${happySnack.explanation }</h3>
+										${menuInfo.explanation }
 									</div>
 
 
@@ -176,10 +172,12 @@
 											</tbody>
 										</table>
 
+										<p class="nutrDesc">제품 별 사이즈 및 조각 수에 따라 영양정보가 달라지기 때문에 해당하는 제품페이지에서 영양정보를 확인해주세요.</p>
+
 									</div>
 								</div>
 
-								<div class="toggle">
+								<div class="toggle"  id="allergyTab">
 									<h4 class="tit">알레르기 정보</h4>
 									<button type="button" aria-selected="false"
 										aria-controls="toggle03" aria-expanded="false">알레르기
@@ -187,12 +185,12 @@
 									<!-- toggle버튼 선택시 aria-selected값 true로 변경 / aria-expanded 값 true로 변경 -->
 									<div id="toggle03" class="toggleCon">
 										<div class="allerDesc">
-											<p>${nutInfo.allergy_Info }</p>
+											<p>${nutInfo.allergy_Info } <br><b>* 일부 튀김류 제품은 새우 패티와 같은 조리기구를 사용하고 있습니다.</b></p>
 										</div>
 									</div>
 								</div>
 
-								<div class="toggle">
+								<div class="toggle" id="originTab">
 									<h4 class="tit">원산지 정보</h4>
 									<button type="button" aria-selected="false"
 										aria-controls="toggle04" aria-expanded="false">원산지 정보
@@ -235,7 +233,20 @@ function pageButton(){
 	}else if(now == 9){
 		$('#next').hide();
 	}
-	
+}
+function removeTab(){
+	var origin = '${nutInfo.origin_Info}'
+	var allergy = '${nutInfo.allergy_Info }'
+	if(origin == ""){
+		$('#originTab').remove();
+	}else{
+		console.log(origin)
+	}
+	if(allergy == ""){
+		$('#allergyTab').remove();
+	}else{
+		console.log(allergy)
+	}
 }
 </script>
 </body>
