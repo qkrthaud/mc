@@ -68,5 +68,4 @@ public class MenuInfoDTO {
 	public void setMenuSize(String menuSize) {
 		this.menuSize = menuSize;
 	}
-
 }

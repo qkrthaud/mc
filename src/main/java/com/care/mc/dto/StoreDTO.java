@@ -58,5 +58,4 @@ public class StoreDTO {
 	public void setEvent(int event) {
 		this.event = event;
 	}
-
 }
