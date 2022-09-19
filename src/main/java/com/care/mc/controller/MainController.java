@@ -84,7 +84,6 @@ public class MainController {
 	public Map<Object, Object> promotion(@RequestParam(value = "searchStatus", defaultValue = "")String searchStatus, @RequestParam(value = "page", required = false, defaultValue = "1")int page){
 		Map<Object, Object> resultMap = new HashMap<Object, Object>();
 		System.out.println(searchStatus+","+page);
-		System.out.println("promotion");
 		resultMap = ms.getPromotion(searchStatus, page);
 		return resultMap;
 	}
@@ -93,7 +92,6 @@ public class MainController {
 	public Map<Object, Object> happymeal(@RequestParam(value = "searchStatus", defaultValue = "")String searchStatus, @RequestParam(value = "page", required = false, defaultValue = "1")int page){
 		Map<Object, Object> resultMap = new HashMap<Object, Object>();
 		System.out.println(searchStatus+","+page);
-		System.out.println("happymeal");
 		resultMap = ms.getHappyMeal(searchStatus, page);
 		return resultMap;
 	}
