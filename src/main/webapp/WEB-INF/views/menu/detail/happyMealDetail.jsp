@@ -80,7 +80,7 @@
 						<ul class="navPath">
 							<li><a href="/">Home</a></li>
 							<li><a href="javascript:gotoMenu('버거');">Menu</a></li>
-							<li><a href="javascript:gotoMenu('해피밀');">해피밀</a></li>
+							<li><a href="javascript:gotoMenu('해피밀AM');">해피밀</a></li>
 						</ul>
 					</div>
 				</div>
@@ -107,13 +107,12 @@
 
 									<div class="other">
 										<a href="javascript:goDetailPaging('${menuInfo.rownum-1 }');" id="prev" class="arrow prev">
-										<span class="arr">&lt;</span>
-										<strong class="tit">&lt;</strong>
+										<span class="arr">이전 메뉴</span>
+										
 										</a>
 
 										<a href="javascript:goDetailPaging('${menuInfo.rownum+1 }');" id="next" class="arrow next">
-										<span class="arr">&gt;</span>
-										<strong class="tit">&gt;</strong>
+										<span class="arr">다음 메뉴</span>
 										</a>
 									</div>
 

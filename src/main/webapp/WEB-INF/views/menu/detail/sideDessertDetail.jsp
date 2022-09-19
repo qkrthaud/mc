@@ -143,13 +143,12 @@
 
 									<div class="other">
 										<a href="javascript:goDetailPaging('${menuInfo.rownum-1 }');" id="prev" class="arrow prev">
-										<span class="arr">&lt;</span>
-										<strong class="tit">&lt;</strong>
+										<span class="arr">이전 메뉴</span>
+										
 										</a>
 
 										<a href="javascript:goDetailPaging('${menuInfo.rownum+1 }');" id="next" class="arrow next">
-										<span class="arr">&gt;</span>
-										<strong class="tit">&gt;</strong>
+										<span class="arr">다음 메뉴</span>
 										</a>
 									</div>
 
