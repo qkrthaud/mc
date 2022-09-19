@@ -2229,7 +2229,7 @@ top
 	width: 17px;
 	height: 34px;
 	margin-top: -17px;
-	overflow: hidden;
+	overflow: visible;
 	text-indent: -9999px;
 	background: url(../images/menuImg/bg_arrow.png) 0 0 no-repeat
 }
