@@ -69,7 +69,7 @@
 				<ul class="depth1" onmouseover="menuover()"
 					onmouseleave="menuleave()">
 					<li>
-						<!-- li 오버시 on 클래스 추가 --> <a href="javascript:gotoMenu(1);"
+						<!-- li 오버시 on 클래스 추가 --> <a href="javascript:gotoMenu('버거');"
 						class="dth1 ">Menu</a> <!-- 현재페이지 메뉴에 current 클래스 추가 -->
 						<ul class="depth2">
 							<li><a href="javascript:gotoMenu('버거')" class="dth2">버거</a></li>

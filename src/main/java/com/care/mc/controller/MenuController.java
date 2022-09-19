@@ -1,4 +1,4 @@
-package com.care.mc.menucontroller;
+package com.care.mc.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
