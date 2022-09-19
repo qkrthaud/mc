@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.care.mc.mybatis.NutMapper">
+	<resultMap type="com.care.mc.dto.NutInfoDTO" id="NutInfo">
+		<id property="engName" column="engName" />
+		<result property="weight_G" column="weight_G" />
+		<result property="weight_Ml" column="weight_Ml" />
+		<result property="calorie" column="calorie" />
+		<result property="suger" column="suger" />
+		<result property="protein" column="protein" />
+		<result property="saturated_Fat" column="saturated_Fat" />
+		<result property="natrium" column="natrium" />
+		<result property="caffeine" column="caffeine" />
+		<result property="allergy_Info" column="allergy_Info" />
+		<result property="origin_Info" column="origin_Info" />
+	</resultMap>
+	<select id="nutInfo" resultMap="NutInfo">
+		select * from nut_Info where engName=#{engName}
+	</select>
+</mapper>

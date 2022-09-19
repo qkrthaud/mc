@@ -59,7 +59,7 @@
 				<div class="contArea bgG">
 					<div class="inner">
 						<ul class="tabType01">
-							<li><a href="javascript:getList(1,'');" id="all"
+							<li><a href="#" id="all"
 								aria-selected="true" role="button">전체보기</a></li>
 							<!-- 선택 된 태그에 aria-selected="true" 추가 -->
 							<li><a href="#" id="ing"
@@ -98,10 +98,6 @@
 						<div class="btnMore" id="btnMore">
 							<a href="javascript:more();" class="more">더보기</a>
 						</div>
-						<!-- //행사 있을 경우-->
-						<!-- 행사 없을 경우 -->
-
-						<!-- //행사 없을 경우 -->
 					</div>
 				</div>
 				<%@ include file="../layout/aside.jsp"%>

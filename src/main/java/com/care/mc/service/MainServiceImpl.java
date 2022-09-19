@@ -18,4 +18,17 @@ public class MainServiceImpl implements MainService {
 		System.out.println(mp.getDetail(writeNo).getaTag());
 		model.addAttribute("details", mp.getDetail(writeNo));
 	}
+
+	public void getMain(Model model) {
+		model.addAttribute("main_b", mp.getMainBoard());
+		
+	}
+
+	public void getHappymeal(Model model) {
+		model.addAttribute("happymeal_b", mp.getHappymeal());
+	}
+
+	public void getHappymealDetail(int writeNo, Model model) {
+		model.addAttribute("details", mp.getHappymealDetail(writeNo));
+	}
 }

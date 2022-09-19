@@ -39,13 +39,7 @@ ${details.contentStyle }
 						<article class="bbsCon">
 							<div class="bannerImg">
 								<img
-									src="${path }/resources/images/whatsnew/${details.contentImg}"
-									alt="불고기 버거 세트를 4,500원으로 즐겨요">
-								<div class="blind">
-									<h1>모두가 해피한 인기 스낵 할인</h1>
-									<p>해피스낵</p>
-									<h2>신제품 소시지 스낵랩으로 더 새로워진 해피스낵 라인업!지금 바로 만나보세요!</h2>
-								</div>
+									src="${path }/resources/images/whatsnew/${details.contentImg}">
 								<c:if test="${not empty details.videoName }">
 									${details.videoName }
 								</c:if>

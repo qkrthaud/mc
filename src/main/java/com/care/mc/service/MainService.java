@@ -8,4 +8,10 @@ public interface MainService {
 
 	public void getDetail(int writeNo, Model model);
 
+	public void getMain(Model model);
+
+	public void getHappymeal(Model model);
+
+	public void getHappymealDetail(int writeNo, Model model);
+
 }
