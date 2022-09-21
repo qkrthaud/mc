@@ -25,13 +25,18 @@ public class MainController {
 	@Autowired
 	MainService ms;
 
-	/*
-	 * @RequestMapping("/") public String home() { return "main"; }
-	 */
 	@GetMapping("main")
 	public String main(Model model) {
-		ms.getMain(model);
 		return "main";
+	}
+
+	@PostMapping("mainContent")
+	@ResponseBody
+	public Map<Object, Object> mainContent(
+			@RequestParam(value = "page", required = false, defaultValue = "1") int page) {
+		Map<Object, Object> resultMap = new HashMap<Object, Object>();
+		resultMap = ms.getMainContent(page);
+		return resultMap;
 	}
 
 	@GetMapping("whatsnew")
@@ -54,7 +59,6 @@ public class MainController {
 	@GetMapping("whatsnew/promotion")
 	public String promotionDetail(int writeNo, Model model) {
 		ms.poUpHit(writeNo);
-		System.out.println("Å×½ºÆ® : " + writeNo);
 		ms.getDetail(writeNo, model);
 		return "whatsnew/promotion";
 	}
@@ -66,39 +70,38 @@ public class MainController {
 		return "whatsnew/happymeal";
 	}
 
-	/*
-	 * @GetMapping("whatsnew_whatsnew") public String whatsnewWhatsnew(Model model)
-	 * { ms.getWhatsNew(model); ms.getNotice(model); return
-	 * "whatsnew/whatsnew_whatsnew"; }
-	 */
 	@RequestMapping("whatsnew/promotion.do")
 	public String promotion() {
 		return "redirect:whatsnew_promotion";
 	}
+
 	@RequestMapping("whatsnew/happymeal.do")
 	public String happymeal() {
 		return "redirect:whatsnew_happymeal";
 	}
+
 	@PostMapping("whatsnew/promotion.do")
 	@ResponseBody
-	public Map<Object, Object> promotion(@RequestParam(value = "searchStatus", defaultValue = "")String searchStatus, @RequestParam(value = "page", required = false, defaultValue = "1")int page){
+	public Map<Object, Object> promotion(@RequestParam(value = "searchStatus", defaultValue = "") String searchStatus,
+			@RequestParam(value = "page", required = false, defaultValue = "1") int page) {
 		Map<Object, Object> resultMap = new HashMap<Object, Object>();
-		System.out.println(searchStatus+","+page);
 		resultMap = ms.getPromotion(searchStatus, page);
 		return resultMap;
 	}
+
 	@PostMapping("whatsnew/happymeal.do")
 	@ResponseBody
-	public Map<Object, Object> happymeal(@RequestParam(value = "searchStatus", defaultValue = "")String searchStatus, @RequestParam(value = "page", required = false, defaultValue = "1")int page){
+	public Map<Object, Object> happymeal(@RequestParam(value = "searchStatus", defaultValue = "") String searchStatus,
+			@RequestParam(value = "page", required = false, defaultValue = "1") int page) {
 		Map<Object, Object> resultMap = new HashMap<Object, Object>();
-		System.out.println(searchStatus+","+page);
 		resultMap = ms.getHappyMeal(searchStatus, page);
 		return resultMap;
 	}
-	
+
 	@RequestMapping("whatsnew/list.do")
-	public ModelAndView wSearch(Model model,@RequestParam(defaultValue = "") String searchWord, @RequestParam(value = "wnum", required = false, defaultValue = "1")int wnum){
-		List<NoticeDTO> list = ms.getNotice(); 
+	public ModelAndView wSearch(Model model, @RequestParam(defaultValue = "") String searchWord,
+			@RequestParam(value = "wnum", required = false, defaultValue = "1") int wnum) {
+		List<NoticeDTO> list = ms.getNotice();
 		ms.getWhatsNewSearch(model, searchWord, wnum);
 		Object result = model.getAttribute("wlist");
 		ModelAndView mav = new ModelAndView();
@@ -113,42 +116,37 @@ public class MainController {
 		map.put("keyword", searchWord);
 		mav.addObject("map", map);
 		mav.setViewName("whatsnew/whatsnew_whatsnew");
-		System.out.println(searchWord);
 		return mav;
 	}
-	
+
 	@RequestMapping("whatsnew/wsdetail.do")
 	public String wsDeatil(Model model, String seq, int num) {
-		System.out.println("status : "+seq);
+		System.out.println("status : " + seq);
 		List<WhatsNewDTO> wlist;
 		List<NoticeDTO> list;
 		if (seq.equals("1")) {
 			ms.noticeUpHit(num);
 			list = ms.getNotice(model);
-			System.out.println(list.get(0).getTitle());
-			System.out.println(list.get(1).getTitle());
-			System.out.println(list.get(2).getTitle());
-			System.out.println(list.get(3).getTitle());
-			model.addAttribute("notice", list.get(num-1));
-		}else {
+			model.addAttribute("notice", list.get(num - 1));
+		} else {
 			ms.wsUpHit(num);
 			wlist = ms.getWhatsNewSearch(model);
-			System.out.println(wlist.get(0).getTitle()+",");
-			System.out.println(wlist.get(1).getTitle());
-			model.addAttribute("normal", wlist.get(num-1));
+			model.addAttribute("normal", wlist.get(num - 1));
 		}
 		return "whatsnew/wsdetail";
 	}
-	
+
 	@RequestMapping("whatsnew/search.do")
-	public ModelAndView mSearch(Model model,@RequestParam(defaultValue = "")String commonSearchWord, @RequestParam(value = "mnum", required = false, defaultValue = "1")int mnum, @RequestParam(value = "bnum", required = false, defaultValue = "1") int bnum) {
+	public ModelAndView mSearch(Model model, @RequestParam(defaultValue = "") String commonSearchWord,
+			@RequestParam(value = "mnum", required = false, defaultValue = "1") int mnum,
+			@RequestParam(value = "bnum", required = false, defaultValue = "1") int bnum) {
 		ModelAndView mav = new ModelAndView();
 		ms.getmList(model, commonSearchWord, mnum);
-		ms.getbList(model,commonSearchWord,bnum);
+		ms.getbList(model, commonSearchWord, bnum);
 		Object mlist = model.getAttribute("mlist");
 		Object blist = model.getAttribute("blist");
 		Map<String, Object> map = new HashMap<String, Object>();
-		int allcount = (int) model.getAttribute("mcount") + (int)model.getAttribute("bcount");
+		int allcount = (int) model.getAttribute("mcount") + (int) model.getAttribute("bcount");
 		map.put("mmap", mlist);
 		map.put("bugger", blist);
 		map.put("keyword", commonSearchWord);
