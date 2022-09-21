@@ -74,7 +74,7 @@
 						<h1 class="titDep1">해피밀</h1>
 						<p class="subCopy">맛과 즐거움 모두 해피밀을 통해 느껴보세요!</p>
 						<ul class="navPath">
-							<li><a href="/">Home</a></li>
+							<li><a href="${path}/main">Home</a></li>
 							<li><a href="javascript:gotoMenu('버거');">Menu</a></li>
 							<li><a href="javascript:gotoMenu('해피밀AM');">해피밀</a></li>
 						</ul>
