@@ -6,7 +6,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>해피스낵</title>
+<link rel="shortcut icon" type="image/x-icon"
+	href="${pageContext.request.contextPath}/resources/images/favicon.ico">
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script>
 	function loadTemplate(id) {
@@ -54,7 +56,7 @@
 							시즌 별 인기 스낵을 하루종일<br>할인 가격으로 만나보세요!
 						</p>
 						<ul class="navPath">
-							<li><a href="/">Home</a></li>
+							<li><a href="${path}/main">Home</a></li>
 							<li><a href="javascript:gotoMenu('버거');">Menu</a></li>
 							<li><a href="javascript:gotoMenu('해피스낵');">해피 스낵</a></li>
 						</ul>

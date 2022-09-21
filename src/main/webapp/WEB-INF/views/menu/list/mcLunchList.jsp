@@ -6,7 +6,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>맥런치</title>
+<link rel="shortcut icon" type="image/x-icon"
+	href="${pageContext.request.contextPath}/resources/images/favicon.ico">
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script>
 	function loadTemplate(id) {
@@ -54,7 +56,7 @@
 							오전 10시 30분부터 오후 2시까지 <br>점심만의 특별한 할인으로 맥런치 세트를 즐겨보세요!
 						</p>
 						<ul class="navPath">
-							<li><a href="/">Home</a></li>
+							<li><a href="${path}/main">Home</a></li>
 							<li><a href="javascript:gotoMenu('버거');">Menu</a></li>
 							<li><a href="javascript:gotoMenu('맥런치');">맥런치</a></li>
 						</ul>

@@ -6,7 +6,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>맥모닝</title>
+<link rel="shortcut icon" type="image/x-icon"
+	href="${pageContext.request.contextPath}/resources/images/favicon.ico">
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script>
 	$(function() {
@@ -66,7 +68,7 @@
 							새벽 4시부터 오전 10시 30분까지<br> 갓 구워내 신선한 맥모닝으로 따뜻한 아침 식사를 챙겨 드세요!
 						</p>
 						<ul class="navPath">
-							<li><a href="/">Home</a></li>
+							<li><a href="${path}/main">Home</a></li>
 							<li><a href="javascript:gotoMenu('버거');">Menu</a></li>
 							<li><a href="javascript:gotoMenu('맥모닝');">맥모닝</a></li>
 						</ul>

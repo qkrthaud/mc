@@ -17,6 +17,22 @@
 	integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30="
 	crossorigin="anonymous"></script>
 </head>
+<script>
+function loadTemplate(id) {
+	return document.getElementById(id).innerHTML;
+}
+function replaceTemplate(templateStr, data) {
+	var result = templateStr;
+	for ( var key in data) {
+		var pattern = new RegExp("{" + key + "}", "g");
+		result = result.replace(pattern, data[key]);
+	}
+	return result;
+}
+function makeHtml(id, data) {
+	return replaceTemplate(loadTemplate(id), data);
+}
+</script>
 <body>
 	<div class="wrapper">
 		<%@ include file="./layout/header.jsp"%>
@@ -292,29 +308,66 @@
 					<div class="inner">
 						<h2 class="titMain">McDonald's Promotion</h2>
 						<ul class="whatsNew" id="menuList">
-							<c:forEach var="dto" items="${main_b}">
-								<li><a
-									href="${path }/whatsnew/promotion?writeNo=${dto.writeNo }"
-									class="ing on">
-										<div class="tmb">
-											<img src="${path }/resources/images/whatsnew/${dto.mainImg }">
-										</div>
-										<div class="con">
-											<strong class="tit">${dto.title }</strong>
-										</div>
-								</a></li>
-							</c:forEach>
 						</ul>
 						<div class="btnMore" id="btnMore">
 							<a href="javascript:more();" class="more" title="더보기">더보기</a>
 						</div>
 					</div>
 				</div>
-				<form id="searchForm" name="searchForm" method="get">
-					<input type="hidden" name="seq" id="seq"> <input
-						type="hidden" name="urlCode" id="urlCode"> <input
-						type="hidden" name="linkurl" id="linkurl">
-				</form>
+				<script type="text/javascript">
+					var init_page = 0;
+					var totalPage = 0;
+
+					$(document).ready(function() {
+						getList(1);
+					});
+
+					function getList(page_val) {
+						$.ajax({
+							type : 'post',
+							url : '${path}/mainContent',
+							data : {
+								page : page_val,
+							},
+							success : function(data) {
+									totalPage = data.totalPage;
+									page = data.pageNum;
+
+									if (data != null && data != '') {
+										for (var i = 0; i < data.promotion.length; i++) {
+											$("#menuList").append(addList(data.promotion[i]));
+										}
+									} else {
+										$("#menuList").append(addList());
+									}
+									if (totalPage == page_val) {
+										$("#btnMore").hide();
+									} else {
+										$("#btnMore").show();
+									}
+							},
+						})
+					}
+					function addList(data) {
+						return makeHtml("menu", data);
+					}
+					function more() {
+						getList(page + 1);
+					}
+				</script>
+
+				<script id="menu" type="text/template">
+<li><a href="${path}/whatsnew/promotion?writeNo={writeNo}">
+		<div class="tmb">
+			<img src="${path}/resources/images/whatsnew/{mainImg}">
+		</div>
+		<div class="con">
+			<strong class="tit">{title}</strong>
+		</div>
+	</a>
+</li>
+
+</script>
 			</div>
 			<%@ include file="./layout/aside.jsp"%>
 		</div>

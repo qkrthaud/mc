@@ -6,7 +6,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>버거</title>
+<link rel="shortcut icon" type="image/x-icon"
+	href="${pageContext.request.contextPath}/resources/images/favicon.ico">
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script>
 	$(function() {
@@ -68,7 +70,7 @@
 							상하이버거까지, <br>주문 즉시 바로 조리해 더욱 맛있는, 맥도날드의 다양한 버거를 소개합니다.
 						</p>
 						<ul class="navPath">
-							<li><a href="/">Home</a></li>
+							<li><a href="${path}/main">Home</a></li>
 							<li><a href="javascript:gotoMenu('버거');">Menu</a></li>
 							<li><a href="javascript:gotoMenu('버거');">버거</a></li>
 						</ul>

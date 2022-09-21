@@ -6,7 +6,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>해피밀</title>
+<link rel="shortcut icon" type="image/x-icon"
+	href="${pageContext.request.contextPath}/resources/images/favicon.ico">
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script>
 $(function() {
@@ -65,9 +67,9 @@ $(function() {
 						<h1 class="titDep1">해피밀</h1>
 						<p class="subCopy">맛과 즐거움 모두 해피밀을 통해 느껴보세요!</p>
 						<ul class="navPath">
-							<li><a href="/">Home</a></li>
+							<li><a href="${path}/main">Home</a></li>
 							<li><a href="javascript:gotoMenu('버거');">Menu</a></li>
-							<li><a href="javascript:gotoMenu('해피밀');">해피밀</a></li>
+							<li><a href="javascript:gotoMenu('해피밀AM');">해피밀</a></li>
 						</ul>
 					</div>
 				</div>

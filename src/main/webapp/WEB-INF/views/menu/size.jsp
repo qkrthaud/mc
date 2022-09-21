@@ -6,7 +6,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>${menuInfo.name }</title>
+<link rel="shortcut icon" type="image/x-icon"
+	href="${pageContext.request.contextPath}/resources/images/favicon.ico">
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script>
 	$(document).ready(function() {
@@ -16,6 +18,7 @@
 		console.log(name)
 		console.log(seq)
 		console.log(size)
+		removeTab();
 		$('.toggle').find('>button').each(function() {
 			var t = $(this);
 			var b = t.closest('.toggle');
@@ -155,7 +158,7 @@
 									</div>
 								</div>
 
-								<div class="toggle">
+								<div class="toggle" id="allergyTab">
 									<h4 class="tit">알레르기 정보</h4>
 									<button type="button" aria-selected="false"
 										aria-controls="toggle03" aria-expanded="false">알레르기
@@ -168,14 +171,13 @@
 									</div>
 								</div>
 
-								<div class="toggle">
+								<div class="toggle" id="originTab">
 									<h4 class="tit">원산지 정보</h4>
 									<button type="button" aria-selected="false"
 										aria-controls="toggle04" aria-expanded="false">원산지 정보
 										보기</button>
 									<div id="toggle04" class="toggleCon">
-										<ul class="origin_info">${nutInfo.origin_Info }
-										</ul>
+										<div class="origin_info">${nutInfo.origin_Info} </div>
 									</div>
 								</div>
 							</div>
@@ -187,5 +189,18 @@
 		</div>
 		<%@ include file="../layout/footer.jsp"%>
 	</div>
+<script>
+function removeTab(){
+	var origin = '${nutInfo.origin_Info}'
+	var allergy = '${nutInfo.allergy_Info }'
+	if(origin == ""){
+		$('#originTab').remove();
+	}
+	if(allergy == ""){
+		$('#allergyTab').remove();
+
+	}
+}
+</script>
 </body>
 </html>

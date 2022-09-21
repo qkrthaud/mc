@@ -6,13 +6,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>${menuInfo.name }</title>
+<link rel="shortcut icon" type="image/x-icon"
+	href="${pageContext.request.contextPath}/resources/images/favicon.ico">
 <script src="http://code.jquery.com/jquery-latest.js"></script>
-
-<style type="text/css">
-.arrow{font-size: 50px;}
-</style>
-
 <script>
 	$(document).ready(function() {
 		var val = '${value}';
@@ -22,6 +19,7 @@
 		console.log(rn)
 		console.log(size)
 		pageButton();
+		removeTab();
 		$('.toggle').find('>button').each(function() {
 			var t = $(this);
 			var b = t.closest('.toggle');
@@ -76,9 +74,9 @@
 						<h1 class="titDep1">해피밀</h1>
 						<p class="subCopy">맛과 즐거움 모두 해피밀을 통해 느껴보세요!</p>
 						<ul class="navPath">
-							<li><a href="/">Home</a></li>
+							<li><a href="${path}/main">Home</a></li>
 							<li><a href="javascript:gotoMenu('버거');">Menu</a></li>
-							<li><a href="javascript:gotoMenu('해피밀');">해피밀</a></li>
+							<li><a href="javascript:gotoMenu('해피밀AM');">해피밀</a></li>
 						</ul>
 					</div>
 				</div>
@@ -99,19 +97,18 @@
 									</div>
 									<br> <br>
 									<div class="desc">
-										<h3>${menuInfo.explanation }</h3>
+										${menuInfo.explanation }
 									</div>
 
 
 									<div class="other">
 										<a href="javascript:goDetailPaging('${menuInfo.rownum-1 }');" id="prev" class="arrow prev">
-										<span class="arr">&lt;</span>
-										<strong class="tit">&lt;</strong>
+										<span class="arr">이전 메뉴</span>
+										
 										</a>
 
 										<a href="javascript:goDetailPaging('${menuInfo.rownum+1 }');" id="next" class="arrow next">
-										<span class="arr">&gt;</span>
-										<strong class="tit">&gt;</strong>
+										<span class="arr">다음 메뉴</span>
 										</a>
 									</div>
 
@@ -176,7 +173,7 @@
 									</div>
 								</div>
 
-								<div class="toggle">
+								<div class="toggle"  id="allergyTab">
 									<h4 class="tit">알레르기 정보</h4>
 									<button type="button" aria-selected="false"
 										aria-controls="toggle03" aria-expanded="false">알레르기
@@ -184,19 +181,18 @@
 									<!-- toggle버튼 선택시 aria-selected값 true로 변경 / aria-expanded 값 true로 변경 -->
 									<div id="toggle03" class="toggleCon">
 										<div class="allerDesc">
-											<p>${nutInfo.allergy_Info }</p>
+											<p>${nutInfo.allergy_Info } <br><b>* 일부 튀김류 제품은 새우 패티와 같은 조리기구를 사용하고 있습니다.</b></p>
 										</div>
 									</div>
 								</div>
 
-								<div class="toggle">
+								<div class="toggle" id="originTab">
 									<h4 class="tit">원산지 정보</h4>
 									<button type="button" aria-selected="false"
 										aria-controls="toggle04" aria-expanded="false">원산지 정보
 										보기</button>
 									<div id="toggle04" class="toggleCon">
-										<ul class="origin_info">${nutInfo.origin_Info }
-										</ul>
+										<div class="origin_info">${nutInfo.origin_Info} </div>
 									</div>
 								</div>
 							</div>
@@ -223,27 +219,36 @@ function showSize(seq){
 	$("#searchForm").attr("action","${path}/menu/size");
 	$("#searchForm").submit();
 }
-function pageButton(){
-	var now ='${menuInfo.rownum}'
-	var val ='${value}'
-	console.log(now)
-	if(val == "해피밀AM"){
-		
-	if(now == 1){
-		$('#prev').hide();
-	}else if(now == 7){
-		$('#next').hide();
-	}
-	}else if(val == "해피밀PM"){
-		if(now == 1){
-			$('#prev').hide();
-		}else if(now == 6){
-			$('#next').hide();
+
+	function pageButton() {
+		var now = '${menuInfo.rownum}'
+		var val = '${value}'
+		console.log(now)
+		if (val == "해피밀AM") {
+
+			if (now == 1) {
+				$('#prev').remove();
+			} else if (now == 7) {
+				$('#next').remove();
+			}
+		} else if (val == "해피밀PM") {
+			if (now == 1) {
+				$('#prev').remove();
+			} else if (now == 6) {
+				$('#next').remove();
+			}
 		}
 	}
-}
+	function removeTab() {
+		var origin = '${nutInfo.origin_Info}'
+		var allergy = '${nutInfo.allergy_Info }'
+		if (origin == "") {
+			$('#originTab').remove();
+		}
+		if (allergy == "") {
+			$('#allergyTab').remove();
+		}
+	}
 </script>
-
-
 </body>
 </html>

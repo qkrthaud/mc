@@ -6,13 +6,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>${menuInfo.name }</title>
+<link rel="shortcut icon" type="image/x-icon"
+	href="${pageContext.request.contextPath}/resources/images/favicon.ico">
 <script src="http://code.jquery.com/jquery-latest.js"></script>
-
-<style type="text/css">
-.arrow{font-size: 50px;}
-</style>
-
 <script>
 	$(document).ready(function() {
 		var val = '${value}'
@@ -21,8 +18,9 @@
 			console.log(val)
 			console.log(rn)
 			console.log(size)
-			pageButton()
-			otherSizeFunc()
+			pageButton();
+			otherSizeFunc();
+			removeTab();
 		$('.toggle').find('>button').each(function() {
 			var t = $(this);
 			var b = t.closest('.toggle');
@@ -69,7 +67,7 @@
 </head>
 <body>
 	<div class="wrapper">
-	<%@ include file="../../layout/header.jsp"%>
+		<%@ include file="../../layout/header.jsp"%>
 		<div id="container">
 			<div class="content">
 				<div class="visualArea bgMenu04" data-title="사이드 &amp; 디저트"
@@ -80,13 +78,13 @@
 							가볍게 즐겨도, 버거와 함께 푸짐하게 즐겨도, <br>언제나 맛있는 사이드와 디저트 메뉴!
 						</p>
 						<ul class="navPath">
-							<li><a href="/">Home</a></li>
+							<li><a href="${path}/main">Home</a></li>
 							<li><a href="javascript:gotoMenu('버거');">Menu</a></li>
 							<li><a href="javascript:gotoMenu('사이드');">사이드 &amp; 디저트</a></li>
 						</ul>
 					</div>
 				</div>
-				
+
 				<div class="contArea">
 					<div class="inner">
 						<div class="menuView">
@@ -102,52 +100,43 @@
 											alt="${menuInfo.name }">
 									</div>
 									<br> <br>
-									<div class="desc">
-										<h3>${menuInfo.explanation }</h3>
-									</div>
+									<div class="desc">${menuInfo.explanation }</div>
 
 									<div class="otherSize" id="otherSize">
 										<h3 class="tit">사이즈선택</h3>
 										<ul>
-											<li id="sizeS">
-												<a href="javascript:showSize('${menuInfo.menuSeq}');" id="sizeSa">
-													<span class="img"><img src="${path}/resources/images/menuImg/${menuInfo.name} Small.png"
-											alt="${menuInfo.name }"></span>
-													<span class="menuName">${menuInfo.name }</span>
-													<span class="size"> Small</span>
-												</a>
-											</li>
-											
-											<li id="sizeM">
-												<a href="" class="javascript:showSize('${menuInfo.menuSeq}');" id="sizeMa">
-													<span class="img"><img src="${path}/resources/images/menuImg/${menuInfo.name} Medium.png"
-											alt="${menuInfo.name }"></span>
-													<span class="menuName">${menuInfo.name }</span>
-													<span class="size"> Medium</span>
-												</a>
-											</li>
-											
-											<li id="sizeL">
-												<a href="" class="javascript:showSize('${menuInfo.menuSeq}');"id="sizeLa">
-													<span class="img"><img src="${path}/resources/images/menuImg/${menuInfo.name} Large.png"
-											alt="${menuInfo.name }"></span>
-													<span class="menuName">${menuInfo.name }</span>
-													<span class="size"> Large</span>
-												</a>
-											</li>
-											
+											<li id="sizeS"><a
+												href="javascript:showSize('${menuInfo.menuSeq}');"
+												id="sizeSa"> <span class="img"><img id="imgS"></span>
+													<span class="menuName">${menuInfo.name }</span> <span
+													class="size"> Small</span>
+											</a></li>
+
+											<li id="sizeM"><a href=""
+												class="javascript:showSize('${menuInfo.menuSeq}');"
+												id="sizeMa"> <span class="img"><img id="imgM"></span>
+													<span class="menuName">${menuInfo.name }</span> <span
+													class="size"> Medium</span>
+											</a></li>
+
+											<li id="sizeL"><a href=""
+												class="javascript:showSize('${menuInfo.menuSeq}');"
+												id="sizeLa"> <span class="img"><img id="imgL"></span>
+													<span class="menuName">${menuInfo.name }</span> <span
+													class="size"> Large</span>
+											</a></li>
+
 										</ul>
 									</div>
 
 									<div class="other">
-										<a href="javascript:goDetailPaging('${menuInfo.rownum-1 }');" id="prev" class="arrow prev">
-										<span class="arr">&lt;</span>
-										<strong class="tit">&lt;</strong>
-										</a>
+										<a href="javascript:goDetailPaging('${menuInfo.rownum-1 }');"
+											id="prev" class="arrow prev"> <span class="arr">이전
+												메뉴</span>
 
-										<a href="javascript:goDetailPaging('${menuInfo.rownum+1 }');" id="next" class="arrow next">
-										<span class="arr">&gt;</span>
-										<strong class="tit">&gt;</strong>
+										</a> <a href="javascript:goDetailPaging('${menuInfo.rownum+1 }');"
+											id="next" class="arrow next"> <span class="arr">다음
+												메뉴</span>
 										</a>
 									</div>
 
@@ -209,10 +198,13 @@
 											</tbody>
 										</table>
 
+										<p class="nutrDesc">제품 별 사이즈 및 조각 수에 따라 영양정보가 달라지기 때문에
+											해당하는 제품페이지에서 영양정보를 확인해주세요.</p>
+
 									</div>
 								</div>
 
-								<div class="toggle">
+								<div class="toggle" id="allergyTab">
 									<h4 class="tit">알레르기 정보</h4>
 									<button type="button" aria-selected="false"
 										aria-controls="toggle03" aria-expanded="false">알레르기
@@ -220,19 +212,21 @@
 									<!-- toggle버튼 선택시 aria-selected값 true로 변경 / aria-expanded 값 true로 변경 -->
 									<div id="toggle03" class="toggleCon">
 										<div class="allerDesc">
-											<p>${nutInfo.allergy_Info }</p>
+											<p>${nutInfo.allergy_Info }
+												<br>
+												<b>* 일부 튀김류 제품은 새우 패티와 같은 조리기구를 사용하고 있습니다.</b>
+											</p>
 										</div>
 									</div>
 								</div>
 
-								<div class="toggle">
+								<div class="toggle" id="originTab">
 									<h4 class="tit">원산지 정보</h4>
 									<button type="button" aria-selected="false"
 										aria-controls="toggle04" aria-expanded="false">원산지 정보
 										보기</button>
 									<div id="toggle04" class="toggleCon">
-										<ul class="origin_info">${nutInfo.origin_Info }
-										</ul>
+										<div class="origin_info">${nutInfo.origin_Info}</div>
 									</div>
 								</div>
 							</div>
@@ -245,13 +239,14 @@
 		<%@ include file="../../layout/footer.jsp"%>
 	</div>
 	<form id="searchForm" method="post">
-		<input type="hidden" name="page" id="page" value="${menuInfo.rownum}"> 
-		<input type="hidden" name="sub_category" id="sub_category" value="${value }">
+		<input type="hidden" name="page" id="page" value="${menuInfo.rownum}">
+		<input type="hidden" name="sub_category" id="sub_category"
+			value="${value }">
 	</form>
 	<form id="searchForm2" method="post">
-		<input type="hidden" name="seq" id="seq"> 
+		<input type="hidden" name="seq" id="seq">
 	</form>
-<script>
+	<script>
 function goDetailPaging(rn){
 	$("#page").val(rn);
 	$("#searchForm").attr("action","${path}/menu/detailPaging");
@@ -262,43 +257,75 @@ function showSize(seq){
 	$("#searchForm2").attr("action","${path}/menu/size");
 	$("#searchForm2").submit();
 }
-function pageButton(){
-	var now ='${menuInfo.rownum}'
-	var val ='${value}'
-	console.log(now)
-	if(val == "사이드"){
-		
-	if(now == 1){
-		$('#prev').hide();
-	}else if(now == 11){
-		$('#next').hide();
-	}
-	}else if(val == "디저트"){
-		if(now == 1){
-			$('#prev').hide();
-		}else if(now == 12){
-			$('#next').hide();
+
+	function pageButton() {
+		var now = '${menuInfo.rownum}'
+		var val = '${value}'
+		console.log(now)
+		if (val == "사이드") {
+			if (now == 1) {
+				$('#prev').remove();
+			} else if (now == 11) {
+				$('#next').remove();
+			}
+		} else if (val == "디저트") {
+			if (now == 1) {
+				$('#prev').remove();
+			} else if (now == 12) {
+				$('#next').remove();
+			}
 		}
 	}
-}
-function otherSizeFunc() {
-	var size = '${menuInfo.menuSize}'
-	if (size == "default") {
-		$('#otherSize').hide();
-	}else if(size =="defaultOtherSM"){
-		$('#sizeL').hide();
-		$('#sizeSa').attr("href","javascript:showSize('${menuInfo.menuSeq+1}');");
-		$('#sizeMa').attr("href","javascript:showSize('${menuInfo.menuSeq+2}');");
-	}else if(size =="defaultOtherML"){
-		$('#sizeS').hide();
-		$('#sizeMa').attr("href","javascript:showSize('${menuInfo.menuSeq+1}');");
-		$('#sizeLa').attr("href","javascript:showSize('${menuInfo.menuSeq+2}');");
-	}else if(size =="defaultOtherA"){
-		$('#sizeSa').attr("href","javascript:showSize('${menuInfo.menuSeq+1}');");
-		$('#sizeMa').attr("href","javascript:showSize('${menuInfo.menuSeq+2}');");
-		$('#sizeLa').attr("href","javascript:showSize('${menuInfo.menuSeq+3}');");
+	function otherSizeFunc() {
+		var size = '${menuInfo.menuSize}'
+		if (size == "default") {
+			$('#otherSize').remove();
+		} else if (size == "defaultOtherSM") {
+			$('#sizeL').remove();
+			
+			$('#sizeSa').attr("href","javascript:showSize('${menuInfo.menuSeq+1}');");
+			$('#sizeMa').attr("href","javascript:showSize('${menuInfo.menuSeq+2}');");
+			
+			$('#imgS').attr("src","${path}/resources/images/menuImg/${menuInfo.name} Small.png");
+			$('#imgS').attr("alt", "${menuInfo.name} Small");
+			$('#imgM').attr("src","${path}/resources/images/menuImg/${menuInfo.name} Medium.png");
+			$('#imgM').attr("alt", "${menuInfo.name} Medium");
+			
+		} else if (size == "defaultOtherML") {
+			$('#sizeS').remove();
+			
+			$('#sizeMa').attr("href","javascript:showSize('${menuInfo.menuSeq+1}');");
+			$('#sizeLa').attr("href","javascript:showSize('${menuInfo.menuSeq+2}');");
+			
+			$('#imgM').attr("src","${path}/resources/images/menuImg/${menuInfo.name} Medium.png");
+			$('#imgM').attr("alt", "${menuInfo.name} Medium");
+			$('#imgL').attr("src","${path}/resources/images/menuImg/${menuInfo.name} Large.png");
+			$('#imgL').attr("alt", "${menuInfo.name} Large");
+			
+		} else if (size == "defaultOtherA") {
+			
+			$('#sizeSa').attr("href","javascript:showSize('${menuInfo.menuSeq+1}');");
+			$('#sizeMa').attr("href","javascript:showSize('${menuInfo.menuSeq+2}');");
+			$('#sizeLa').attr("href","javascript:showSize('${menuInfo.menuSeq+3}');");
+			
+			$('#imgS').attr("src","${path}/resources/images/menuImg/${menuInfo.name} Small.png");
+			$('#imgS').attr("alt", "${menuInfo.name} Small");
+			$('#imgM').attr("src","${path}/resources/images/menuImg/${menuInfo.name} Medium.png");
+			$('#imgM').attr("alt", "${menuInfo.name} Medium");
+			$('#imgL').attr("src","${path}/resources/images/menuImg/${menuInfo.name} Large.png");
+			$('#imgL').attr("alt", "${menuInfo.name} Large");
+		}
 	}
-}
+	function removeTab() {
+		var origin = '${nutInfo.origin_Info}'
+		var allergy = '${nutInfo.allergy_Info }'
+		if (origin == "") {
+			$('#originTab').remove();
+		}
+		if (allergy == "") {
+			$('#allergyTab').remove();
+		}
+	}
 </script>
 </body>
 </html>
