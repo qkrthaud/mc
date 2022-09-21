@@ -160,20 +160,11 @@ public class MainServiceImpl implements MainService {
 		if (totalCount % contentNum != 0) {
 			totalPage += 1;
 		}
-<<<<<<< HEAD
-		System.out.println("�� ������ �� : " + totalPage);
-		System.out.println("���� ������  : " + pageNum);
-		System.out.println("��ϰ��� : " + totalCount);
-		int end = pageNum * contentNum;
-		int start = end + 1 - contentNum;
-		System.out.println("value : "+value);
-		System.out.println("���� : "+start);
-		System.out.println("�� : "+end);
-=======
+
 
 		int end = pageNum * contentNum;
 		int start = end + 1 - contentNum;
->>>>>>> 75d5276bcaced58f2c3c6fa16391183aba0a8185
+
 
 		List<MainDTO> getList = mp.getHappyMeal(value, start, end);
 		Map<Object, Object> result = new HashMap<Object, Object>();
@@ -192,20 +183,10 @@ public class MainServiceImpl implements MainService {
 		if (totalCount % contentNum != 0) {
 			totalPage += 1;
 		}
-<<<<<<< HEAD
-		System.out.println("�� ������ �� : " + totalPage);
-		System.out.println("���� ������  : " + pageNum);
-		System.out.println("��ϰ��� : " + totalCount);
-		int end = pageNum * contentNum;
-		int start = end + 1 - contentNum;
-		System.out.println("value : "+value);
-		System.out.println("���� : "+start);
-		System.out.println("�� : "+end);
 
-=======
 		int end = pageNum * contentNum;
 		int start = end + 1 - contentNum;
->>>>>>> 75d5276bcaced58f2c3c6fa16391183aba0a8185
+
 		List<MainDTO> getList = mp.getPromotion(value, start, end);
 		Map<Object, Object> result = new HashMap<Object, Object>();
 		result.put("value", value);
