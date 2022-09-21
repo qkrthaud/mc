@@ -152,14 +152,14 @@ public class MainServiceImpl implements MainService {
 		if (totalCount % contentNum != 0) {
 			totalPage += 1;
 		}
-		System.out.println("ÃÑ ÆäÀÌÁö ¼ö : " + totalPage);
-		System.out.println("ÇöÀç ÆäÀÌÁö  : " + pageNum);
-		System.out.println("¸ñ·Ï°¹¼ö : " + totalCount);
+		System.out.println("ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ : " + totalPage);
+		System.out.println("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½  : " + pageNum);
+		System.out.println("ï¿½ï¿½Ï°ï¿½ï¿½ï¿½ : " + totalCount);
 		int end = pageNum * contentNum;
 		int start = end + 1 - contentNum;
 		System.out.println("value : "+value);
-		System.out.println("½ÃÀÛ : "+start);
-		System.out.println("³¡ : "+end);
+		System.out.println("ï¿½ï¿½ï¿½ï¿½ : "+start);
+		System.out.println("ï¿½ï¿½ : "+end);
 
 		List<MainDTO> getList = mp.getHappyMeal(value, start, end);
 		Map<Object, Object> result = new HashMap<Object, Object>();
@@ -178,14 +178,14 @@ public class MainServiceImpl implements MainService {
 		if (totalCount % contentNum != 0) {
 			totalPage += 1;
 		}
-		System.out.println("ÃÑ ÆäÀÌÁö ¼ö : " + totalPage);
-		System.out.println("ÇöÀç ÆäÀÌÁö  : " + pageNum);
-		System.out.println("¸ñ·Ï°¹¼ö : " + totalCount);
+		System.out.println("ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ : " + totalPage);
+		System.out.println("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½  : " + pageNum);
+		System.out.println("ï¿½ï¿½Ï°ï¿½ï¿½ï¿½ : " + totalCount);
 		int end = pageNum * contentNum;
 		int start = end + 1 - contentNum;
 		System.out.println("value : "+value);
-		System.out.println("½ÃÀÛ : "+start);
-		System.out.println("³¡ : "+end);
+		System.out.println("ï¿½ï¿½ï¿½ï¿½ : "+start);
+		System.out.println("ï¿½ï¿½ : "+end);
 
 		List<MainDTO> getList = mp.getPromotion(value, start, end);
 		Map<Object, Object> result = new HashMap<Object, Object>();
