@@ -23,15 +23,28 @@ public class MainServiceImpl implements MainService {
 	}
 
 	public void getDetail(int writeNo, Model model) {
-		System.out.println(mp.getDetail(writeNo).getaTag());
 		model.addAttribute("details", mp.getDetail(writeNo));
 	}
 
-	public void getMain(Model model) {
-		model.addAttribute("main_b", mp.getMainBoard());
-
+	public Map<Object, Object> getMainContent(int page) {
+		int pageNum = page;
+		int contentNum = 6;
+		int totalCount = mp.mainCount();
+		int totalPage = totalCount / contentNum;
+		if (totalCount % contentNum != 0) {
+			totalPage += 1;
+		}
+		int end = pageNum * contentNum;
+		int start = end + 1 - contentNum;
+		List<MainDTO> getList = mp.getMainContent(start, end);
+		Map<Object, Object> result = new HashMap<Object, Object>();
+		result.put("totalCount", totalCount);
+		result.put("pageNum", pageNum);
+		result.put("totalPage", totalPage);
+		result.put("promotion", getList);
+		return result;
 	}
-
+	
 	public void getHappymeal(Model model) {
 		model.addAttribute("happymeal_b", mp.getHappymeal());
 	}
@@ -39,11 +52,6 @@ public class MainServiceImpl implements MainService {
 	public void getHappymealDetail(int writeNo, Model model) {
 		model.addAttribute("details", mp.getHappymealDetail(writeNo));
 	}
-
-	/*
-	 * public void getWhatsNew(Model model) { model.addAttribute("ws_b",
-	 * mp.getWhatsNew()); }
-	 */
 
 	public void getWhatsNewSearch(Model model, String searchWord, int wnum) {
 		int pageLetter = 5;
@@ -152,14 +160,9 @@ public class MainServiceImpl implements MainService {
 		if (totalCount % contentNum != 0) {
 			totalPage += 1;
 		}
-		System.out.println("총 페이지 수 : " + totalPage);
-		System.out.println("현재 페이지  : " + pageNum);
-		System.out.println("목록갯수 : " + totalCount);
+
 		int end = pageNum * contentNum;
 		int start = end + 1 - contentNum;
-		System.out.println("value : "+value);
-		System.out.println("시작 : "+start);
-		System.out.println("끝 : "+end);
 
 		List<MainDTO> getList = mp.getHappyMeal(value, start, end);
 		Map<Object, Object> result = new HashMap<Object, Object>();
@@ -178,15 +181,8 @@ public class MainServiceImpl implements MainService {
 		if (totalCount % contentNum != 0) {
 			totalPage += 1;
 		}
-		System.out.println("총 페이지 수 : " + totalPage);
-		System.out.println("현재 페이지  : " + pageNum);
-		System.out.println("목록갯수 : " + totalCount);
 		int end = pageNum * contentNum;
 		int start = end + 1 - contentNum;
-		System.out.println("value : "+value);
-		System.out.println("시작 : "+start);
-		System.out.println("끝 : "+end);
-
 		List<MainDTO> getList = mp.getPromotion(value, start, end);
 		Map<Object, Object> result = new HashMap<Object, Object>();
 		result.put("value", value);
@@ -196,4 +192,5 @@ public class MainServiceImpl implements MainService {
 		result.put("promotion", getList);
 		return result;
 	}
+
 }

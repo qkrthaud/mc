@@ -16,13 +16,9 @@ public interface MainMapper {
 
 	public MainDTO getDetail(int writeNo);
 
-	public List<MainDTO> getMainBoard();
-
 	public List<MainDTO> getHappymeal();
 
 	public MainDTO getHappymealDetail(int writeNo);
-
-	/* public List<WhatsNewDTO> getWhatsNew(); */
 
 	public List<WhatsNewDTO> getWhatsNewSearch(@Param("search") String searchWord, @Param("s") int start,
 			@Param("e") int end);
@@ -62,5 +58,9 @@ public interface MainMapper {
 	public int pCount(String value);
 
 	public List<MainDTO> getPromotion(@Param("search") String value, @Param("s") int start, @Param("e") int end);
+
+	public int mainCount();
+
+	public List<MainDTO> getMainContent(@Param("s") int start, @Param("e") int end);
 
 }

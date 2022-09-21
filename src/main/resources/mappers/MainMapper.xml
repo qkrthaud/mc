@@ -55,9 +55,12 @@
 		<result property="value" column="value" />
 		<result property="menuSize" column="menuSize" />
 	</resultMap>
-	<select id="getMainBoard" resultMap="board">
-		select * from whatsnewboard
-		where status = '진행중' order by write_no desc
+	<select id="getMainContent" resultMap="board">
+		select b.*
+		from(select rownum
+		rn,A.* from(select * from whatsnewboard where status
+		= '진행중' order by write_no desc )A)B
+		where rn between #{s} and #{e}
 	</select>
 
 	<select id="getBoard" resultMap="board">
@@ -116,9 +119,15 @@
 		rn, A.* from
 		(select * from menu_info where name like
 		'%'||#{search}||'%' and menusize like '%'||'default'||'%')A)B
-		where rn between #{s} and #{e}
+		where rn
+		between #{s} and #{e}
 	</select>
 
+	<select id="mainCount" resultType="Integer">
+		select count(*) from
+		whatsnewboard
+		where status = '진행중'
+	</select>
 	<select id="wCount" resultType="Integer">
 		select count(*) from newsboard
 		where title LIKE '%'||#{search}||'%'
@@ -139,28 +148,35 @@
 	<select id="bCount" resultType="Integer">
 		select count(*) from menu_info
 		where name like
-		'%'||#{search}||'%' and menusize like '%'||'default'||'%'
+		'%'||#{search}||'%' and menusize like
+		'%'||'default'||'%'
 	</select>
-	<select id = "getHappyMeal" resultMap = "hboard">
-		select B.* from(select rownum as
+	<select id="getHappyMeal" resultMap="hboard">
+		select B.* from(select
+		rownum as
 		rn, A.* from
 		(select * from happymealboard where status like
 		'%'||#{search}||'%' order by write_no desc)A)B
-		where rn between #{s} and #{e}
+		where rn between #{s}
+		and #{e}
 	</select>
-	<select id ="hpCount" resultType = "Integer">
-		select count(*) from happymealboard where status like
+	<select id="hpCount" resultType="Integer">
+		select count(*) from
+		happymealboard where status like
 		'%'||#{value}||'%'
 	</select>
-		<select id = "getPromotion" resultMap = "board">
-		select B.* from(select rownum as
+	<select id="getPromotion" resultMap="board">
+		select B.* from(select
+		rownum as
 		rn, A.* from
 		(select * from whatsnewboard where status like
 		'%'||#{search}||'%' order by write_no desc)A)B
-		where rn between #{s} and #{e}
+		where rn between #{s}
+		and #{e}
 	</select>
-	<select id ="pCount" resultType = "Integer">
-		select count(*) from whatsnewboard where status like
+	<select id="pCount" resultType="Integer">
+		select count(*) from
+		whatsnewboard where status like
 		'%'||#{value}||'%'
 	</select>
 
@@ -175,13 +191,13 @@
 		where
 		write_no=#{num}
 	</update>
-	
+
 	<update id="poUpHit">
 		update whatsnewboard set hit= hit+1
 		where
 		write_no=#{writeNo}
 	</update>
-	
+
 	<update id="hpUpHit">
 		update happymealboard set hit= hit+1
 		where
