@@ -14,15 +14,11 @@ public interface MainService {
 
 	public void getDetail(int writeNo, Model model);
 
-	public void getMain(Model model);
-
 	public void getHappymeal(Model model);
 
 	public void getHappymealDetail(int writeNo, Model model);
 
 	public void getWhatsNewSearch(Model model, String searchWord, int wnum);
-
-	/* public void getWhatsNew(Model model); */
 
 	public List<NoticeDTO> getNotice(Model model);
 
@@ -45,5 +41,7 @@ public interface MainService {
 	public Map<Object, Object> getHappyMeal(String value, int page);
 
 	public Map<Object, Object> getPromotion(String searchStatus, int page);
+
+	public Map<Object, Object> getMainContent(int page);
 
 }
