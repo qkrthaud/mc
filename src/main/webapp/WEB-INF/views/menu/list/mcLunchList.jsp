@@ -56,7 +56,7 @@
 							오전 10시 30분부터 오후 2시까지 <br>점심만의 특별한 할인으로 맥런치 세트를 즐겨보세요!
 						</p>
 						<ul class="navPath">
-							<li><a href="/">Home</a></li>
+							<li><a href="${path}/main">Home</a></li>
 							<li><a href="javascript:gotoMenu('버거');">Menu</a></li>
 							<li><a href="javascript:gotoMenu('맥런치');">맥런치</a></li>
 						</ul>

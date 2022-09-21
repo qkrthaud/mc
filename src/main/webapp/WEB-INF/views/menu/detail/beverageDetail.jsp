@@ -108,8 +108,7 @@
 										<ul>
 											<li id="sizeS">
 												<a href="javascript:showSize('${menuInfo.menuSeq}');" id="sizeSa">
-													<span class="img"><img src="${path}/resources/images/menuImg/${menuInfo.name} Small.png"
-											alt="${menuInfo.name }"></span>
+													<span class="img"><img id="imgS"></span>
 													<span class="menuName">${menuInfo.name }</span>
 													<span class="size"> Small</span>
 												</a>
@@ -117,8 +116,7 @@
 											
 											<li id="sizeM">
 												<a href="" class="javascript:showSize('${menuInfo.menuSeq}');" id="sizeMa">
-													<span class="img"><img src="${path}/resources/images/menuImg/${menuInfo.name} Medium.png"
-											alt="${menuInfo.name }"></span>
+													<span class="img"><img id="imgM"></span>
 													<span class="menuName">${menuInfo.name }</span>
 													<span class="size"> Medium</span>
 												</a>
@@ -126,8 +124,7 @@
 											
 											<li id="sizeL">
 												<a href="" class="javascript:showSize('${menuInfo.menuSeq}');"id="sizeLa">
-													<span class="img"><img src="${path}/resources/images/menuImg/${menuInfo.name} Large.png"
-											alt="${menuInfo.name }"></span>
+													<span class="img"><img id="imgL"></span>
 													<span class="menuName">${menuInfo.name }</span>
 													<span class="size"> Large</span>
 												</a>
@@ -229,8 +226,7 @@
 										aria-controls="toggle04" aria-expanded="false">원산지 정보
 										보기</button>
 									<div id="toggle04" class="toggleCon">
-										<ul class="origin_info">${nutInfo.origin_Info }
-										</ul>
+										<div class="origin_info">${nutInfo.origin_Info} </div>
 									</div>
 								</div>
 							</div>
@@ -266,15 +262,15 @@ function showSize(seq){
 		if (val == "맥카페") {
 
 			if (now == 1) {
-				$('#prev').hide();
+				$('#prev').remove();
 			} else if (now == 23) {
-				$('#next').hide();
+				$('#next').remove();
 			}
 		} else if (val == "음료") {
 			if (now == 1) {
-				$('#prev').hide();
+				$('#prev').remove();
 			} else if (now == 13) {
-				$('#next').hide();
+				$('#next').remove();
 			}
 		}
 	}
@@ -286,14 +282,28 @@ function showSize(seq){
 			$('#sizeL').remove();
 			$('#sizeSa').attr("href","javascript:showSize('${menuInfo.menuSeq+1}');");
 			$('#sizeMa').attr("href","javascript:showSize('${menuInfo.menuSeq+2}');");
+			$('#imgS').attr("src","${path}/resources/images/menuImg/${menuInfo.name} Small.png");
+			$('#imgS').attr("alt","${menuInfo.name} Small");
+			$('#imgM').attr("src","${path}/resources/images/menuImg/${menuInfo.name} Medium.png");
+			$('#imgM').attr("alt","${menuInfo.name} Medium");
 		}else if(size =="defaultOtherML"){
 			$('#sizeS').remove();
 			$('#sizeMa').attr("href","javascript:showSize('${menuInfo.menuSeq+1}');");
 			$('#sizeLa').attr("href","javascript:showSize('${menuInfo.menuSeq+2}');");
+			$('#imgM').attr("src","${path}/resources/images/menuImg/${menuInfo.name} Medium.png");
+			$('#imgM').attr("alt","${menuInfo.name} Medium");
+			$('#imgL').attr("src","${path}/resources/images/menuImg/${menuInfo.name} Large.png");
+			$('#imgL').attr("alt","${menuInfo.name} Large");
 		}else if(size =="defaultOtherA"){
 			$('#sizeSa').attr("href","javascript:showSize('${menuInfo.menuSeq+1}');");
 			$('#sizeMa').attr("href","javascript:showSize('${menuInfo.menuSeq+2}');");
 			$('#sizeLa').attr("href","javascript:showSize('${menuInfo.menuSeq+3}');");
+			$('#imgS').attr("src","${path}/resources/images/menuImg/${menuInfo.name} Small.png");
+			$('#imgS').attr("alt","${menuInfo.name} Small");
+			$('#imgM').attr("src","${path}/resources/images/menuImg/${menuInfo.name} Medium.png");
+			$('#imgM').attr("alt","${menuInfo.name} Medium");
+			$('#imgL').attr("src","${path}/resources/images/menuImg/${menuInfo.name} Large.png");
+			$('#imgL').attr("alt","${menuInfo.name} Large");
 		}
 	}
 	function removeTab(){
@@ -301,13 +311,9 @@ function showSize(seq){
 		var allergy = '${nutInfo.allergy_Info }'
 		if(origin == ""){
 			$('#originTab').remove();
-		}else{
-			console.log(origin)
 		}
 		if(allergy == ""){
 			$('#allergyTab').remove();
-		}else{
-			console.log(allergy)
 		}
 	}
 </script>

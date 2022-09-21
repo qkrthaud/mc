@@ -192,8 +192,7 @@
 										aria-controls="toggle04" aria-expanded="false">원산지 정보
 										보기</button>
 									<div id="toggle04" class="toggleCon">
-										<ul class="origin_info">${nutInfo.origin_Info }
-										</ul>
+										<div class="origin_info">${nutInfo.origin_Info} </div>
 									</div>
 								</div>
 							</div>
@@ -220,41 +219,36 @@ function showSize(seq){
 	$("#searchForm").attr("action","${path}/menu/size");
 	$("#searchForm").submit();
 }
-function pageButton(){
-	var now ='${menuInfo.rownum}'
-	var val ='${value}'
-	console.log(now)
-	if(val == "해피밀AM"){
-		
-	if(now == 1){
-		$('#prev').hide();
-	}else if(now == 7){
-		$('#next').hide();
-	}
-	}else if(val == "해피밀PM"){
-		if(now == 1){
-			$('#prev').hide();
-		}else if(now == 6){
-			$('#next').hide();
+
+	function pageButton() {
+		var now = '${menuInfo.rownum}'
+		var val = '${value}'
+		console.log(now)
+		if (val == "해피밀AM") {
+
+			if (now == 1) {
+				$('#prev').remove();
+			} else if (now == 7) {
+				$('#next').remove();
+			}
+		} else if (val == "해피밀PM") {
+			if (now == 1) {
+				$('#prev').remove();
+			} else if (now == 6) {
+				$('#next').remove();
+			}
 		}
 	}
-}
-function removeTab(){
-	var origin = '${nutInfo.origin_Info}'
-	var allergy = '${nutInfo.allergy_Info }'
-	if(origin == ""){
-		$('#originTab').remove();
-	}else{
-		console.log(origin)
+	function removeTab() {
+		var origin = '${nutInfo.origin_Info}'
+		var allergy = '${nutInfo.allergy_Info }'
+		if (origin == "") {
+			$('#originTab').remove();
+		}
+		if (allergy == "") {
+			$('#allergyTab').remove();
+		}
 	}
-	if(allergy == ""){
-		$('#allergyTab').remove();
-	}else{
-		console.log(allergy)
-	}
-}
 </script>
-
-
 </body>
 </html>

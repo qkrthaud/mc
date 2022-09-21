@@ -109,8 +109,7 @@
 										<ul>
 											<li id="sizeS">
 												<a href="javascript:showSize('${menuInfo.menuSeq}');" id="sizeSa">
-													<span class="img"><img src="${path}/resources/images/menuImg/${menuInfo.name} Small.png"
-											alt="${menuInfo.name }"></span>
+													<span class="img" ><img id="imgS"></span>
 													<span class="menuName">${menuInfo.name }</span>
 													<span class="size"> Small</span>
 												</a>
@@ -118,8 +117,7 @@
 											
 											<li id="sizeM">
 												<a href="" class="javascript:showSize('${menuInfo.menuSeq}');" id="sizeMa">
-													<span class="img"><img src="${path}/resources/images/menuImg/${menuInfo.name} Medium.png"
-											alt="${menuInfo.name }"></span>
+													<span class="img"><img id="imgM"></span>
 													<span class="menuName">${menuInfo.name }</span>
 													<span class="size"> Medium</span>
 												</a>
@@ -127,8 +125,7 @@
 											
 											<li id="sizeL">
 												<a href="" class="javascript:showSize('${menuInfo.menuSeq}');"id="sizeLa">
-													<span class="img"><img src="${path}/resources/images/menuImg/${menuInfo.name} Large.png"
-											alt="${menuInfo.name }"></span>
+													<span class="img"><img id="imgL"></span>
 													<span class="menuName">${menuInfo.name }</span>
 													<span class="size"> Large</span>
 												</a>
@@ -230,8 +227,7 @@
 										aria-controls="toggle04" aria-expanded="false">원산지 정보
 										보기</button>
 									<div id="toggle04" class="toggleCon">
-										<ul class="origin_info">${nutInfo.origin_Info }
-										</ul>
+										<div class="origin_info">${nutInfo.origin_Info} </div>
 									</div>
 								</div>
 							</div>
@@ -261,57 +257,88 @@ function showSize(seq){
 	$("#searchForm2").attr("action","${path}/menu/size");
 	$("#searchForm2").submit();
 }
-function pageButton(){
-	var now ='${menuInfo.rownum}'
-	var val ='${value}'
-	console.log(now)
-	if(val == "사이드"){
-		
-	if(now == 1){
-		$('#prev').hide();
-	}else if(now == 11){
-		$('#next').hide();
-	}
-	}else if(val == "디저트"){
-		if(now == 1){
-			$('#prev').hide();
-		}else if(now == 12){
-			$('#next').hide();
+
+	function pageButton() {
+		var now = '${menuInfo.rownum}'
+		var val = '${value}'
+		console.log(now)
+		if (val == "사이드") {
+			if (now == 1) {
+				$('#prev').remove();
+			} else if (now == 11) {
+				$('#next').remove();
+			}
+		} else if (val == "디저트") {
+			if (now == 1) {
+				$('#prev').remove();
+			} else if (now == 12) {
+				$('#next').remove();
+			}
 		}
 	}
-}
-function otherSizeFunc() {
-	var size = '${menuInfo.menuSize}'
-	if (size == "default") {
-		$('#otherSize').remove();
-	}else if(size =="defaultOtherSM"){
-		$('#sizeL').remove();
-		$('#sizeSa').attr("href","javascript:showSize('${menuInfo.menuSeq+1}');");
-		$('#sizeMa').attr("href","javascript:showSize('${menuInfo.menuSeq+2}');");
-	}else if(size =="defaultOtherML"){
-		$('#sizeS').remove();
-		$('#sizeMa').attr("href","javascript:showSize('${menuInfo.menuSeq+1}');");
-		$('#sizeLa').attr("href","javascript:showSize('${menuInfo.menuSeq+2}');");
-	}else if(size =="defaultOtherA"){
-		$('#sizeSa').attr("href","javascript:showSize('${menuInfo.menuSeq+1}');");
-		$('#sizeMa').attr("href","javascript:showSize('${menuInfo.menuSeq+2}');");
-		$('#sizeLa').attr("href","javascript:showSize('${menuInfo.menuSeq+3}');");
+	function otherSizeFunc() {
+		var size = '${menuInfo.menuSize}'
+		if (size == "default") {
+			$('#otherSize').remove();
+		} else if (size == "defaultOtherSM") {
+			$('#sizeL').remove();
+			$('#sizeSa').attr("href",
+					"javascript:showSize('${menuInfo.menuSeq+1}');");
+			$('#sizeMa').attr("href",
+					"javascript:showSize('${menuInfo.menuSeq+2}');");
+			$('#imgS')
+					.attr("src",
+							"${path}/resources/images/menuImg/${menuInfo.name} Small.png");
+			$('#imgS').attr("alt", "${menuInfo.name} Small");
+			$('#imgM')
+					.attr("src",
+							"${path}/resources/images/menuImg/${menuInfo.name} Medium.png");
+			$('#imgM').attr("alt", "${menuInfo.name} Medium");
+		} else if (size == "defaultOtherML") {
+			$('#sizeS').remove();
+			$('#sizeMa').attr("href",
+					"javascript:showSize('${menuInfo.menuSeq+1}');");
+			$('#sizeLa').attr("href",
+					"javascript:showSize('${menuInfo.menuSeq+2}');");
+			$('#imgM')
+					.attr("src",
+							"${path}/resources/images/menuImg/${menuInfo.name} Medium.png");
+			$('#imgM').attr("alt", "${menuInfo.name} Medium");
+			$('#imgL')
+					.attr("src",
+							"${path}/resources/images/menuImg/${menuInfo.name} Large.png");
+			$('#imgL').attr("alt", "${menuInfo.name} Large");
+		} else if (size == "defaultOtherA") {
+			$('#sizeSa').attr("href",
+					"javascript:showSize('${menuInfo.menuSeq+1}');");
+			$('#sizeMa').attr("href",
+					"javascript:showSize('${menuInfo.menuSeq+2}');");
+			$('#sizeLa').attr("href",
+					"javascript:showSize('${menuInfo.menuSeq+3}');");
+			$('#imgS')
+					.attr("src",
+							"${path}/resources/images/menuImg/${menuInfo.name} Small.png");
+			$('#imgS').attr("alt", "${menuInfo.name} Small");
+			$('#imgM')
+					.attr("src",
+							"${path}/resources/images/menuImg/${menuInfo.name} Medium.png");
+			$('#imgM').attr("alt", "${menuInfo.name} Medium");
+			$('#imgL')
+					.attr("src",
+							"${path}/resources/images/menuImg/${menuInfo.name} Large.png");
+			$('#imgL').attr("alt", "${menuInfo.name} Large");
+		}
 	}
-}
-function removeTab(){
-	var origin = '${nutInfo.origin_Info}'
-	var allergy = '${nutInfo.allergy_Info }'
-	if(origin == ""){
-		$('#originTab').remove();
-	}else{
-		console.log(origin)
+	function removeTab() {
+		var origin = '${nutInfo.origin_Info}'
+		var allergy = '${nutInfo.allergy_Info }'
+		if (origin == "") {
+			$('#originTab').remove();
+		}
+		if (allergy == "") {
+			$('#allergyTab').remove();
+		}
 	}
-	if(allergy == ""){
-		$('#allergyTab').remove();
-	}else{
-		console.log(allergy)
-	}
-}
 </script>
 </body>
 </html>

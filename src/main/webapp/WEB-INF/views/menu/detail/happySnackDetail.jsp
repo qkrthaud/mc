@@ -196,8 +196,7 @@
 										aria-controls="toggle04" aria-expanded="false">원산지 정보
 										보기</button>
 									<div id="toggle04" class="toggleCon">
-										<ul class="origin_info">${nutInfo.origin_Info }
-										</ul>
+										<div class="origin_info">${nutInfo.origin_Info} </div>
 									</div>
 								</div>
 							</div>
@@ -229,9 +228,9 @@ function pageButton(){
 	var val ='${value}'
 	console.log(now)
 	if(now == 1){
-		$('#prev').hide();
+		$('#prev').remove();
 	}else if(now == 9){
-		$('#next').hide();
+		$('#next').remove();
 	}
 }
 function removeTab(){
@@ -239,13 +238,9 @@ function removeTab(){
 	var allergy = '${nutInfo.allergy_Info }'
 	if(origin == ""){
 		$('#originTab').remove();
-	}else{
-		console.log(origin)
 	}
 	if(allergy == ""){
 		$('#allergyTab').remove();
-	}else{
-		console.log(allergy)
 	}
 }
 </script>
