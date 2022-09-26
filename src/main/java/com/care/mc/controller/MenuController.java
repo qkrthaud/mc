@@ -1,6 +1,5 @@
 package com.care.mc.controller;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -9,7 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,7 +25,7 @@ public class MenuController {
 			Model model){
 		String value = request.getParameter("sub_category");
 		System.out.println("입력된 밸류 : "+value);
-		ms.list(value, model);
+		model.addAttribute("value", value);
 		if(value.equals("버거")) {
 			return "menu/list/burgerList";
 		}else if(value.equals("Burger세트")) {
