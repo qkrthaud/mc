@@ -123,7 +123,7 @@
 								<li class="toggle">
 								<h3 class="question"><em class="sortItem item01">
 								<span class="hide">구분</span>
-								${dto.grade }
+								${dto.kind }
 								</em>
 								<strong>
 								<span class="hide">질문</span>

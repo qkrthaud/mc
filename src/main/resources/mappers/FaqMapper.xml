@@ -5,16 +5,16 @@
 <mapper namespace="com.care.mc.mybatis.FaqMapper">
 	<resultMap type="com.care.mc.dto.FaqDTO" id="faq">
 		
-		<result property="grade" column="grade" />
+		<result property="kind" column="kind" />
 		<result property="title" column="title" />
 		<result property="content" column="content" />
 		
 	</resultMap>
 <select id="choSearch" resultMap="faq">
-select * from faq_list where grade = #{ch} and title like #{se} or content like #{sea}
+select * from faq_list where kind = #{ch} and title like #{se} or content like #{sea}
 </select>
 <select id="choList" resultMap="faq">
-select * from faq_list where grade = #{ch}
+select * from faq_list where kind = #{ch}
 </select>
 <select id="allSearch" resultMap="faq">
 select * from faq_list where title like #{se} or content like #{sea}
