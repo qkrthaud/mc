@@ -105,24 +105,21 @@
 									<div class="otherSize" id="otherSize">
 										<h3 class="tit">사이즈선택</h3>
 										<ul>
-											<li id="sizeS"><a
-												href="javascript:showSize('${menuInfo.menuSeq}');"
-												id="sizeSa"> <span class="img"><img id="imgS"></span>
-													<span class="menuName">${menuInfo.name }</span> <span
+											<li id="sizeS"><a href="" id="sizeSa"> <span
+													class="img"><img id="imgS"></span> <span
+													class="menuName">${menuInfo.name }</span> <span
 													class="size"> Small</span>
 											</a></li>
 
-											<li id="sizeM"><a href=""
-												class="javascript:showSize('${menuInfo.menuSeq}');"
-												id="sizeMa"> <span class="img"><img id="imgM"></span>
-													<span class="menuName">${menuInfo.name }</span> <span
+											<li id="sizeM"><a href="" id="sizeMa"> <span
+													class="img"><img id="imgM"></span> <span
+													class="menuName">${menuInfo.name }</span> <span
 													class="size"> Medium</span>
 											</a></li>
 
-											<li id="sizeL"><a href=""
-												class="javascript:showSize('${menuInfo.menuSeq}');"
-												id="sizeLa"> <span class="img"><img id="imgL"></span>
-													<span class="menuName">${menuInfo.name }</span> <span
+											<li id="sizeL"><a href="" id="sizeLa"> <span
+													class="img"><img id="imgL"></span> <span
+													class="menuName">${menuInfo.name }</span> <span
 													class="size"> Large</span>
 											</a></li>
 

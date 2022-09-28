@@ -107,7 +107,7 @@
 										<h3 class="tit">사이즈선택</h3>
 										<ul>
 											<li id="sizeS">
-												<a href="javascript:showSize('${menuInfo.menuSeq}');" id="sizeSa">
+												<a href="" id="sizeSa">
 													<span class="img"><img id="imgS"></span>
 													<span class="menuName">${menuInfo.name }</span>
 													<span class="size"> Small</span>
@@ -115,7 +115,7 @@
 											</li>
 											
 											<li id="sizeM">
-												<a href="" class="javascript:showSize('${menuInfo.menuSeq}');" id="sizeMa">
+												<a href="" id="sizeMa">
 													<span class="img"><img id="imgM"></span>
 													<span class="menuName">${menuInfo.name }</span>
 													<span class="size"> Medium</span>
@@ -123,7 +123,7 @@
 											</li>
 											
 											<li id="sizeL">
-												<a href="" class="javascript:showSize('${menuInfo.menuSeq}');"id="sizeLa">
+												<a href="" id="sizeLa">
 													<span class="img"><img id="imgL"></span>
 													<span class="menuName">${menuInfo.name }</span>
 													<span class="size"> Large</span>
