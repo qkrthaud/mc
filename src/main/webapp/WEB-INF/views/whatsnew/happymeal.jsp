@@ -50,7 +50,7 @@ ${details.contentStyle }
 						</article>
 
 						<div class="btnArea">
-							<a href="${path }/whatsnew_promotion" role="button"
+							<a href="${path }/whatsnew/whatsnew_happymeal" role="button"
 								class="btnMC btnM"><span>목록보기</span></a>
 						</div>
 					</div>
